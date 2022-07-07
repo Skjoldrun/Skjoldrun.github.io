@@ -130,6 +130,6 @@ public class SomeClass : ISomeClass
 
 This class can be located in a logging framework agnostic library without Serilog as dependency and still is able to get the `ILogger` instance and write out logs:
 
-![console logging output](/assets/images/coding/csharp/csharp-logging-Console-app-nullLogger/console-logging.png)
+![console logging output](/assets/images/coding/csharp/logging-Console-app-nullLogger/console-logging.png)
 
 
