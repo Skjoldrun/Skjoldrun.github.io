@@ -1,0 +1,88 @@
+# ###
+# basic jekyll config
+# ###
+title: Skjoldrun Knowledgebase
+email: skjoldrun@posteo.de
+description: >- # this means to ignore newlines until "baseurl:"
+  This is my knowledgebase for tech and programming topics. It's about C#, WPF, .NET, SQL and other categories.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://skjoldrun.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: jekyllrb
+github_username:  skjoldrun
+remote_theme: just-the-docs/just-the-docs
+plugins:
+# - jekyll-feed
+- jekyll-seo-tag
+
+
+# ###
+# just-the-docs configuration
+# ###
+# For help see https://just-the-docs.github.io/just-the-docs/docs/configuration/
+
+# Set a path/url to a logo that will be displayed instead of the title
+logo: "/assets/images/Logo-BooksBrain.png"
+
+# Enable or disable the site search
+# Supports true (default) or false
+search_enabled: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "About":
+    - "/"
+  "Linkedin":
+    - "//www.linkedin.com/in/david-halletz/"
+  "GitHub":
+    - "//github.com/skjoldrun"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false
+
+# Color scheme supports "light" (default) and "dark"
+color_scheme: light
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Code formatting
+compress_html:
+  ignore:
+    envs: all
+    
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# ###
+# Sitebar Navigation with Jekyll collections and just-the-docs collections:
+# ###
+# Define Jekyll collections
+collections:
+  # Define a collection named "docs", its documents reside in the "_docs" directory
+  coding:
+    permalink: "/:collection/:title"
+    output: true
+  other:
+    permalink: "/:collection/:title"
+    output: true
+
+just_the_docs:
+  # Define which collections are used in just-the-docs
+  collections:
+    # Reference the "docs" collection
+    coding:
+      # Give the collection a name
+      name: Coding
+      # Exclude the collection from the navigation
+      # Supports true or false (default)
+      nav_exclude: false
+      # Exclude the collection from the search
+      # Supports true or false (default)
+      search_exclude: false
+    other:
+      name: other posts
+      nav_exclude: false
+      search_exclude: false
