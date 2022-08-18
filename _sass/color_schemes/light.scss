@@ -1,12 +1,12 @@
 $link-color: $blue-000;
 $btn-primary-color: $blue-200;
-$body-text-color: $grey-dk-300;
+$body-text-color: $grey-dk-250;
 $code-background-color:$grey-lt-100;
 
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
-  color: #303030;
+  color: $grey-dk-250;
 }
 .highlight .err {
   color: #151515;
