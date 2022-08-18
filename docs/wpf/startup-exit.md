@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - startup and exit
+parent: WPF
 ---
 
 # startup and exit

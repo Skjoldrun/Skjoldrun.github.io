@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Preprocessor directives
+parent: C#
 ---
 
 # Preprocessor directives in C#

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - databinding
+parent: WPF
 ---
 
 # Databinding in Views

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - MVVM tutorial
+parent: WPF
 ---
 
 # MVVM Tutorial

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - JSON (de)serialization 
+parent: C#
 ---
 
 # JSON (de)serialization 

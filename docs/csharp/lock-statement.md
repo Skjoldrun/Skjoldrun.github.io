@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - lock statement
+parent: C#
 ---
 
 # Lock statement

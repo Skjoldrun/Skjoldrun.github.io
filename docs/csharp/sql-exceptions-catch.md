@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - catch sql exceptions
+parent: C#
 ---
 
 # Catch SQL exceptions

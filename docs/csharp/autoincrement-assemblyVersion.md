@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Autoincrement AssemblyVersion
+parent: C#
 ---
 
 # Autoincrement AssemblyVersion

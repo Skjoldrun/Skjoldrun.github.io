@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Mark a method as obsolete
+parent: C#
 ---
 
 # Mark a method as obsolete

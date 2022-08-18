@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - systemtray icon
+parent: WPF
 ---
 
 # Systemtray Icon

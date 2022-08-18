@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Usersettings
+parent: C#
 ---
 
 # Usersettings

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Alertmails & HTML template
+parent: C#
 ---
 
 # Alertmails with Oulook HTML template

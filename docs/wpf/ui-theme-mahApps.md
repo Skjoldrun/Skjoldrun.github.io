@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - UI Theme MahApps.Metro
+parent: WPF
 ---
 
 # UI Theme MahApps.Metro

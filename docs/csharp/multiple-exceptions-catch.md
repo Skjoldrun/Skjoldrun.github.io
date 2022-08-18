@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - catch multiple exception types
+parent: C#
 ---
 
 # Catch multiple exception types

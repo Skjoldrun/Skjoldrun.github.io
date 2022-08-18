@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Logging, DI, NullLogger
+parent: C#
 ---
 
 # Logging in ConsoleApps with Dependency Injection & NullLogger

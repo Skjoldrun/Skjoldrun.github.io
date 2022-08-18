@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Project file dependency
+parent: C#
 ---
 
 # Project structure file dependency

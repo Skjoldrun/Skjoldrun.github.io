@@ -54,35 +54,4 @@ compress_html:
 kramdown:
   syntax_highlighter_opts:
     block:
-      line_numbers: false
-
-# ###
-# Sitebar Navigation with Jekyll collections and just-the-docs collections:
-# ###
-# Define Jekyll collections
-collections:
-  # Define a collection named "docs", its documents reside in the "_docs" directory
-  coding:
-    permalink: "/:collection/:title"
-    output: true
-  other:
-    permalink: "/:collection/:title"
-    output: true
-
-just_the_docs:
-  # Define which collections are used in just-the-docs
-  collections:
-    # Reference the "docs" collection
-    coding:
-      # Give the collection a name
-      name: Coding
-      # Exclude the collection from the navigation
-      # Supports true or false (default)
-      nav_exclude: false
-      # Exclude the collection from the search
-      # Supports true or false (default)
-      search_exclude: false
-    other:
-      name: other posts
-      nav_exclude: false
-      search_exclude: false
+      line_numbers: true

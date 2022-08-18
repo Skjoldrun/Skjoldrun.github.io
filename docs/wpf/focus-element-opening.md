@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - focus element on opening
+parent: WPF
 ---
 
 # Focus element on opening

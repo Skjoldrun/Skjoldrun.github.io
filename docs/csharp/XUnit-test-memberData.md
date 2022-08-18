@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - XUnit Test and memberData
+parent: C#
 ---
 
 # Use complex parameters with XUnit Tests and MemberData

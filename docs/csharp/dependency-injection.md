@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Dependency Injection
+parent: C#
 ---
 
 # Dependency Injection

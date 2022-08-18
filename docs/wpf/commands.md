@@ -1,6 +1,7 @@
 ---
 layout: page
 title: WPF - commands
+parent: WPF
 ---
 
 # Commands

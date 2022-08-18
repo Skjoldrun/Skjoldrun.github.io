@@ -1,6 +1,7 @@
 ---
 layout: page
 title: C# - Logging in libraries, NullLogger
+parent: C#
 ---
 
 # Logging in Libraries
