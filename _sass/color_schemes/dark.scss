@@ -21,11 +21,9 @@ $feedback-color: darken($sidebar-color, 3%);
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
   color: #d0d0d0;
-  background-color: #151515;
 }
 .highlight .err {
   color: #151515;
-  background-color: #ac4142;
 }
 .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
   color: #505050;
@@ -50,7 +48,6 @@ $feedback-color: darken($sidebar-color, 3%);
 }
 .highlight .gh {
   color: #6a9fb5;
-  background-color: #151515;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
