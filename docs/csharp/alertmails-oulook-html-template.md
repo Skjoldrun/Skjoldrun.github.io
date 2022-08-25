@@ -183,9 +183,9 @@ public static void SendMessageFromTo(
 		.Replace("{{MonospaceMessage}}", monospaceMessage);
 	mailMessage.BodyEncoding = Encoding.UTF8;
 	mailMessage.SubjectEncoding = Encoding.UTF8;
-
 	smtpClient.Host = mailerConfig.SmtpHost;
-	smtpClient.Send(mailMessage);
+
+	TrySendMessage(smtpClient, mailMessage, message, monospaceMessage);
 }
 
 private static MailerConfig GetMailerConfig()
@@ -201,6 +201,8 @@ As you can see, the Tokens get replaced at building the `mailMessage.Body`. Call
 I wanted to have the parameters to be optional to let the user not have to worry about them, as long as he/she doesn't needs them.
 
 The other Methods then differ in not using the HTML template and only send plain text messages to keep the mail as light as possible.
+
+The method `TrySendMessage(...)` tries to send the mail, but calls a utility class to write the message to the local windows eventLog if sending it as a mail fails.
 
 
 ## Spam prevention
@@ -403,9 +405,9 @@ namespace Production.Mailing
                 .Replace("{{MonospaceMessage}}", monospaceMessage);
             mailMessage.BodyEncoding = Encoding.UTF8;
             mailMessage.SubjectEncoding = Encoding.UTF8;
-
             smtpClient.Host = mailerConfig.SmtpHost;
-            smtpClient.Send(mailMessage);
+
+            TrySendMessage(smtpClient, mailMessage, message, monospaceMessage);
         }
 
         /// <summary>
@@ -452,9 +454,9 @@ namespace Production.Mailing
             mailMessage.Body = $"{message}";
             mailMessage.BodyEncoding = Encoding.UTF8;
             mailMessage.SubjectEncoding = Encoding.UTF8;
-
             smtpClient.Host = mailerConfig.SmtpHost;
-            smtpClient.Send(mailMessage);
+            
+            TrySendMessage(smtpClient, mailMessage, message, monospaceMessage);
         }
 
         /// <summary>
@@ -576,6 +578,41 @@ namespace Production.Mailing
         }
 
         /// <summary>
+        /// Tries to send a perared mailMessage with the perared smtpClient.
+        /// If sending fails, it throws an exception filled with the given message and monospaceMessage texts or "not provided" if null.
+        /// This should enable preserving the alertMail messages in case of failuere.
+        /// </summary>
+        /// <param name="smtpClient">prepared smtpClient from calling method</param>
+        /// <param name="mailMessage">prepared mailMessage from calling method</param>
+        /// <param name="message">message part of the given mailMessage to be preserved as exception text</param>
+        /// <param name="monospaceMessage">monospaceMessage part of the given mailMessage to be preserved as exception text</param>
+        private static void TrySendMessage(SmtpClient smtpClient, MailMessage mailMessage, string message = null, string monospaceMessage = null)
+        {
+            try
+            {
+                smtpClient.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                message = message ?? "not provided";
+                monospaceMessage = monospaceMessage ?? "not provided";
+
+                string errorMessage = new StringBuilder()
+                    .AppendLine("Error while sending an AlertMail!")
+                    .AppendLine()
+                    .AppendLine($"Mailer Exception: {ex.Message}")
+                    .AppendLine($"Mail Message Text: {message}")
+                    .AppendLine($"Mail MonospaceMessage Text:")
+                    .AppendLine($"{monospaceMessage}")
+                    .ToString();
+
+                EventLogWriter.WriteApplicationEventEntry(errorMessage, System.Diagnostics.EventLogEntryType.Error);
+
+                throw new Exception(errorMessage);
+            }
+        }
+
+        /// <summary>
         /// Reads the stored values for last mails from path.
         /// Doesn't overwrite the existing empty Dictionary in _lastMailSentDict field if the stored file in path doesn't exist.
         /// </summary>
@@ -604,6 +641,44 @@ namespace Production.Mailing
     }
 }
 ```
+
+## Utility class to write Windows EventLog entries
+
+```csharp
+using System.Diagnostics;
+
+namespace Production.Utilities
+{
+    public static class EventLogWriter
+    {
+        private const string EventLogApplicationSubSource = ".NET Runtime";
+        private const int EventLogDefaultId = 1026;
+
+        /// <summary>
+        /// Writes a given message to the Application Windows EventLog.
+        /// The optional parameters can be overwritten with custom values.
+        /// </summary>
+        /// <param name="message">message to be written as log entry</param>
+        /// <param name="eventLogEntryType">overwrites the default type of Information to a custom set type</param>
+        /// <param name="sourceName">Overwrites the default ".NET Runtime". Custom values have to exist, or this throws an exception.</param>
+        /// <param name="eventId">OVerwrites the default id of 1026 to a custom id. keeping the default is recommended, else chose an id above 1000</param>
+        public static void WriteApplicationEventEntry(
+            string message,
+            EventLogEntryType eventLogEntryType = EventLogEntryType.Information,
+            string sourceName = EventLogApplicationSubSource,
+            int eventId = EventLogDefaultId)
+        {
+            using (EventLog eventLog = new EventLog())
+            {
+                eventLog.Source = sourceName;
+                eventLog.WriteEntry(message, eventLogEntryType, eventId);
+            }
+        }
+    }
+}
+```
+
+*More about this in [Article about writing eventLog](/docs/csharp/write-win-eventlog-entry.md).*
 
 
 ## Utility class to access the AppData folder with CompanyName and AssemblyName
