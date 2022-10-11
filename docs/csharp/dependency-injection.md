@@ -36,12 +36,18 @@ namespace DependencyInjectionExample
             AppHost = ConfigureHost();
 
             // Resolve an instance of a registered service and start it
-            var service = ActivatorUtilities.CreateInstance<ProjectExampleClass>(AppHost.Services);
+            var service = AppHost.Services.GetService<IProjectExampleClass>();
             service.ExampleMethod();
 
             // Resolve an instance of a registered service and start it
-            var libService = ActivatorUtilities.CreateInstance<LibExampleClass>(AppHost.Services);
+            var libService = AppHost.Services.GetService<ILibExampleClass>();
             libService.LibExampleMethod();
+
+            // Create a parameter object, this could be an object array
+            var parameter = true;
+            // Create an instance of a registered service with onjected logger and inject the parameters (order must match the ctor order)
+            var libServiceParam = ActivatorUtilities.CreateInstance<LibExampleWithParam>(AppHost.Services, parameter);
+            libServiceParam.GetSomeStringAnswer();
 
             Log.Information("Application stop");
             Log.CloseAndFlush();
@@ -76,9 +82,9 @@ namespace DependencyInjectionExample
 ```
 
 The example is about an console application with Serilog Logging, `Microsoft.Extensions.Logging`, `Microsoft.Extensions.Hosting` and `Microsoft.Extensions.DependencyInjection`. The first step is to configure the Serilog logger, the second step is to configure the application host to use the Serilog logger and to register all needed services with their interfaces. This is the place where the mapping and the lifetime scope for instances of classes is made. With `services.AddTransient<IProjectExampleClass, ProjectExampleClass>();` a new instance of type `ProjectExampleClass` is spined up every time the system is asked for something of type `IProjectExampleClass`. You can register for singletons with `services.AddSingleton`, too. That's the place where wishes of dependencies come true! 😉
-As third step, we then call the `ActivatorUtilities.CreateInstance<ProjectExampleClass>(AppHost.Services)` method to get a new instance of the demanded type and start calling one of its methods.
+As third step, we then call the `AppHost.Services.GetService<IProjectExampleClass>()` method to get a new instance of the demanded type and start calling one of its methods.
 
-If you use DI in aour application you stop instantiating classes with the new keyword but let the DI system instantiate them with propper resolved dependencies for you. 
+If you use DI in your application you stop instantiating classes with the new keyword but let the DI system instantiate them with propper resolved dependencies for you. 
 
 One of the called example methods is from the app internally and one is from a class library:
 
@@ -153,6 +159,43 @@ namespace DIExampleLib.Utilities
     }
 }
 ```
+
+
+## Create an instance with constructor parameters
+
+If you want to create instances of your classes, which should receive situation dependent parameters via constructor, you can inject them with the `ActivatorUtilities.CreateInstance<YourClass>(AppHost.Services, parameters)` call:
+
+The class constructor expects to get some parameters, for example a bool flag to decide certain execution steps:
+
+```csharp
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+
+namespace DIExampleLib.LibExampleClasses
+{
+    public class LibExampleWithParam : ILibExampleWithParam
+    {
+        private readonly ILogger<LibExampleWithParam> _logger;
+        private readonly bool _someBoolParam;
+
+        public LibExampleWithParam(ILogger<LibExampleWithParam> logger = null, bool someBoolParam = false)
+        {
+            _logger = logger ?? NullLogger<LibExampleWithParam>.Instance;
+            _someBoolParam = someBoolParam;
+        }
+
+        public void GetSomeStringAnswer()
+        {
+            if (_someBoolParam == true)
+                _logger.LogInformation("Param was set with constructor.");
+            else
+                _logger.LogInformation("Param might be set with constructor or remained the default value.");
+        }
+    }
+}
+```
+
+This parameter can be injected with the call of `ActivatorUtilities.CreateInstance<YourClass>(AppHost.Services, parameters)` in the Program.cs class. If you wnat to inject multiple parameters, you have to build an object array with ordered parameters to be injected one after the other.
 
 ![console out](/assets/images/coding/csharp/dependency-injection/console-output.png)
 
