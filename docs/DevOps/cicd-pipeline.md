@@ -20,7 +20,7 @@ This would be an automatic process to grab the results from the CI pipeline and 
 
 # DevOps
 
-Microsoft DevOps is a cloud hosted platform to save and manage the repositories and to run CI/CD pipeliones. This is a service from Microsoft and runs on MS cloud infrastructure, hence not in our internal company network.
+Microsoft DevOps is a cloud hosted platform to save and manage the repositories and to run CI/CD pipelines. This is a service from Microsoft and runs on MS cloud infrastructure, hence not in our internal company network.
 
 
 ## Create a CI pipe
@@ -138,13 +138,13 @@ You can check the single steps execution output:
 
 ![DevOps pipeline single steps output](/assets/images/other/DevOps/DevOps_running_pipe_steps.png)
 
-The pipeline yaml file will be commited and saved in the DevOps repository:
+The pipeline yaml file will be committed and saved in the DevOps repository:
 
 ![DevOps repo xaml file](/assets/images/other/DevOps/DevOps_repo_yaml_file.png)
 
 The pipeline is executed on Microsoft cloud infrastructure and is isolated in the configured container. Dependent on the DevOps configuration of the company it will be run on a Worker at times and report its state after finishing.
 
-The user who has triggert the pipe will get a eMail with a link and state report of the pipe:
+The user who has triggered the pipe will get an eMail with a link and state report of the pipe:
 
 ![DevOps pipeline eMail](/assets/images/other/DevOps/DevOps_pipeline_eMail.png)
 
