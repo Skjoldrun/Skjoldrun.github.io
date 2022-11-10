@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Other
-nav_order: 5
+title: DevOps
+nav_order: 4
 has_children: true
 ---
 
-# Other
+# DevOps
