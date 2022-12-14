@@ -98,12 +98,12 @@ This has to be referenced in your XAML code (App.xaml):
 </Application.Resources>
 ```
 
-![ArrayMultiValueConverter refference in XAML](/assets/images/coding/wpf/commands/ArrayMultiValueConverter-reference.png)
+[![ArrayMultiValueConverter refference in XAML](/assets/images/coding/wpf/commands/ArrayMultiValueConverter-reference.png)](/assets/images/coding/wpf/commands/ArrayMultiValueConverter-reference.png)
 
 Now you can send multiple parameters from UI elements with the click of a button:
 
-![ArrayMultiValueConverter refference in XAML](/assets/images/coding/wpf/commands/example-view.png)
+[![ArrayMultiValueConverter refference in XAML](/assets/images/coding/wpf/commands/example-view.png)](/assets/images/coding/wpf/commands/example-view.png)
 
 This is how you access the parameters in the ViewModel:
 
-![ArrayMultiValueConverter refference in XAML](/assets/images/coding/wpf/commands/access-param-ViewModel.png)
+[![ArrayMultiValueConverter refference in XAML](/assets/images/coding/wpf/commands/access-param-ViewModel.png)](/assets/images/coding/wpf/commands/access-param-ViewModel.png)

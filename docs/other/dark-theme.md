@@ -8,15 +8,15 @@ parent: Other
 
 In SQL Server Management Studio (SSMS) from Microsoft are some themes to choose from: the blue, blue with extra contrast and light. If you are familiar with Visual Studio you might already know there is another theme with dark colors there. This dark theme can be activated for SSMS as well!
 
-![options window](/assets/images/other/ssms/preview.png)
+[![options window](/assets/images/other/ssms/preview.png)](/assets/images/other/ssms/preview.png)
 
 Switching themes can be done in the options window with **Tools / Options / Environment / General / Color Theme**:
 
-![options window](/assets/images/other/ssms/options.png)
+[![options window](/assets/images/other/ssms/options.png)](/assets/images/other/ssms/options.png)
 
 This dark theme is not officially supported by MS and is not finished in every aspect. Most coloring is fine, but some parts, e.g. the context menu can be a little bit hard to read:
 
-![dark context menu](/assets/images/other/ssms/context-menu.png)
+[![dark context menu](/assets/images/other/ssms/context-menu.png)](/assets/images/other/ssms/context-menu.png)
 
 
 # How to activate the dark theme
@@ -46,7 +46,7 @@ The configuration (ssms.pkgundef) file is located at the following locations:
 
 Once the file is open, scroll down to `Remove Dark theme` heading and add `\\` to deactivate the removal:
 
-![dark context menu](/assets/images/other/ssms/config-remove-dark-theme.png)
+[![dark context menu](/assets/images/other/ssms/config-remove-dark-theme.png)](/assets/images/other/ssms/config-remove-dark-theme.png)
 
 Save the file and the theme should be available in your SSMS to activate.
 

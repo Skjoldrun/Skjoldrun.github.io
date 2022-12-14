@@ -12,7 +12,7 @@ parent: WPF
 
 Add hte MVVM folder structure in the WPF project:
 
-![folder structure](/assets/images/coding/wpf/MVVM-Tutorial/Folder-structure.png)
+[![folder structure](/assets/images/coding/wpf/MVVM-Tutorial/Folder-structure.png)](/assets/images/coding/wpf/MVVM-Tutorial/Folder-structure.png)
 
 The StartUpUri points to the entry point of the project and to which View should be opened.
 
@@ -21,7 +21,7 @@ The StartUpUri points to the entry point of the project and to which View should
 
 The ViewModel accesses the Model and implements a interface to recognize and handle changes `INotifyPropertyChanged`. 
 
-![ViewModel](/assets/images/coding/wpf/MVVM-Tutorial/ViewModel.png)
+[![ViewModel](/assets/images/coding/wpf/MVVM-Tutorial/ViewModel.png)](/assets/images/coding/wpf/MVVM-Tutorial/ViewModel.png)
 
 ```csharp
 using HelloWorldWPF.Model;
@@ -74,7 +74,7 @@ The Method `OnPropertyChanged(...)` communicates change events. With this the Vi
 
 The Model has access to the Repository (if the Repository Pattern is implemented, here its just simulated). The Repository gets initiated in the Constructor.
 
-![Model](/assets/images/coding/wpf/MVVM-Tutorial/Model.png)
+[![Model](/assets/images/coding/wpf/MVVM-Tutorial/Model.png)](/assets/images/coding/wpf/MVVM-Tutorial/Model.png)
 
 ```csharp
 using System.Collections.Generic;
@@ -134,7 +134,7 @@ THe View has the design and UI elements and could have some Code-behind, too. Fo
 Views are written in XAML and reference their ViewModel as DataContext. Therefore the Namespace gets registered with `xmlns:vm="clr-namespace:MyMVVMProject.ViewModel"` and a linking with `<Window.DataContext><vm:HelloWorldViewModel/></Window.DataContext>` is one version of connecting the ViewModel with the Model.
 The DataContext can also be connected in the Code-Behind with `DataContext = new HelloWorldViewModel();` or in ressource tables in the App.xml.
 
-![View](/assets/images/coding/wpf/MVVM-Tutorial/View.png)
+[![View](/assets/images/coding/wpf/MVVM-Tutorial/View.png)](/assets/images/coding/wpf/MVVM-Tutorial/View.png)
 
 ```csharp
 <Window x:Class="HelloWorldWPF.View.HelloWorldView"

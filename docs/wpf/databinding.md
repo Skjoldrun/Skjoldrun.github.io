@@ -13,11 +13,11 @@ Databinding connects datavalues in Views (e.g. TextBox entries) to Properties of
 
 The View and the ViewModel have to be connected as DataContext, e.g. via DataContext in the View XAML:
 
-![datacontext](/assets/images/coding/wpf/data-binding/datacontext.png)
+[![datacontext](/assets/images/coding/wpf/data-binding/datacontext.png)](/assets/images/coding/wpf/data-binding/datacontext.png)
 
 If the connection works you often have IntelliSense support in the XAML editor, to access the properties of the ViewModel:
 
-![datacontext](/assets/images/coding/wpf/data-binding/intelliSense.png)
+[![datacontext](/assets/images/coding/wpf/data-binding/intelliSense.png)](/assets/images/coding/wpf/data-binding/intelliSense.png)
 
 
 ## Binding

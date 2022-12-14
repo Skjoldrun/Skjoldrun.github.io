@@ -8,7 +8,7 @@ parent: WPF
 
 To focus a TextBox on opening of the view, you have to work with the FocusManager:
 
-![view](/assets/images/coding/wpf/focus-on-opening/View.png)
+[![view](/assets/images/coding/wpf/focus-on-opening/View.png)](/assets/images/coding/wpf/focus-on-opening/View.png)
 
 ```csharp
 <Grid FocusManager.FocusedElement="{Binding ElementName=txtConfig}">
