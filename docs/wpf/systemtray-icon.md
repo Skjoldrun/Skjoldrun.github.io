@@ -90,7 +90,7 @@ namespace Winsomnia.Utility
 }
 ```
 
-This gets used in the App.xaml.cs:
+This is used in the App.xaml.cs:
 
 ```csharp
 using Hardcodet.Wpf.TaskbarNotification;
