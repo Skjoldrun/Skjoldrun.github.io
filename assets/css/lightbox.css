@@ -1,204 +1,175 @@
-body.lb-disable-scrolling {
-  overflow: hidden;
-}
-
-.lightboxOverlay {
-  position: absolute;
+#lightbox {
+  width: 100%;
+  height: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  background-color: black;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999999;
+  line-height: 0;
+  cursor: pointer;
   display: none;
 }
 
-.lightbox {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  z-index: 10000;
-  text-align: center;
-  line-height: 0;
-  font-weight: normal;
-  outline: none;
-}
-
-.lightbox .lb-image {
-  display: block;
-  height: auto;
-  max-width: inherit;
-  max-height: none;
-  border-radius: 3px;
-
-  /* Image border */
-  border: 4px solid white;
-}
-
-.lightbox a img {
-  border: none;
-}
-
-.lb-outerContainer {
+#lightbox .img {
   position: relative;
-  *zoom: 1;
-  width: 250px;
-  height: 250px;
-  margin: 0 auto;
-  border-radius: 4px;
-
-  /* Background color behind image.
-     This is visible during transitions. */
-  background-color: white;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.lb-outerContainer:after {
-  content: "";
-  display: table;
-  clear: both;
+#lightbox .img img {
+  opacity: 0;
+  pointer-events: none;
+  width: auto;
 }
 
-.lb-loader {
-  position: absolute;
-  top: 43%;
-  left: 0;
-  height: 25%;
+@media screen and (min-width: 1200px) {
+  #lightbox .img {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  #lightbox .img {
+    max-height: 1200px;
+  }
+}
+
+#lightbox span {
+  display: block;
+  position: fixed;
+  bottom: 13px;
+  height: 1.5em;
+  line-height: 1.4em;
   width: 100%;
   text-align: center;
+  color: white;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#lightbox span {
+  display: none;
+}
+
+#lightbox .videoWrapperContainer {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 900px;
+  max-height: 100%;
+}
+
+#lightbox .videoWrapperContainer .videoWrapper {
+  height: 0;
   line-height: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-bottom: 56.333%;
+  /* custom */
+  background: black;
 }
 
-.lb-cancel {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 0 auto;
-  background: url(../images/loading.gif) no-repeat;
-}
-
-.lb-nav {
+#lightbox .videoWrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
-  z-index: 10;
-}
-
-.lb-container > .nav {
-  left: 0;
-}
-
-.lb-nav a {
-  outline: none;
-  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
-}
-
-.lb-prev, .lb-next {
   height: 100%;
-  cursor: pointer;
+  border: 0;
   display: block;
 }
 
-.lb-nav a.lb-prev {
-  width: 34%;
+#lightbox #prev,
+#lightbox #next {
+  height: 50px;
+  line-height: 36px;
+  display: none;
+  margin-top: -25px;
+  position: fixed;
+  top: 50%;
+  padding: 0 15px;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 99;
+  color: white;
+  font-size: 60px;
+}
+
+#lightbox.gallery #prev,
+#lightbox.gallery #next {
+  display: block;
+}
+
+#lightbox #prev {
   left: 0;
-  float: left;
-  background: url(../images/prev.png) left 48% no-repeat;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
 }
 
-.lb-nav a.lb-prev:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-
-.lb-nav a.lb-next {
-  width: 64%;
+#lightbox #next {
   right: 0;
-  float: right;
-  background: url(../images/next.png) right 48% no-repeat;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
 }
 
-.lb-nav a.lb-next:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-
-.lb-dataContainer {
-  margin: 0 auto;
-  padding-top: 5px;
-  *zoom: 1;
-  width: 100%;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.lb-dataContainer:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.lb-data {
-  padding: 0 4px;
-  color: #ccc;
-}
-
-.lb-data .lb-details {
-  width: 85%;
-  float: left;
-  text-align: left;
-  line-height: 1.1em;
-}
-
-.lb-data .lb-caption {
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1em;
-}
-
-.lb-data .lb-caption a {
-  color: #4ae;
-}
-
-.lb-data .lb-number {
-  display: block;
-  clear: left;
-  padding-bottom: 1em;
-  font-size: 12px;
-  color: #999999;
-}
-
-.lb-data .lb-close {
-  display: block;
-  float: right;
-  width: 30px;
-  height: 30px;
-  background: url(../images/close.png) top right no-repeat;
-  text-align: right;
-  outline: none;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-  opacity: 0.7;
-  -webkit-transition: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  transition: opacity 0.2s;
-}
-
-.lb-data .lb-close:hover {
+#lightbox #close {
+  height: 50px;
+  width: 50px;
+  position: fixed;
   cursor: pointer;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
+  text-decoration: none;
+  z-index: 99;
+  right: 0;
+  top: 0;
+}
+
+#lightbox #close:after,
+#lightbox #close:before {
+  position: absolute;
+  margin-top: 22px;
+  margin-left: 14px;
+  content: "";
+  height: 3px;
+  background: white;
+  width: 23px;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  /* Safari */
+  -webkit-transform: rotate(-45deg);
+  /* Firefox */
+  -moz-transform: rotate(-45deg);
+  /* IE */
+  -ms-transform: rotate(-45deg);
+  /* Opera */
+  -o-transform: rotate(-45deg);
+}
+
+#lightbox #close:after {
+  /* Safari */
+  -webkit-transform: rotate(45deg);
+  /* Firefox */
+  -moz-transform: rotate(45deg);
+  /* IE */
+  -ms-transform: rotate(45deg);
+  /* Opera */
+  -o-transform: rotate(45deg);
+}
+
+#lightbox,
+#lightbox * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
