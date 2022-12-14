@@ -12,7 +12,7 @@ If you want to debug a program it can come in handy to test certain functionalit
 
 With a preprocessor directive that call to write the html file can be capsulated to only be compiled in the assembly in the selected debug configuration in Visual Studio:
 
-![VS Configuration](/assets/images/coding/csharp/preprocessor/vsconfig.png)
+[![VS Configuration](/assets/images/coding/csharp/preprocessor/vsconfig.png)](/assets/images/coding/csharp/preprocessor/vsconfig.png)
 
 ```csharp
 #if DEBUG
@@ -26,16 +26,16 @@ To use and recognize this configuration, you have to define the DEBUG constant. 
 
 Define the constants with the project settings GUI:
 
-![Settings GUI](/assets/images/coding/csharp/preprocessor/constants-settings-gui.png)
+[![Settings GUI](/assets/images/coding/csharp/preprocessor/constants-settings-gui.png)](/assets/images/coding/csharp/preprocessor/constants-settings-gui.png)
 
 
 Define the constants with the csproj-file:
 
-![csproj](/assets/images/coding/csharp/preprocessor/constants-csproj.png)
+[![csproj](/assets/images/coding/csharp/preprocessor/constants-csproj.png)](/assets/images/coding/csharp/preprocessor/constants-csproj.png)
 
 
 ## .NET
 
 In .NET 6 and newer the constants get defined with the project initialization. You can find them in the new project settings GUI aswell:
 
-![Settings GUI](/assets/images/coding/csharp/preprocessor/constants-settings-gui-new.png)
+[![Settings GUI](/assets/images/coding/csharp/preprocessor/constants-settings-gui-new.png)](/assets/images/coding/csharp/preprocessor/constants-settings-gui-new.png)

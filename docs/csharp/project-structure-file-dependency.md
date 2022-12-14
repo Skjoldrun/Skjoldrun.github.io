@@ -11,7 +11,7 @@ If you want to show a dependency of two separate files in the Visual Studio proj
 
 **Before:**
 
-![Before](/assets/images/coding/csharp/project-structure-file-dependency/before.png)
+[![Before](/assets/images/coding/csharp/project-structure-file-dependency/before.png)](/assets/images/coding/csharp/project-structure-file-dependency/before.png)
 
 Set this snippet into your csproj file to create the dependency of the desired files:
 
@@ -26,4 +26,4 @@ Set this snippet into your csproj file to create the dependency of the desired f
 
 **After:**
 
-![After](/assets/images/coding/csharp/project-structure-file-dependency/after.gif)
+[![After](/assets/images/coding/csharp/project-structure-file-dependency/after.gif)](/assets/images/coding/csharp/project-structure-file-dependency/after.gif)

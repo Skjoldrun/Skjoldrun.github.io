@@ -14,7 +14,7 @@ The hash value is created on start of the application and is dependent of the st
 
 Since .NET Core and above you have to create the settings for yourself and set them as usersettings to get handled as such.
 
-![Usersettings](/assets/images/coding/csharp/usersettings/settings.png)
+[![Usersettings](/assets/images/coding/csharp/usersettings/settings.png)](/assets/images/coding/csharp/usersettings/settings.png)
 
 The settings can be defaulted here and later be overwritten by the user if you give them the possibility, e.g. with a settings GUI.
 

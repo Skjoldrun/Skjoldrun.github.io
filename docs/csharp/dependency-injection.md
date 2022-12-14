@@ -197,6 +197,6 @@ namespace DIExampleLib.LibExampleClasses
 
 This parameter can be injected with the call of `ActivatorUtilities.CreateInstance<YourClass>(AppHost.Services, parameters)` in the Program.cs class. If you wnat to inject multiple parameters, you have to build an object array with ordered parameters to be injected one after the other.
 
-![console out](/assets/images/coding/csharp/dependency-injection/console-output.png)
+[![console out](/assets/images/coding/csharp/dependency-injection/console-output.png)](/assets/images/coding/csharp/dependency-injection/console-output.png)
 
 If you have to instantiate multiple new objects from a class to be stored in another class, you can then get these new instances with the `ActivatorUtilities.CreateInstance<YourClass>(AppHost.Services)` method instead of calling `new YourClass( ??? )` and have to fiddle around with the dependencies to fill in the constructor here. But this has a little drawback: you have to drag the dependency on the `AppHost.Services` as `IServiceProvider` all the way down to the place you new up those instances. This can lead to your library becoming dependent of using Dependency Injection for the consuming application... oh the irony!

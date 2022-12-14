@@ -110,7 +110,7 @@ foreach (var machine in machines)
 
 First we read the JSON file as text, then we call the deserializer to get an object out of it: in our case its a list of machines with the read values.
 
-![deserialization example](/assets/images/coding/csharp/json-de-serializing/deserialize-example.png)
+[![deserialization example](/assets/images/coding/csharp/json-de-serializing/deserialize-example.png)](/assets/images/coding/csharp/json-de-serializing/deserialize-example.png)
 
 As you can see, the values of the JSON file are read per nested JSON object of the "machines" list. The enum types are stored as their identifier (int) instead of their name (string). This can be changed with a litte addition: options for the `JsonSerializer` class call. Add the following options variable and you can store the types as readable strings in the JSON file:
 
@@ -122,7 +122,7 @@ var options = new JsonSerializerOptions
 };
 ```
 
-![deserialization example with enum strings](/assets/images/coding/csharp/json-de-serializing/deserialize-example-enum-strings.png)
+[![deserialization example with enum strings](/assets/images/coding/csharp/json-de-serializing/deserialize-example-enum-strings.png)](/assets/images/coding/csharp/json-de-serializing/deserialize-example-enum-strings.png)
 
 
 ### Serialization Example
