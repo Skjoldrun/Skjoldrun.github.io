@@ -12,6 +12,6 @@ To edit the Windows dictionary and extend it with custom entries you can open a 
 %appdata%\Microsoft\Spelling\de-DE
 ```
 
-![appdata folder](/assets/images/other/win/appdata-folder.png)
+[![appdata folder](/assets/images/other/win/appdata-folder.png)](/assets/images/other/win/appdata-folder.png)
 
 OPen the file `default.dic` with an editor of your choice. Now you can add custom entries and modify already existing ones. Just don't delete the language id: `#LID 1031` in my case.
