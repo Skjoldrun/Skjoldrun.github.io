@@ -8,7 +8,7 @@ parent: C#
 
 ## Intro
 
-SQLite is a very useful way to have a local small DB system to cache or store relative data for your application. You get a fully functioning SQL DB System to be used by a DB ORM tool like Dapper or EF, without having a heavy system to install or to run besides your application. The SQLite DB lies as file besides your application and therefore is super portable as well.
+SQLite is a very useful way to have a local small DB system to cache or store relative data for your application. You get a fully functioning SQL DB System to be used by a DB ORM tool like Dapper or EF, without having a heavy system to install or to run besides your application. The SQLite DB lies as a single file besides your application and therefore is super portable as well.
 
 A good way to work and create SQLite DB is the tool [DB Browser for SQLite](https://sqlitebrowser.org/).
 
@@ -51,7 +51,7 @@ public class SqliteDataAccess
     {
         using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
         {
-            cnn.Execute("DELETE FROM Person WHERE FirstName = @FirstName AND LastName = @LastName", person);
+            cnn.Execute("DELETE FROM Person WHERE ID = @ID", person);
         }
     }
 
@@ -72,7 +72,7 @@ public class SqliteDataAccess
 }
 ``` 
 
-The retrieved data are list with type `PersonModel`.
+The retrieved data gets mapped to a list of type `PersonModel`.
 
 **PersonModel**
 
@@ -93,7 +93,7 @@ public class PersonModel
 }
 ``` 
 
-With the code in the UI you can add new persons to the DB, read the DB, Delete entries and even try to hack the DB access with a small SQL injection via the `?`button and a LastName text injection. This is possible because the used SQL statement behind the button does not get secured by parameterized SQL, but the SQL get build with string concatenation.
+With the code in the UI you can add new persons to the DB, read the DB, Delete entries and even try to hack the DB access with a small SQL injection via the `?` button and a LastName text injection. This is possible because the used SQL statement behind the button does not get secured by parameterized SQL, but the SQL is build with string concatenation.
 
 **UI Code-behind**
 
