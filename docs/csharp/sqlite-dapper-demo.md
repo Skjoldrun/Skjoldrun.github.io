@@ -1,10 +1,10 @@
 ---
 layout: page
-title: C# - SQLite Demo
+title: C# - SQLite Dapper Demo
 parent: C#
 ---
 
-# SQLite Demo
+# SQLite Dapper Demo
 
 ## Intro
 
@@ -17,7 +17,7 @@ A good way to work and create SQLite DB is the tool [DB Browser for SQLite](http
 
 I have created a small demo with WinForms and Dapper to show some code and the use of the SQLite DB. The demo project contains an UI with simple text boxes and a list box:
 
-[![UI editor](/assets/images/coding/csharp/sqlite-demo/ui-editor.png)](/assets/images/coding/csharp/sqlite-demo/ui-editor.png)
+[![UI editor](/assets/images/coding/csharp/sqlite-dapper-demo/ui-editor.png)](/assets/images/coding/csharp/sqlite-dapper-demo/ui-editor.png)
 
 The list box is bound to a list of type `PersonModel` to be able to show some DB data. The Buttons are wired up in the Code-behind for this simple demo and call the `SqliteDataAccess` class and its DB access methods with Dapper.
 
