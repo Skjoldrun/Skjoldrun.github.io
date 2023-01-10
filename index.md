@@ -14,11 +14,10 @@ My Name is David Halletz.
 
 I live in Bavaria, Germany.
 
-This is my Knowledgebase Project for tech and programming topics. The articles are about C#, .NET, SQL and other topics to learn and excercise with them.
+This is my knowledgebase project for technical and programming topics. The articles are about C#, .NET, SQL and other topics for learning and practicing.
 
-
-I am a software engineer in chemistry industry sector. I studied Computer Sciences at TH Rosenheim in Germany and worked as Administrator / ERP System developer and as IT-Consultant before. 
-My hobbies include tech, reading fantasy and sci-fi books, weight lifting, archery and gaming.
+I work as a software developer in the chemical industry. Before that I studied computer science at TH Rosenheim and worked as an administrator / ERP system developer and as an IT consultant. 
+My hobbies include technology, reading fantasy and science fiction books, weightlifting, archery and games.
 
 You can contact me with [david.halletz@posteo.de](mail-to:david.halletz@posteo.de) or via [LinkedIn](https://www.linkedin.com/in/david-halletz/).
 
