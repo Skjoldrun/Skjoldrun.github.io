@@ -60,7 +60,7 @@ As you can see, I have already tested the integration of different Libraries. On
 | net6.0; net48 | net6.0 | no, net48 cannot load the net6.0 library by default |
 | net48 / Framework 4.8 | net6.0; net48 | yes, but only with the net48 target |
 
-The [.NET Framework compatibility mode](https://learn.microsoft.com/en-us/dotnet/core/porting/#net-framework-compatibility-mode) gives access to .NET Framework 4.8 libraries on Windows only and only in special cases. The references library can only contain features that can be calls from .NET Core and newer. 
+The [.NET Framework compatibility mode](https://learn.microsoft.com/en-us/dotnet/core/porting/#net-framework-compatibility-mode) gives access to .NET Framework 4.8 libraries on Windows only and then only in special cases. The references library can then just contain features that can be called from .NET Core and newer. 
 
 
 ## .NET and .NET Framework parallel Project Files and Solutions
