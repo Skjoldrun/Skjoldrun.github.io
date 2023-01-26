@@ -59,19 +59,19 @@ The following example shows versioning with `Major.Minor.Build.Revision`, but th
 
 ```xml
 <PropertyGroup>
-	<AssemblyName>AssemblyVersionAutoIncrement</AssemblyName>
-	<RootNamespace>AssemblyVersionAutoIncrement</RootNamespace>
+	<AssemblyName>YourAssemblyName</AssemblyName>
+	<RootNamespace>YourAssemblyNameSpace</RootNamespace>
 	<VersionSuffix>1.0.$([System.DateTime]::UtcNow.ToString(MMdd)).$([System.DateTime]::Now.ToString(HHmm))</VersionSuffix>
 	<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
 	<AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
 	<Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
 	<Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
-	<Company>TestCompany</Company>
-	<Authors>TestAuthor</Authors>
+	<Company>YourCompany</Company>
+	<Authors>YourName</Authors>
 	<Copyright>Copyright © $(Company) $([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
-	<Product>Test Product</Product>
-	<Description>Some test application.</Description>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Product>YourProductName</Product>
+	<Description>Some description.</Description>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 </PropertyGroup>
 ```
 

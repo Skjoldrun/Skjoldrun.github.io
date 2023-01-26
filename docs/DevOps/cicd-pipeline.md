@@ -4,7 +4,7 @@ title: DevOps - CI/CD Pipeline
 parent: DevOps
 ---
 
-# Introduction 
+# CI/CD Pipeline 
 This is an example for having a MS DevOps repo with library and some unit testing project to trigger a DevOps CI/CD (continuous integration / continuous deployment) pipeline.
 
 
@@ -66,7 +66,7 @@ steps:
 # NuGet set to use specific version
 - task: NuGetToolInstaller@1
   inputs:
-    versionSpec: '6.0.0'
+    checkLatest: true
 
 # NuGet Restore command for all packages
 - task: NuGetCommand@2
