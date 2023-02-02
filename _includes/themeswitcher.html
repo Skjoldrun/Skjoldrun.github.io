@@ -8,6 +8,11 @@
                 localStorage.setItem('theme', 'light');
                 toggleDarkMode.textContent = "🌛";
             }
+            else if (localStorage.getItem('theme') === 'light') {
+                jtd.setTheme('dark');
+                localStorage.setItem('theme', 'dark');
+                toggleDarkMode.textContent = "🌞";
+            }
             else {
                 jtd.setTheme('dark');
                 localStorage.setItem('theme', 'dark');
