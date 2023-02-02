@@ -42,7 +42,7 @@ So I decided to place a button into the header bar besides the aux links in the 
 
 ```html
 <div>
-    <button class="btn js-toggle-dark-mode">🌛</button>
+    <button class="btn js-toggle-dark-mode">🌞</button>
     <script> 
         const toggleDarkMode = document.querySelector('.js-toggle-dark-mode'); 
         jtd.addEvent(toggleDarkMode, 'click', function() { 
@@ -51,10 +51,15 @@ So I decided to place a button into the header bar besides the aux links in the 
                 localStorage.setItem('theme', 'light');
                 toggleDarkMode.textContent = "🌛";
             }
-            else {
+            else if (localStorage.getItem('theme') === 'light') {
                 jtd.setTheme('dark');
                 localStorage.setItem('theme', 'dark');
                 toggleDarkMode.textContent = "🌞";
+            }
+            else {
+                jtd.setTheme('light');
+                localStorage.setItem('theme', 'light');
+                toggleDarkMode.textContent = "🌛";
             }
         }); 
     </script>
@@ -64,25 +69,7 @@ So I decided to place a button into the header bar besides the aux links in the 
 [![browser local storage](/assets/images/other/GitHubPages/browser-local-storage.png)](/assets/images/other/GitHubPages/browser-local-storage.png)
 
 This file has the button with the script functionality in it and can store the preferred setting of light or dark in the browser local storage. It also changes the button content with basic moon and sun emoticons as icons. With these basic icons, the button still functions on every OS and can display the size properly, even for mobile displays.
-
-The switcher code gets included in the `_layouts\default.html` file in the main class div container and after the aux-nav nav-item:
-
-```html
-<div id="main-header" class="main-header">
-    {% if site.search_enabled != false %}
-    <div class="search">
-        <!-- ... -->
-    </div>
-    {% endif %}
-    {% include header_custom.html %}
-    {% if site.aux_links %}
-    <nav aria-label="Auxiliary" class="aux-nav">
-        <!-- ... -->
-    </nav>
-    {% endif %}
-    {% include themeswitcher.html %} <!-- themeswitcher include here -->
-</div>
-```
+The switcher code gets included in the `_layouts\default.html` file in the main class div container and after the aux-nav nav-item.
 
 [![themeswitcher button](/assets/images/other/GitHubPages/themeswitcher-button.png)](/assets/images/other/GitHubPages/themeswitcher-button.png)
 
