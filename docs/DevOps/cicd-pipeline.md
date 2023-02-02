@@ -102,6 +102,13 @@ steps:
 #    Contents: '**\bin\$(buildConfiguration)\**'
 #    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+#- task: PublishPipelineArtifact@1
+#  inputs:
+#    targetPath: '$(Build.ArtifactStagingDirectory)'
+#    ArtifactName: 'drop'
+#    publishLocation: 'pipeline'
+
+# This is the 'old' and painful slow method to publish
 #- task: PublishBuildArtifacts@1
 #  inputs:
 #    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -147,4 +154,3 @@ The pipeline is executed on Microsoft cloud infrastructure and is isolated in th
 The user who has triggered the pipe will get an eMail with a link and state report of the pipe:
 
 [![DevOps pipeline eMail](/assets/images/other/DevOps/DevOps_pipeline_eMail.png)](/assets/images/other/DevOps/DevOps_pipeline_eMail.png)
-
