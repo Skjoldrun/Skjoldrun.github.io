@@ -37,7 +37,7 @@ The command generates an exe file called efbundle.exe. This contains the whole m
 ### Example for DevOps
 
 
-```YAML
+```yaml
 trigger:
  branches:
    include:
