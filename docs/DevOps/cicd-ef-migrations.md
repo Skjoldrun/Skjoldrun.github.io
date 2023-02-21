@@ -36,7 +36,6 @@ The command generates an exe file called efbundle.exe. This contains the whole m
 
 ### Example for DevOps
 
-
 ```yaml
 trigger:
  branches:
@@ -44,13 +43,15 @@ trigger:
      - '*'
 
 pool:
-  vmImage: 'windows-latest'
+  name: OnPromise Pipelines
+  demands: 
+  - Agent.Name -equals V-BUILD-01
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  migrationProjectName: 'YourProjectName'
+  migrationProjectName: 'SQLMSEntityFrameworkEDU'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -70,6 +71,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    vsVersion: 'latest'
 
 - task: CopyFiles@2
   displayName: 'Copy build artifacts to staging folder'
@@ -81,15 +83,21 @@ steps:
 - task: CmdLine@2
   displayName: 'Install dotnet ef tools'
   inputs:
-    script: 'dotnet tool update --global dotnet-ef'  
-    # update also installs if not installed yet
+    script: 'dotnet tool update --global dotnet-ef'  # update also installs if not installed yet
+
+- task: CmdLine@2
+  displayName: 'Generate ef migration SQL script'
+  inputs:
+    script: |
+      cd $(migrationProjectName)
+      dotnet ef migrations script --idempotent --output $(System.DefaultWorkingDirectory)/$(migrationProjectName)/migrations.sql
 
 - task: CmdLine@2
   displayName: 'Generate ef migration bundle'
   inputs:
     script: |
       cd $(migrationProjectName)
-      dotnet restore --runtime win-x64 
+      dotnet restore --runtime win-x64
       dotnet ef migrations bundle --verbose
 
 - task: CopyFiles@2
@@ -99,6 +107,7 @@ steps:
     Contents: |
       efbundle.exe
       appsettings.json
+      migrations.sql
     TargetFolder: '$(Build.ArtifactStagingDirectory)/migration'
 
 - task: PublishPipelineArtifact@1
@@ -107,7 +116,6 @@ steps:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'pipeline'
-
 ```
 
 This complete build pipeline script generates the efbundle.exe and publishes it in the drop/migration folder. The `dotnet restore --runtime win-x64` was added, because without it the bundle command threw an exception, that it would need these.
