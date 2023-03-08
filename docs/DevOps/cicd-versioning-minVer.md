@@ -4,7 +4,7 @@ title: DevOps - CI/CD Versioning MinVer
 parent: DevOps
 ---
 
-# VersioningMinVerEDU 
+# Versioning MinVerEDU 
 
 ## Intro
 
