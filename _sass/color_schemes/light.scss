@@ -12,146 +12,148 @@ $table-background-color: $white !default;
 $search-background-color: $white !default;
 $search-result-preview-color: $grey-dk-000 !default;
 
-@import "./vendor/OneLightJekyll/syntax";
-
+//custom
 $link-color: $blue-000;
 $btn-primary-color: $blue-200;
 $body-text-color: $grey-dk-250;
 $code-background-color: $grey-lt-100;
 
-.highlight table td {
-  padding: 5px;
-}
+@import "./vendor/OneLightJekyll/syntax";
 
-.highlight table pre {
-  margin: 0;
-}
 
-.highlight,
-.highlight .w {
-  color: $grey-dk-250;
-}
+// .highlight table td {
+//   padding: 5px;
+// }
 
-.highlight .err {
-  color: #151515;
-}
+// .highlight table pre {
+//   margin: 0;
+// }
 
-.highlight .c,
-.highlight .ch,
-.highlight .cd,
-.highlight .cm,
-.highlight .cpf,
-.highlight .c1,
-.highlight .cs {
-  color: #90a959;
-}
+// .highlight,
+// .highlight .w {
+//   color: $grey-dk-250;
+// }
 
-.highlight .cp {
-  color: #ff9500;
-}
+// .highlight .err {
+//   color: #151515;
+// }
 
-.highlight .nt {
-  color: #ff9500;
-}
+// .highlight .c,
+// .highlight .ch,
+// .highlight .cd,
+// .highlight .cm,
+// .highlight .cpf,
+// .highlight .c1,
+// .highlight .cs {
+//   color: #90a959;
+// }
 
-.highlight .o,
-.highlight .ow {
-  color: #606060;
-}
+// .highlight .cp {
+//   color: #ff9500;
+// }
 
-.highlight .p,
-.highlight .pi {
-  color: #606060;
-}
+// .highlight .nt {
+//   color: #ff9500;
+// }
 
-.highlight .gi {
-  color: #a05800;
-}
+// .highlight .o,
+// .highlight .ow {
+//   color: #606060;
+// }
 
-.highlight .gd {
-  color: #ac4142;
-}
+// .highlight .p,
+// .highlight .pi {
+//   color: #606060;
+// }
 
-.highlight .gh {
-  color: #6a9fb5;
-  font-weight: bold;
-}
+// .highlight .gi {
+//   color: #a05800;
+// }
 
-.highlight .k,
-.highlight .kn,
-.highlight .kp,
-.highlight .kr,
-.highlight .kv {
-  color: #2c84fa;
-}
+// .highlight .gd {
+//   color: #ac4142;
+// }
 
-.highlight .kc {
-  color: #d28445;
-}
+// .highlight .gh {
+//   color: #6a9fb5;
+//   font-weight: bold;
+// }
 
-.highlight .kt {
-  color: #d28445;
-}
+// .highlight .k,
+// .highlight .kn,
+// .highlight .kp,
+// .highlight .kr,
+// .highlight .kv {
+//   color: #2c84fa;
+// }
 
-.highlight .kd {
-  color: #d28445;
-}
+// .highlight .kc {
+//   color: #d28445;
+// }
 
-.highlight .s,
-.highlight .sb,
-.highlight .sc,
-.highlight .dl,
-.highlight .sd,
-.highlight .s2,
-.highlight .sh,
-.highlight .sx,
-.highlight .s1 {
-  color: #90a959;
-}
+// .highlight .kt {
+//   color: #d28445;
+// }
 
-.highlight .sa {
-  color: #2c84fa;
-}
+// .highlight .kd {
+//   color: #d28445;
+// }
 
-.highlight .sr {
-  color: #75b5aa;
-}
+// .highlight .s,
+// .highlight .sb,
+// .highlight .sc,
+// .highlight .dl,
+// .highlight .sd,
+// .highlight .s2,
+// .highlight .sh,
+// .highlight .sx,
+// .highlight .s1 {
+//   color: #90a959;
+// }
 
-.highlight .si {
-  color: #8f5536;
-}
+// .highlight .sa {
+//   color: #2c84fa;
+// }
 
-.highlight .se {
-  color: #8f5536;
-}
+// .highlight .sr {
+//   color: #75b5aa;
+// }
 
-.highlight .nn {
-  color: #ff9500;
-}
+// .highlight .si {
+//   color: #8f5536;
+// }
 
-.highlight .nc {
-  color: #ff9500;
-}
+// .highlight .se {
+//   color: #8f5536;
+// }
 
-.highlight .no {
-  color: #ff9500;
-}
+// .highlight .nn {
+//   color: #ff9500;
+// }
 
-.highlight .na {
-  color: #6a9fb5;
-}
+// .highlight .nc {
+//   color: #ff9500;
+// }
 
-.highlight .m,
-.highlight .mb,
-.highlight .mf,
-.highlight .mh,
-.highlight .mi,
-.highlight .il,
-.highlight .mo,
-.highlight .mx {
-  color: #90a959;
-}
+// .highlight .no {
+//   color: #ff9500;
+// }
 
-.highlight .ss {
-  color: #90a959;
-}
+// .highlight .na {
+//   color: #6a9fb5;
+// }
+
+// .highlight .m,
+// .highlight .mb,
+// .highlight .mf,
+// .highlight .mh,
+// .highlight .mi,
+// .highlight .il,
+// .highlight .mo,
+// .highlight .mx {
+//   color: #90a959;
+// }
+
+// .highlight .ss {
+//   color: #90a959;
+// }
