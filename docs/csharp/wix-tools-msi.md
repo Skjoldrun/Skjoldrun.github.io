@@ -158,6 +158,49 @@ ProductComponents.wxs
 ```
 
 
+#### optional Features
+
+You can define some COmponents or even ComponentGroups as additional/optional Features:
+
+```xml
+		<!-- List of Componentgroups for a feature to be installed -->
+		<Feature Id="ProductFeatures" Title="$(var.ProductName).Setup" Level="1" Description="Installs the sample application." Absent="disallow">
+			<ComponentGroupRef Id="MainExeComponentGroup" />
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="ApplicationShortcuts" />
+			<ComponentGroupRef Id="ApplicationDesktopShortcut" />
+		</Feature>
+
+		<!-- optional additional feature to be installed if chosen -->
+		<Feature Id="OptionalFeatures" Title="OptionalFeatures.Setup" Level="2" Description="install optional Features.">
+			<ComponentGroupRef Id="OptionalFeaturesComponents" />
+		</Feature>
+```
+
+The `OptionalFeatures` have a lower Level than the default level 1, so they are not installed by default. You can change the default installation level to 3 with `<Property Id="INSTALLLEVEL" Value=3 />`. Every feature which is above this level will not be installed by default then. 
+
+A possible approach to have optional feature components is to harvest the minimum files per heat.exe and exclude optional files by name with the Transform.xslt. Then add the needed files manually in a Componentgroup and as non default Features again. 
+
+If you choose to not have a GUI intaller, then you can add the installation of these features with the console call:
+
+```cmd
+msiexec /i WixInstallerEDU.Setup.msi ADDLOCAL=ProductFeatures,OptionalFeatures
+```
+
+#### GUI
+
+[![optional Features](/assets/images/coding/csharp/wix-tools-msi/optionalFeatures.png)](/assets/images/coding/csharp/wix-tools-msi/optionalFeatures.png)
+
+For a minimalistic GUI you can enable some prebuilt dialogs in the Product.wxs file:
+
+```xml
+<UIRef Id="WixUI_FeatureTree" />
+<WixVariable Id="WixUILicenseRtf" Value="$(var.ProductProjectIconDir)Resources\License.rtf" />
+```
+
+These two lines enable a license screen and the selection of features for installtion. Create a rtf license file with a rtf editor for propper display.
+Other dialogs can be looked up here: [Wix Dialog options](https://wixtoolset.org/docs/v3/wixui/wixui_dialog_library/)
+
 #### Versioning
 
 To sync the version we have to read the version number from a payloaded file, e.g. the exe file from the project. This file is manually added as seperate Fragment, Component Group and Component and gets a certain ID to be referenced in the variables on the top in the variable definitions:
