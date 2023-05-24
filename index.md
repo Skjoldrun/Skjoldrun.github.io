@@ -8,9 +8,9 @@ nav_order: 1
 
 Welcome to my knowledgebase site!
 
-My Name is David Halletz.
+My Name is David.
 
-![David Halletz](/assets/images/David_Halletz.jpg)
+![David](/assets/images/David_Halletz.jpg)
 
 I live in Bavaria, Germany.
 
