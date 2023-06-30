@@ -31,4 +31,4 @@ SET @sql = N'DELETE TOP (' + @NumDelete + ')'
 EXEC (@sql)
 ```
 
-THis script can be configured as MS SQL Job and to run every night.
+This script can be configured as MS SQL Job and to run every night.
