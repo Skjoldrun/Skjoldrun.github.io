@@ -23,5 +23,5 @@ You can contact me with [david.halletz@posteo.de](mail-to:david.halletz@posteo.d
 
 ### Built with
 
-* [just-the-docs jekyll theme](https://github.com/just-the-docs/just-the-docs) - customized theme with some extra functionality
+* [just-the-docs jekyll theme](https://github.com/just-the-docs/just-the-docs) - customized the theme with some extra functionality (darkmode switch and styles)
 * [Brain icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/brain) - took the icon as inspriration for my logo
