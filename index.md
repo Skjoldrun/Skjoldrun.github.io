@@ -10,7 +10,7 @@ Welcome to my knowledgebase site!
 
 My Name is David.
 
-[![David](/assets/images/David_Halletz_Bow_2.png)](/assets/images/David_Halletz_Bow_2.png.jpg)
+[![David](/assets/images/David_Halletz_Bow_2.png)](/assets/images/David_Halletz_Bow_2.png)
 
 I live in Bavaria, Germany.
 
