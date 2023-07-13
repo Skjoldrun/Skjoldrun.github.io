@@ -195,7 +195,7 @@ namespace DIExampleLib.LibExampleClasses
 }
 ```
 
-This parameter can be injected with the call of `ActivatorUtilities.CreateInstance<YourClass>(AppHost.Services, parameters)` in the Program.cs class. If you wnat to inject multiple parameters, you have to build an object array with ordered parameters to be injected one after the other.
+This parameter can be injected with the call of `ActivatorUtilities.CreateInstance<YourClass>(AppHost.Services, parameters)` in the Program.cs class. If you want to inject multiple parameters, you have to build an object array with ordered parameters to be injected one after the other.
 
 [![console out](/assets/images/coding/csharp/dependency-injection/console-output.png)](/assets/images/coding/csharp/dependency-injection/console-output.png)
 
