@@ -1,3 +1,9 @@
+---
+layout: page
+title: Wix - Wix 3 Installer
+parent: Other
+---
+
 # Wix 3 Installer
 
 The Wix (Windows Installer XML) Toolset is used to build MSI packages for your software. You can add a wixproj besides your main C# projects and define what you want to be installed, where you want it and even if you want to create shortcuts for your software. The generated MSI package can be built in an automated process, like the DevOps CI build pipe.
