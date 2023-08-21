@@ -220,3 +220,232 @@ PAUSE
 ## service console
 
 [![service console](/assets/images/coding/csharp/windows-service/service-console.png)](/assets/images/coding/csharp/windows-service/service-console.png)
+
+
+# Windows Service (.NET Core and newer)
+
+There is a project template to create a so called worker service. This is able to run as Windows Service or as Linux deamon in the background. It contains a hosted service of a worker class by default, where the worker class has the work that should be repeated.
+
+
+## Project file
+
+This is the csproj File without the Windows specific Service NuGet Package.
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-WindowsServiceEDU.Net-b08ece4c-16b1-48f2-a099-b1e918138f2e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" /> <!-- Packate for installable Windows Service -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+</Project>
+```
+
+To Install it as a Windows Service you also need the `Microsoft.Extensions.Hosting.WindowsServices` Package.
+
+Activate `.UseWindowsService()` for the `Host.CreateDefaultBuilder(args)` Method to get a installable Windows Service.
+
+
+
+## Interactive Mode
+
+This project template is by default interactivly startable and opens a console while debugging. It has all the features, like launchsettings, appsettings and more.
+This example comes with [dependency injection](https://skjoldrun.github.io/docs/csharp/dependency-injection.html), [NerdBank Git Versioning](https://skjoldrun.github.io/docs/DevOps/cicd-versioning-NerdBankGitVersion.html), [Serilog logging](https://skjoldrun.github.io/docs/csharp/logging-Console-app-nullLogger.html) and stopping the console app with `[Ctrl]+[C]`.
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var config = AppSettingsHelper.GetAppConfigBuilder().Build();
+        Log.Logger = LogInitializer.CreateLogger(config);
+
+        IHost host = Host.CreateDefaultBuilder(args)
+            .UseWindowsService()  // activate to get installable Windows Service
+            .ConfigureServices(services =>
+            {
+                services.AddHostedService<Worker>();
+            })
+            .UseSerilog()
+            .Build();
+
+        host.Run();
+        Log.CloseAndFlush();
+    }
+}
+```
+
+
+## The Worker Class
+
+The worker class has a endless loop with a cnacelation token and a wait timer for repetition. The cancelation token will come from the OS controlling the service. 
+
+```csharp
+public class Worker : BackgroundService
+{
+    private readonly IConfiguration _config;
+    private readonly ILogger<Worker> _logger;
+    private int _workerIntervalInSec;
+
+    public Worker(IConfiguration config, ILogger<Worker> logger = null)
+    {
+        _config = config;
+        _logger = logger ?? NullLogger<Worker>.Instance;
+        _workerIntervalInSec = _config.GetSection("AppSettings").GetValue<int>("WorkerIntervalInSec");
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            // do something here ...
+            _logger.LogInformation("Worker running every {interval} sec in {Env} envronment at: {time}",
+                _workerIntervalInSec, DateTimeOffset.Now, AppSettingsHelper.GetEnvVarName());
+
+            await Task.Delay(_workerIntervalInSec * 1000, stoppingToken);
+        }
+    }
+
+    public override Task StartAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Application {name} start", ThisAssembly.AssemblyName);
+        return base.StartAsync(cancellationToken);
+    }
+
+    public override Task StopAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Application {name} stop", ThisAssembly.AssemblyName);
+        return base.StopAsync(cancellationToken);
+    }
+}
+```
+
+
+## Serilog Async file logging
+
+Serilog can be configured to use asynchronous file logging. Check the code below or the `` class for examples of implementation:
+
+**LogInitializer**
+```csharp
+public static class LogInitializer
+{
+    /// <summary>
+    /// Creates the logger with inline settings.
+    /// </summary>
+    /// <returns>Logger with inline settings</returns>
+    public static Serilog.ILogger CreateLogger()
+    {
+        return new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Async(a =>
+                {
+                    a.File("logs/log.txt", rollingInterval: RollingInterval.Hour);
+                })
+#if DEBUG
+                .WriteTo.Console()
+                .WriteTo.Debug()
+#endif
+                .CreateLogger();
+    }
+
+    /// <summary>
+    /// Creates the logger with settings from appconfig and enrichments from code.
+    /// </summary>
+    /// <param name="appConfig">appConfig built from appsettings.json</param>
+    /// <returns>Logger with inline and app.config settings</returns>
+    public static Serilog.ILogger CreateLogger(IConfiguration appConfig)
+    {
+        return new LoggerConfiguration()
+            .ReadFrom.Configuration(appConfig)
+            .Enrich.FromLogContext()
+            .CreateLogger();
+    }
+
+    //...
+}
+```
+
+**Appsettings**
+```json
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console" ],
+    "WriteTo": [
+      {
+        "Name": "Async",
+        "Args": {
+          "configure": [
+            {
+              "Name": "File",
+              "Args": {
+                "path": "log\\log.txt",
+                "rollingInterval": "Hour"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    }
+  }
+  //...
+}
+```
+
+
+## Installing and deinstalling the Service
+
+Installing and uninstalling the service can be executed via script, for example with PowerShell:
+
+**Install.ps1**
+
+```powershell
+# Installs a service with given configurations for user, path, restart etc.
+# open a PowerShell Terminal with Administrator priviledges
+# sc.exe is needed in Powershell to not call teh sc commandlet for set content
+
+$ServiceName = "WindowsServiceEDU"  
+$DisplayName = "WindowsServiceEDU some Displayname"
+$Description = "Some Description"	
+$ServiceUser = "otto-chemie\cl-dh"  
+$StartUpMode = "delayed-auto"         # possible are boot|system|auto|demand|disabled|delayed-auto
+$Path = $PWD.Path                     # the path to the current directory
+
+#Write-Host "Path to Service is: $($Path)\$($ServiceName).exe"
+
+sc.exe create $ServiceName binpath= "$($Path)\$($ServiceName).exe" obj= $ServiceUser start= $StartUpMode
+sc.exe description $ServiceName $Description
+sc.exe failure $ServiceName reset= 30 actions= restart/5000  # Set restart options on failure
+```
+
+**Uninstall.ps1**
+
+```powershell
+# Deletes the service if not running any more, else mark for deletion after stop
+# open a PowerShell Terminal with Administrator priviledges
+# sc.exe is needed in Powershell to not call teh sc commandlet for set content
+
+$ServiceName = "WindowsServiceEDU"
+
+sc.exe delete $ServiceName
+```
+
+[![PowerShell Install](/assets/images/coding/csharp/windows-service/service-installer-ps.png)](/assets/images/coding/csharp/windows-service/service-installer-ps.png)
