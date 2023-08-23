@@ -1,7 +1,7 @@
 ---
 layout: page
-title: C# - Dependency Injection in WPF
-parent: C#
+title: WPF - Dependency Injection in WPF
+parent: WPF
 ---
 
 # Dependency Injection in WPF
@@ -86,7 +86,7 @@ public class AbstractFactory<T> : IAbstractFactory<T>
 }
 ```
 
-THis class gets an interface added and then we extend the Dependency Injection with a ServiceExtension class:
+This class gets an interface added and then we extend the Dependency Injection with a ServiceExtension class:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
