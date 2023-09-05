@@ -36,7 +36,7 @@ The pipeline is designed to use pipeline scope variables, which can be accessed 
 
 This script gets the service from the remote machine and stops it:
 
-```powerShell
+```shell
 $MachineName = $Env:TargetMachine
 $ServiceName = $Env:ServiceName
 
@@ -63,7 +63,7 @@ if($Service -eq $null)
 
 This script creates a backup in the working directory as a named zip file for later recovery. The name has a timestamp in it:
 
-```powerShell
+```shell
 $Date = $(Get-Date -Format yyyyMMdd-HHmmss)
 $ServiceName = $Env:ServiceName
 $WorkingDir = $Env:ServiceNetworkPath
@@ -80,7 +80,7 @@ Write-Host "Done."
 
 This Task would also stop the service from the remote machine and then uninstall it. Uninstalling a running service would just mark it for deletion and it will continue running until it gets stopped from elsewhere.
 
-```powerShell
+```shell
 $MachineName = $Env:TargetMachine
 $ServiceName = $Env:ServiceName
 
@@ -121,7 +121,7 @@ The pipeline passwort variable is a secret and has to be mapped to a local decry
 
 The sc.exe creates or installs teh service, then sets its description and finnaly configures the failure recovery to restart the service.
 
-```powerShell
+```shell
 $MachineName = $Env:TargetMachine
 $ServiceName = $Env:ServiceName
 $DisplayName = $Env:ServiceDsiplayName
@@ -143,7 +143,7 @@ Write-Host "Done."
 
 The last task starts the service:
 
-```powerShell
+```shell
 $MachineName = $Env:TargetMachine
 $ServiceName = $Env:ServiceName
 
@@ -154,3 +154,27 @@ $Service.Start()
 
 Write-Host "Done."
 ```
+
+
+# Manually Installing a service with Credentials
+
+If you need to install a service with credentials manually, you could use the following script:
+
+```shell
+$MachineName = "REMOTE_SERVER"
+$ServiceName = "WindowsServiceEDU"  
+$DisplayName = "WindowsServiceEDU Displayname"
+$Description = "Some Description"	
+$StartUpMode = "demand"
+$ServiceUser = "SERVICE_USER"
+$Path = "PATH_TO_SERVICE_EXE"
+$Cred = Get-Credential -Username $ServiceUser -Message "Please enter the login data:"
+
+sc.exe "\\$($MachineName)" create $ServiceName DisplayName= $DisplayName binpath= $Path start= $StartUpMode obj= $Cred.UserName password= $Cred.GetNetworkCredential().Password
+sc.exe "\\$($MachineName)" description $ServiceName $Description
+sc.exe "\\$($MachineName)" failure $ServiceName reset= 30 actions= restart/5000
+
+$Cred = $null
+```
+
+The script uses the Get-Credential command to temporarily store the login data. This command can be prefilled with a username and a message for the Credentials window. The password gets encrypted and stored in the other credential values in the `$Cred` variable and can be accessed as secret string via `$Cred.Password` or unencrypted via `$Cred.GetNetworkCredential().Password`.
