@@ -1,10 +1,10 @@
 ---
 layout: page
-title: C# - Usersettings
+title: C# - App.config Usersettings
 parent: C#
 ---
 
-# Usersettings
+# App.config Usersettings
 
 Usersettings can be used to store user specific settings besides the application settings in app.config. The application settings files usually is not writable to let the user store settings in it, furthermore there is one app.config application settings file and there could be more than one user, who wants to store settings. Therefore, the usersettingsfile is located in a writable path in the AppData folder of the user profile. This could be `C:\Users\<username>\AppData\Local\<companyname>\<projectname>_Url_<some Hash>/<version>`, while the company name is determined by the project settings in the AssemblyInfo.cs (rather .NET Framework), or the package settings in `<PropertyGroup><Company> ... </Company></PropertyGroup>` (.NET Core / .NET 6 and above).
 The hash value is created on start of the application and is dependent of the startup location path of the exe. If you copy the project exe into two different locations, there will be two folders with different hash values in the upper shown path.

@@ -6,6 +6,9 @@ parent: C#
 
 # Autoincrement AssemblyVersion
 
+**Note:**
+*This article describes a easy way for automatically incrementing the Assembly Versions without any further tooling. But I have tested some tools that are really worth to be looked at, like the [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) in this [article](/docs/DevOps/cicd-versioning-NerdBankGitVersion.md).*
+
 It can be usefull to have a kind of versioning logic for your assemblies. Analysing logs, comparing software assemblies in the wild or even having a history of versions will be easier with some kind of versioning.
 
 A good approach is versioning with `Major.Minor.Patch` or with `Major.Minor.Build.Revision`.
