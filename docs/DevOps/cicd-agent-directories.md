@@ -16,3 +16,4 @@ There are:
 | b | Build.BinariesDirectory | "binaries" - built binaries |
 | a | Build.ArtifactStagingDirectory | "artifacts" - staging folder to collect artifacts to be published |
 
+Check the [predefined variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml) for referencing directories and variables in your pipelines.
