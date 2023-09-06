@@ -68,7 +68,11 @@ A simple example could look like this:
 ```json
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "1.0"
+  "version": "1.0",
+  "gitCommitIdShortFixedLength": 6,
+  "assemblyVersion": {
+    "precision": "revision"
+  }
 }
 ```
 
@@ -116,17 +120,96 @@ Now you can access the version infos and output them in runtime.
 
 ```csharp
 Console.WriteLine($"Data to access with the NBGV class:{Environment.NewLine}" +
-                $"AssemblyName: {ThisAssembly.AssemblyName} {Environment.NewLine}" +
-                $"AssemblyTitle: {ThisAssembly.AssemblyTitle} {Environment.NewLine}" +
-                $"AssemblyVersion: {ThisAssembly.AssemblyVersion} {Environment.NewLine}" +
-                $"AssemblyFileVersion: {ThisAssembly.AssemblyFileVersion} {Environment.NewLine}" +
-                $"AssemblyInformationalVersion: {ThisAssembly.AssemblyInformationalVersion} {Environment.NewLine}" +
-                $"{Environment.NewLine}");
+  $"AssemblyName: {ThisAssembly.AssemblyName} {Environment.NewLine}" +
+  $"AssemblyTitle: {ThisAssembly.AssemblyTitle} {Environment.NewLine}" +
+  $"AssemblyVersion: {ThisAssembly.AssemblyVersion} {Environment.NewLine}" +
+  $"AssemblyFileVersion: {ThisAssembly.AssemblyFileVersion} {Environment.NewLine}" +
+  $"AssemblyInformationalVersion: {ThisAssembly.AssemblyInformationalVersion} {Environment.NewLine}" +
+  $"{Environment.NewLine}");
 
-            Console.WriteLine($"Finished program. {Environment.NewLine}" +
-                $"Company: {FileVersionInfoProcessor.GetFileVersionInfo().CompanyName}, {Environment.NewLine}" +
-                $"File Version: {FileVersionInfoProcessor.GetFileVersionInfo().FileVersion}, {Environment.NewLine}" +
-                $"Product Version: {FileVersionInfoProcessor.GetFileVersionInfo().ProductVersion}, {Environment.NewLine}Bye bye all!!");
+Console.WriteLine($"Finished program. {Environment.NewLine}" +
+  $"Company: {FileVersionInfoProcessor.GetFileVersionInfo().CompanyName}, {Environment.NewLine}" +
+  $"File Version: {FileVersionInfoProcessor.GetFileVersionInfo().FileVersion}, {Environment.NewLine}" +
+  $"Product Version: {FileVersionInfoProcessor.GetFileVersionInfo().ProductVersion}, {Environment.NewLine}Bye bye all!!");
 ```
 
 [![NBGV Console](/assets/images/other/DevOps/DevOps_Nbgv_Console.png)](/assets/images/other/DevOps/DevOps_Nbgv_Console.png)
+
+
+# Pipeline Example using library vars
+
+Here's an example of a pipeline that I use in my projects combined with the [library variables](/docs/DevOps/cicd-library-vars.md):
+
+```yaml
+trigger:
+ branches:
+   include:
+     - 'master'
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  - group: YOUR_GROUP_NAME
+  - name: SolutionName
+    value: YOUR_SOLUTION_NAME
+  - name: Vars_GroupId
+    value: 'YOUR_GROUP_ID'
+  - name: NBGV_Version
+    value: 'NBGV_$(SolutionName)'
+  - name: solution
+    value: '**/*.sln'
+  - name: buildPlatform
+    value: 'Any CPU'
+  - name: buildConfiguration
+    value: 'Release'
+
+steps:
+- checkout: self
+  submodules: true
+  persistCredentials: true
+  fetchDepth: 0
+
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet Tools'
+  inputs:
+    checkLatest: true
+
+- task: NuGetCommand@2
+  displayName: 'Restore NuGet Packages'
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  displayName: 'Build Solution'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  displayName: 'Copy build artifacts to staging folder'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '$(SolutionName)/bin/$(buildConfiguration)/**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Pipeline Artifacts'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'pipeline'
+
+- powershell: |
+    dotnet tool install --tool-path . nbgv
+  displayName: Install NBGV CLI Tools
+
+# Service-TFSBuild user needs the azure CLI with DevOps extension. Install with 'az extension add --name azure-devops'
+- powershell: |
+    Write-Host "Update library variable '$(NBGV_Version)' with NBGV var GitBuildVersion $(GitBuildVersion) ..."
+    az pipelines variable-group variable update --group-id $(Vars_GroupId) --name $(NBGV_Version) --value "$(GitBuildVersion)"
+  displayName: Update library NBGV Version Variable
+  env:
+    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+```
