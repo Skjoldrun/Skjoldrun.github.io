@@ -76,9 +76,17 @@ The switcher code gets included in the `_layouts\default.html` file in the main 
 
 ## Lightbox Integration
 
-Lightbox is a JavaScript and css implementation to show linked images in a loaded lightbox, wich is like a overlay box to open the image in front and in focus of the site. The used lightbox JS Code is listed down below. To use this with the just-the-docs Jekyll theme, the JS and the CSS should be placed in the assets folder in each a JS folder and a css folder. These are loaded on top of the remote loaded just-the-docs theme folders and the new files are deployed besides the originals. You have to link the JS and CSS in the head_custom.html file for just-the-docs to load them:
+Lightbox is a JavaScript and css implementation to show linked images in a loaded lightbox, wich is like a overlay box to open the image in front and in focus of the site. The used lightbox JS Code is listed down below (Source: [jekyllcodex.org](https://jekyllcodex.org/without-plugin/lightbox/#)). To use this with the just-the-docs Jekyll theme, the JS and the CSS should be placed in the assets folder in each a JS folder and a css folder. These are loaded on top of the remote loaded just-the-docs theme folders and the new files are deployed besides the originals. You have to link the JS and CSS in the head_custom.html file for just-the-docs to load them:
 
 [**_includes/head_custom.html**](/_includes/head_custom.html)
+```html
+<link href="/assets/css/lightbox.css" rel="stylesheet" />
+<script src="/assets/js/lightbox.js"></script>
+```
+
+**Alternative footer:**
+
+[**_includes/footer_custom.html**](/_includes/footer_custom.html)
 ```html
 <link href="/assets/css/lightbox.css" rel="stylesheet" />
 <script src="/assets/js/lightbox.js"></script>
