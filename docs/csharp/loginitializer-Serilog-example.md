@@ -20,6 +20,10 @@ namespace LogginExample.Utilities;
 
 public static class LogInitializer
 {
+
+    private const string FileLogFolderName = "Log";
+    private const string FileLogName = "Serilog_SelfLog_";
+
     /// <summary>
     /// Creates the logger with inline settings.
     /// </summary>
