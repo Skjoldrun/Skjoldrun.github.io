@@ -4,7 +4,9 @@ title: MS Teams - Video background GIF
 parent: Other
 ---
 
-# Video background GIF
+# Video background GIF (outdated)
+
+***Note:*** *This is outdated and doesn't work with the new Teams App from oct 2023 any more!*
 
 You can have an animated video background for your webcam video on MS Teams. 
 
