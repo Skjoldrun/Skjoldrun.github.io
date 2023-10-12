@@ -32,7 +32,7 @@ If your result string already contain the `[..]` as content you have to escape t
 ```SQL
 SELECT *
 FROM MyDB_Table
-WHERE [Message] LIKE `"\[SomeCategory\]%` ESCAPE '\'
+WHERE [Message] LIKE '"\[SomeCategory\]%' ESCAPE '\'
 ```
 
 Now you escape the brackets with the `\` character like you would escape in C# strings.
