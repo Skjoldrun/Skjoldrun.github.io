@@ -166,7 +166,7 @@ ProductComponents.wxs
 
 #### optional Features
 
-You can define some COmponents or even ComponentGroups as additional/optional Features:
+You can define some Components or even ComponentGroups as additional/optional Features:
 
 ```xml
 		<!-- List of Componentgroups for a feature to be installed -->
