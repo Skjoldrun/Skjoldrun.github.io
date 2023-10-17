@@ -13,11 +13,11 @@ This Powershell script reads settings from its settings.json file and then clone
 
 You need to get a personal access token from DevOps:
 
-[![personal access token 01](/assets/images/other/DevOps/DevOps_PersonalizedAccessTokens_01.png)](/assets/images/other/DevOps/DevOps_PersonalizedAccessTokens_01.png)
+[![personal access token 01](/assets/images/articles/DevOps/DevOps_PersonalizedAccessTokens_01.png)](/assets/images/articles/DevOps/DevOps_PersonalizedAccessTokens_01.png)
 
 Create a new one, give it a name and expiration date. You need the Read permission for Code.
 
-[![personal access token 02](/assets/images/other/DevOps/DevOps_PersonalizedAccessTokens_02.png)](/assets/images/other/DevOps/DevOps_PersonalizedAccessTokens_02.png)
+[![personal access token 02](/assets/images/articles/DevOps/DevOps_PersonalizedAccessTokens_02.png)](/assets/images/articles/DevOps/DevOps_PersonalizedAccessTokens_02.png)
 
 Then copy the token code and keep it secret, like your passwords. 
 *This code should not be added to the git repo or get published by accident!*
@@ -37,7 +37,7 @@ Call the script from a terminal:
 
 The script checks if the target folder for each repo already exists and skips existing ones. The output gets colored with yellow for skipped and cyan for new repos to be cloned:
 
-[![terminal example](/assets/images/other/DevOps/Terminal_Example.png)](/assets/images/other/DevOps/Terminal_Example.png)
+[![terminal example](/assets/images/articles/DevOps/Terminal_Example.png)](/assets/images/articles/DevOps/Terminal_Example.png)
 
 
 The `IsTest` setting is to create a subfolder "Test" in your target path to isolate the cloned repos for testing around with the script.

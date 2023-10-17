@@ -24,10 +24,10 @@ In .NET Framework you had the possibility to automate this nativly with having s
 * Change the AssemblyInfo.cs file to have `*` for versioning in `[assembly: AssemblyVersion("1.0.*")]`
 
 Changes in the csproj-file:
-[![.NET Framework csproj](/assets/images/coding/csharp/autoincrement-assemblyVersion/framework-csproj.png)](/assets/images/coding/csharp/autoincrement-assemblyVersion/framework-csproj.png)
+[![.NET Framework csproj](/assets/images/articles/autoincrement-assemblyVersion/framework-csproj.png)](/assets/images/articles/autoincrement-assemblyVersion/framework-csproj.png)
 
 Changes in AssemblyInfo.cs:
-[![.NET Framework AssemblyInfo.cs](/assets/images/coding/csharp/autoincrement-assemblyVersion/framework-assemblyInfo.png)](/assets/images/coding/csharp/autoincrement-assemblyVersion/framework-assemblyInfo.png)
+[![.NET Framework AssemblyInfo.cs](/assets/images/articles/autoincrement-assemblyVersion/framework-assemblyInfo.png)](/assets/images/articles/autoincrement-assemblyVersion/framework-assemblyInfo.png)
 
 
 ## .NET
@@ -51,7 +51,7 @@ Dactivating GenerateAssemblyInfo in csproj:
 
 Create and fill the File with a properties folder in the project:
 
-[![.NET create AssemblyInfo.cs](/assets/images/coding/csharp/autoincrement-assemblyVersion/dotnet-create-file.png)](/assets/images/coding/csharp/autoincrement-assemblyVersion/dotnet-create-file.png)
+[![.NET create AssemblyInfo.cs](/assets/images/articles/autoincrement-assemblyVersion/dotnet-create-file.png)](/assets/images/articles/autoincrement-assemblyVersion/dotnet-create-file.png)
 
 
 ### The better way
@@ -78,4 +78,4 @@ The following example shows versioning with `Major.Minor.Build.Revision`, but th
 </PropertyGroup>
 ```
 
-[![.NET Version example](/assets/images/coding/csharp/autoincrement-assemblyVersion/dotnet-version-number.png)](/assets/images/coding/csharp/autoincrement-assemblyVersion/dotnet-version-number.png)
+[![.NET Version example](/assets/images/articles/autoincrement-assemblyVersion/dotnet-version-number.png)](/assets/images/articles/autoincrement-assemblyVersion/dotnet-version-number.png)

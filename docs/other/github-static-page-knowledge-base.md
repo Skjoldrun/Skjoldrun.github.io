@@ -36,7 +36,7 @@ The original just-the-docs theme has no easy light / dark theme switch built in,
 
 I found that you can overwrite the original file with rebuilding the part of folder structure and filenames and put your custom code into the file. Furthermore, you can write a sort of plugin, which can be loaded with include statements in the HTML structure. The theme had basic light and dark CSS files and some basic script function to switch between them, but I wanted a button to be displayed on every page to enable the user to toggle at every time and from everywhere. 
 
-[![files](/assets/images/other/GitHubPages/editor-files.png)](/assets/images/other/GitHubPages/editor-files.png)
+[![files](/assets/images/articles/GitHubPages/editor-files.png)](/assets/images/articles/GitHubPages/editor-files.png)
 
 So I decided to place a button into the header bar besides the aux links in the upper right corner. I built a `themeswitcher.html` file:
 
@@ -66,12 +66,12 @@ So I decided to place a button into the header bar besides the aux links in the 
 </div>
 ```
 
-[![browser local storage](/assets/images/other/GitHubPages/browser-local-storage.png)](/assets/images/other/GitHubPages/browser-local-storage.png)
+[![browser local storage](/assets/images/articles/GitHubPages/browser-local-storage.png)](/assets/images/articles/GitHubPages/browser-local-storage.png)
 
 This file has the button with the script functionality in it and can store the preferred setting of light or dark in the browser local storage. It also changes the button content with basic moon and sun emoticons as icons. With these basic icons, the button still functions on every OS and can display the size properly, even for mobile displays.
 The switcher code gets included in the `_layouts\default.html` file in the main class div container and after the aux-nav nav-item.
 
-[![themeswitcher button](/assets/images/other/GitHubPages/themeswitcher-button.png)](/assets/images/other/GitHubPages/themeswitcher-button.png)
+[![themeswitcher button](/assets/images/articles/GitHubPages/themeswitcher-button.png)](/assets/images/articles/GitHubPages/themeswitcher-button.png)
 
 
 ## Lightbox Integration

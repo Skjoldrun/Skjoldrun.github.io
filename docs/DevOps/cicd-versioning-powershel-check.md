@@ -26,7 +26,7 @@ Get-ChildItem -Filter *.dll -Recurse |
     Select-Object Name,FileVersion,AssemblyVersion,ProductName,ProductVersion,LegalCopyright
 ```
 
-[![Powershell Check](/assets/images/other/DevOps/DevOps_versioning_powershell_check.png)](/assets/images/other/DevOps/DevOps_versioning_powershell_check.png)
+[![Powershell Check](/assets/images/articles/DevOps/DevOps_versioning_powershell_check.png)](/assets/images/articles/DevOps/DevOps_versioning_powershell_check.png)
 
 With `[Reflection.AssemblyName]::GetAssemblyName($_.FullName).` you can get the assemblyINfo properties and with `$_.VersionInfo.` you get infos to the following FileInfo properties:
 

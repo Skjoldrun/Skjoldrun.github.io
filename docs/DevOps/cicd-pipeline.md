@@ -25,13 +25,13 @@ Microsoft DevOps is a cloud hosted platform to save and manage the repositories 
 
 ## Create a CI pipe
 
-[![DevOps Menu](/assets/images/other/DevOps/DevOps_menu.png)](/assets/images/other/DevOps/DevOps_menu.png)
+[![DevOps Menu](/assets/images/articles/DevOps/DevOps_menu.png)](/assets/images/articles/DevOps/DevOps_menu.png)
 
-[![DevOps create pipe](/assets/images/other/DevOps/DevOps_create_pipe.png)](/assets/images/other/DevOps/DevOps_create_pipe.png)
+[![DevOps create pipe](/assets/images/articles/DevOps/DevOps_create_pipe.png)](/assets/images/articles/DevOps/DevOps_create_pipe.png)
 
-[![DevOps select pipe repo](/assets/images/other/DevOps/DevOps_select_pipe_repo.png)](/assets/images/other/DevOps/DevOps_select_pipe_repo.png)
+[![DevOps select pipe repo](/assets/images/articles/DevOps/DevOps_select_pipe_repo.png)](/assets/images/articles/DevOps/DevOps_select_pipe_repo.png)
 
-[![DevOps select pipe repo type](/assets/images/other/DevOps/DevOps_select_pipe_repo_type.png)](/assets/images/other/DevOps/DevOps_select_pipe_repo_type.png)
+[![DevOps select pipe repo type](/assets/images/articles/DevOps/DevOps_select_pipe_repo_type.png)](/assets/images/articles/DevOps/DevOps_select_pipe_repo_type.png)
 
 
 Edit the YAML pipeline configuration and add or change the commands to be run:
@@ -135,22 +135,22 @@ The yaml example pipeline has some comments for the single steps to be run.
 
 The pipeline editor also offers some help to inject some tasks on the right side:
 
-[![DevOps pipeline editor task help](/assets/images/other/DevOps/DevOps_pipelineEditor_tasks_help.png)](/assets/images/other/DevOps/DevOps_pipelineEditor_tasks_help.png)
+[![DevOps pipeline editor task help](/assets/images/articles/DevOps/DevOps_pipelineEditor_tasks_help.png)](/assets/images/articles/DevOps/DevOps_pipelineEditor_tasks_help.png)
 
 After clicking the `Save and Run` button you can configure what branch the pipe should be initially created in and start it:
 
-[![DevOps pipeline run overview](/assets/images/other/DevOps/DevOps_running_pipe_overview.png)](/assets/images/other/DevOps/DevOps_running_pipe_overview.png)
+[![DevOps pipeline run overview](/assets/images/articles/DevOps/DevOps_running_pipe_overview.png)](/assets/images/articles/DevOps/DevOps_running_pipe_overview.png)
 
 You can check the single steps execution output:
 
-[![DevOps pipeline single steps output](/assets/images/other/DevOps/DevOps_running_pipe_steps.png)](/assets/images/other/DevOps/DevOps_running_pipe_steps.png)
+[![DevOps pipeline single steps output](/assets/images/articles/DevOps/DevOps_running_pipe_steps.png)](/assets/images/articles/DevOps/DevOps_running_pipe_steps.png)
 
 The pipeline yaml file will be committed and saved in the DevOps repository:
 
-[![DevOps repo xaml file](/assets/images/other/DevOps/DevOps_repo_yaml_file.png)](/assets/images/other/DevOps/DevOps_repo_yaml_file.png)
+[![DevOps repo xaml file](/assets/images/articles/DevOps/DevOps_repo_yaml_file.png)](/assets/images/articles/DevOps/DevOps_repo_yaml_file.png)
 
 The pipeline is executed on Microsoft cloud infrastructure and is isolated in the configured container. Dependent on the DevOps configuration of the company it will be run on a Worker at times and report its state after finishing.
 
 The user who has triggered the pipe will get an eMail with a link and state report of the pipe:
 
-[![DevOps pipeline eMail](/assets/images/other/DevOps/DevOps_pipeline_eMail.png)](/assets/images/other/DevOps/DevOps_pipeline_eMail.png)
+[![DevOps pipeline eMail](/assets/images/articles/DevOps/DevOps_pipeline_eMail.png)](/assets/images/articles/DevOps/DevOps_pipeline_eMail.png)

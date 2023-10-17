@@ -14,4 +14,4 @@ Open the options with Extras\Options\Text Editor\C#\Codeformat\Naming
 * Create a new style e.g. "underscores" with prefex "_" and mixed lower and upper case
 * Choose your severity
 
-[![options](/assets/images/other/vs-coding-styles/options-ui.png)](/assets/images/other/vs-coding-styles/options-ui.png)
+[![options](/assets/images/articles/vs-coding-styles/options-ui.png)](/assets/images/articles/vs-coding-styles/options-ui.png)

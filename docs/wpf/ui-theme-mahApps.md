@@ -11,7 +11,7 @@ WPF Views can be themed to look way more interesting than the default look. To a
 
 ## Preview
 
-[![MahApps Preview](/assets/images/coding/wpf/theme-mahApps/preview.png)](/assets/images/coding/wpf/theme-mahApps/preview.png)
+[![MahApps Preview](/assets/images/articles/theme-mahApps/preview.png)](/assets/images/articles/theme-mahApps/preview.png)
 
 
 ## Quick Start
@@ -21,12 +21,12 @@ Theres a quick start guide on from MahApps: [Wiki QuickStart](https://github.com
 
 **Install the Nuget Package**
 
-[![MahApps Preview](/assets/images/coding/wpf/theme-mahApps/nuget-package.png)](/assets/images/coding/wpf/theme-mahApps/nuget-package.png)
+[![MahApps Preview](/assets/images/articles/theme-mahApps/nuget-package.png)](/assets/images/articles/theme-mahApps/nuget-package.png)
 
 
 **Add ressources in App.xaml**
 
-[![MahApps Preview](/assets/images/coding/wpf/theme-mahApps/ressources-app.xaml.png)](/assets/images/coding/wpf/theme-mahApps/ressources-app.xaml.png)
+[![MahApps Preview](/assets/images/articles/theme-mahApps/ressources-app.xaml.png)](/assets/images/articles/theme-mahApps/ressources-app.xaml.png)
 
 ```xml
 <Application x:Class="WpfApplication.App"
@@ -49,7 +49,7 @@ Theres a quick start guide on from MahApps: [Wiki QuickStart](https://github.com
 
 Change the `Window` to the `mah:MetroWindow`and add the `xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"` as namespace:
 
-[![MahApps Preview](/assets/images/coding/wpf/theme-mahApps/mahApp-window-View.png)](/assets/images/coding/wpf/theme-mahApps/mahApp-window-View.png)
+[![MahApps Preview](/assets/images/articles/theme-mahApps/mahApp-window-View.png)](/assets/images/articles/theme-mahApps/mahApp-window-View.png)
 
 ```xml
 <mah:MetroWindow x:Class="HelloWorldWPF.View.HelloWorldView"
@@ -114,7 +114,7 @@ Change the `Window` to the `mah:MetroWindow`and add the `xmlns:mah="http://metro
 
 Add the inheritance of the `MetroWindow` class in the Code-behind (optional, not allways necessary):
 
-[![MahApps Preview](/assets/images/coding/wpf/theme-mahApps/Code-behind.png)](/assets/images/coding/wpf/theme-mahApps/Code-behind.png)
+[![MahApps Preview](/assets/images/articles/theme-mahApps/Code-behind.png)](/assets/images/articles/theme-mahApps/Code-behind.png)
 
 ```csharp
 using ControlzEx.Theming;
@@ -201,7 +201,7 @@ namespace HelloWorldWPF.View
 
 ## some test with a ViewModel
 
-[![MahApps Preview](/assets/images/coding/wpf/theme-mahApps/preview.gif)](/assets/images/coding/wpf/theme-mahApps/preview.gif)
+[![MahApps Preview](/assets/images/articles/theme-mahApps/preview.gif)](/assets/images/articles/theme-mahApps/preview.gif)
 
 
 **ViewModel**

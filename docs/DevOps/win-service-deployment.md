@@ -29,7 +29,7 @@ The pipeline separates all these steps into single tasks for better debugging an
 
 The pipeline is designed to use pipeline scope variables, which can be accessed from any task in the pipe to reuse some common values.
 
-[![pipeline variables](/assets/images/other/DevOps/DevOps_win_service_pipeVars.png)](/assets/images/other/DevOps/DevOps_win_service_pipeVars.png)
+[![pipeline variables](/assets/images/articles/DevOps/DevOps_win_service_pipeVars.png)](/assets/images/articles/DevOps/DevOps_win_service_pipeVars.png)
 
 
 ### Stop Service
@@ -109,7 +109,7 @@ if($Service -eq $null)
 
 This task is a simple CopyFiles task with the option to clear the target folder set to true and the target folder is combined from pipeline variable values:
 
-[![deploy files](/assets/images/other/DevOps/DevOps_win_Service_deployFiles.png)](/assets/images/other/DevOps/DevOps_win_Service_deployFiles.png)
+[![deploy files](/assets/images/articles/DevOps/DevOps_win_Service_deployFiles.png)](/assets/images/articles/DevOps/DevOps_win_Service_deployFiles.png)
 
 
 ## Install Service
@@ -117,7 +117,7 @@ This task is a simple CopyFiles task with the option to clear the target folder 
 This script has multiple variables set from the pipeline variables. These contain the common strings and values for insallting a service with a given service user, its credentials, naming and description as well as a start mode and recovery handling on failure. The task uses the sc.exe to install the service remotely. This tool has a special way to get its parameters. You have to write them `<paramName>= <value>` and the passwort of the service user has to be set directly. 
 The pipeline passwort variable is a secret and has to be mapped to a local decrypted string here. This can be done with defining a mapping variable for this task:
 
-[![deploy files](/assets/images/other/DevOps/DevOps_win_service_pwmap.png)](/assets/images/other/DevOps/DevOps_win_service_pwmap.png)
+[![deploy files](/assets/images/articles/DevOps/DevOps_win_service_pwmap.png)](/assets/images/articles/DevOps/DevOps_win_service_pwmap.png)
 
 The sc.exe creates or installs teh service, then sets its description and finnaly configures the failure recovery to restart the service.
 

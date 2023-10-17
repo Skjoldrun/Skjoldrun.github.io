@@ -10,7 +10,7 @@ I have built an AlertMailing utility for a logging extension once, that can read
 
 **Preview**
 
-[![AlertMail preview](/assets/images/coding/csharp/alertmails-outlook-html-template/preview-info.png)](/assets/images/coding/csharp/alertmails-outlook-html-template/preview-info.png)
+[![AlertMail preview](/assets/images/articles/alertmails-outlook-html-template/preview-info.png)](/assets/images/articles/alertmails-outlook-html-template/preview-info.png)
 
 
 The alertMail informs the receiver about the machine it got sent from, the AssemblyName and version, displays a message text and a optional monospaced message block to show even more info, like the callstack.
