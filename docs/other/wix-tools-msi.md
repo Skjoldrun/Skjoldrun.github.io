@@ -391,3 +391,28 @@ If you need more MSI functionality or want to look deeper, then check these link
 	<xsl:template match="*[ self::wix:Component or self::wix:ComponentRef ][ key( 'PdbToRemove', @Id ) ]" />
 </xsl:stylesheet>
 ```
+
+
+# Silent (un)installation
+
+To install the MSI package silently you have to open a console with admin priviledges. Then enter the following commnd variants for installation:
+
+Silent install or silent major upgrade:
+```shell
+msiexec.exe /i foo.msi /qn
+```
+
+Silent minor upgrade:
+```shell
+msiexec.exe /i foo.msi REINSTALL=ALL REINSTALLMODE=vomus /qn
+```
+
+Silent uninstall:
+```shell
+msiexec.exe /i foo.msi /qn
+```
+
+Executable path of msiexec:
+```shell
+msiexec.exe /i foo.msi /qn
+```
