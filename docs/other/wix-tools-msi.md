@@ -237,9 +237,8 @@ The CI build pipe now also builds the MSI package. This can be copied to the sta
 
 If you need more MSI functionality or want to look deeper, then check these links:
 
-[Youtube: Creating Professional Installations with WiX | Tips](https://www.youtube.com/watch?v=usOh3NQO9Ms)
-
-[Example GitHub for the Youtube Tutorial](https://github.com/SteveIves/SynergyWixExample)
+* [Creating Professional Installations with WiX](https://www.youtube.com/watch?v=usOh3NQO9Ms)
+* [Example GitHub for the Youtube Tutorial](https://github.com/SteveIves/SynergyWixExample)
 
 
 # Full file contents
