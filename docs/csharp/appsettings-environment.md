@@ -14,7 +14,7 @@ In .NET core and newer the old app.config as XML file gets replaced by the appse
 
 You can add this file via VS context menu and choose the JavaScript-JSON-Configuration file. Change the properties of the file to "allways copy" or to "copy if newer" to place it in the build directory. You can also change this in the project file:
 
-[![appsettings allway copy](/assets/images/coding/csharp/appsettings-environment/project-settings.png)](/assets/images/coding/csharp/appsettings-environment/project-settings.png)
+[![appsettings allway copy](/assets/images/articles/appsettings-environment/project-settings.png)](/assets/images/articles/appsettings-environment/project-settings.png)
 
 If you have a different appsettings file for debug purposes you can control if it will be copied to the output directory with the project settings, too. 
 
@@ -45,7 +45,7 @@ If you have a different appsettings file for debug purposes you can control if i
 
 The conditions control the copy process via debug or release settings. 
 
-[![file dependency](/assets/images/coding/csharp/appsettings-environment/file-dependency.png)](/assets/images/coding/csharp/appsettings-environment/file-dependency.png)
+[![file dependency](/assets/images/articles/appsettings-environment/file-dependency.png)](/assets/images/articles/appsettings-environment/file-dependency.png)
 
 You can set a dependency of the two files to show them in a hierarchy in the project structure:
 
@@ -57,7 +57,7 @@ You can set a dependency of the two files to show them in a hierarchy in the pro
 </ItemGroup>
 ```
 
-[![file dependency](/assets/images/coding/csharp/appsettings-environment/file-dependency-set.png)](/assets/images/coding/csharp/appsettings-environment/file-dependency-set.png)
+[![file dependency](/assets/images/articles/appsettings-environment/file-dependency-set.png)](/assets/images/articles/appsettings-environment/file-dependency-set.png)
 
 
 ### Environment Variables
@@ -78,7 +78,7 @@ Create the file Properties\LaunchSettings.json and write the following entries t
 ```
 You can also set this up via UI in VS:
 
-[![launchsettings](/assets/images/coding/csharp/appsettings-environment/launchsettings-gui.png)](/assets/images/coding/csharp/appsettings-environment/launchsettings-gui.png)
+[![launchsettings](/assets/images/articles/appsettings-environment/launchsettings-gui.png)](/assets/images/articles/appsettings-environment/launchsettings-gui.png)
 
 
 ### Configuration and host builder

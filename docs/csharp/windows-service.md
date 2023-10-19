@@ -13,7 +13,7 @@ To create a Windows service to be installed and controlled in the services conso
 
 An example for a service with its properties:
 
-[![Project Properties](/assets/images/coding/csharp/windows-service/project-properties.png)](/assets/images/coding/csharp/windows-service/project-properties.png)
+[![Project Properties](/assets/images/articles/windows-service/project-properties.png)](/assets/images/articles/windows-service/project-properties.png)
 
 
 ## Interactive Mode
@@ -139,13 +139,13 @@ internal static class Program
 
 ## Service component and Installer
 
-[![Service Component](/assets/images/coding/csharp/windows-service/add-service-component.png)](/assets/images/coding/csharp/windows-service/add-service-component.png)
+[![Service Component](/assets/images/articles/windows-service/add-service-component.png)](/assets/images/articles/windows-service/add-service-component.png)
 
 In newer VS editions there are no more Tools from the Toolbox available, so we have to do some tricks for adding the required classes, like the installer and its components. Open the Designer view and then Right Click the background to add the Installer:
 
-[![Service Component](/assets/images/coding/csharp/windows-service/open-designer.png)](/assets/images/coding/csharp/windows-service/open-designer.png)
+[![Service Component](/assets/images/articles/windows-service/open-designer.png)](/assets/images/articles/windows-service/open-designer.png)
 
-[![Service Component](/assets/images/coding/csharp/windows-service/add-installer.png)](/assets/images/coding/csharp/windows-service/add-installer.png)
+[![Service Component](/assets/images/articles/windows-service/add-installer.png)](/assets/images/articles/windows-service/add-installer.png)
 
 ***Note:***
 *If you have created this project as console project for the newer .net and as SDK styled project right away, you might get some troubles for adding the serviceInstaller and the serviceProcessInstaller components. The sad thing is that I was not able to find any way to add the serviceInstaller and the serviceProcessInstaller components via the IDE, so I copied them from another project ...* 😒
@@ -153,7 +153,7 @@ In newer VS editions there are no more Tools from the Toolbox available, so we h
 
 To configure the installer, you can now set some properties, like the name, the description or if the service will start automatically:
 
-[![Service Component](/assets/images/coding/csharp/windows-service/service-installer-properties.png)](/assets/images/coding/csharp/windows-service/service-installer-properties.png)
+[![Service Component](/assets/images/articles/windows-service/service-installer-properties.png)](/assets/images/articles/windows-service/service-installer-properties.png)
 
 
 ### Convert to SDK Style project
@@ -219,7 +219,7 @@ PAUSE
 
 ## service console
 
-[![service console](/assets/images/coding/csharp/windows-service/service-console.png)](/assets/images/coding/csharp/windows-service/service-console.png)
+[![service console](/assets/images/articles/windows-service/service-console.png)](/assets/images/articles/windows-service/service-console.png)
 
 
 # Windows Service (.NET Core and newer)
@@ -448,4 +448,4 @@ $ServiceName = "WindowsServiceEDU"
 sc.exe delete $ServiceName
 ```
 
-[![PowerShell Install](/assets/images/coding/csharp/windows-service/service-installer-ps.png)](/assets/images/coding/csharp/windows-service/service-installer-ps.png)
+[![PowerShell Install](/assets/images/articles/windows-service/service-installer-ps.png)](/assets/images/articles/windows-service/service-installer-ps.png)

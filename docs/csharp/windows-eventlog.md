@@ -45,4 +45,4 @@ public static class EventLogWriter
 EventLogWriter.WriteApplicationEventEntry("some Message", System.Diagnostics.EventLogEntryType.Error);
 ```
 
-[![Windows Eventlog](/assets/images/coding/csharp/windows-eventlog/windows-eventlog.png)](/assets/images/coding/csharp/windows-eventlog/windows-eventlog.png)
+[![Windows Eventlog](/assets/images/articles/windows-eventlog/windows-eventlog.png)](/assets/images/articles/windows-eventlog/windows-eventlog.png)

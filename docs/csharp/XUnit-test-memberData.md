@@ -67,5 +67,5 @@ public class BeckhoffPulseCheckerTest
 
 You can mix datatypes and make really complex parameter combinations and easily call the testmethod with them.
 
-[![Testmethod with parameters](/assets/images/coding/csharp/XUnit-test-memberData/testmethod-parameters.png)](/assets/images/coding/csharp/XUnit-test-memberData/testmethod-parameters.png)
+[![Testmethod with parameters](/assets/images/articles/XUnit-test-memberData/testmethod-parameters.png)](/assets/images/articles/XUnit-test-memberData/testmethod-parameters.png)
     

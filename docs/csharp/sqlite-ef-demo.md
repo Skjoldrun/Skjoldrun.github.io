@@ -58,7 +58,7 @@ We use the Code-First approach of EF to build the DB through EF based on our Mod
 
 Additionally, we need to once install the dotnet tools for ef and the CLI with the command `dotnet tool install --global dotnet-ef` in the Package Manager Console:
 
-![![Package Manager Console](/assets/images/coding/csharp/sqlite-ef-demo/PackageManagerConsoleInstallEFTools.png)](/assets/images/coding/csharp/sqlite-ef-demo/PackageManagerConsoleInstallEFTools.png)
+![![Package Manager Console](/assets/images/articles/sqlite-ef-demo/PackageManagerConsoleInstallEFTools.png)](/assets/images/articles/sqlite-ef-demo/PackageManagerConsoleInstallEFTools.png)
 
 
 #### Model
@@ -116,7 +116,7 @@ With the `public DbSet<Person> Persons { get; set; }` property EF knows about th
 
 EF uses so called migrations to translate the models to tables. It can generate the migration by itself. You need to call a command on the Package Manager Console for this: `dotnet ef migrations add <name>`. The Name is used to name the C# migration class code and to track the changes you do for each migration. The call generates a file in a migrations folder in the project:
 
-![![Migration](/assets/images/coding/csharp/sqlite-ef-demo/migration.png)](/assets/images/coding/csharp/sqlite-ef-demo/migration.png)
+![![Migration](/assets/images/articles/sqlite-ef-demo/migration.png)](/assets/images/articles/sqlite-ef-demo/migration.png)
 
 As you can see, this code shows how EF will create the table in the DB.
 Now you need another command to activate the migration: `dotnet ef database update`
@@ -124,7 +124,7 @@ This writes all changes to the DB and creates or updates the tables.
 
 You can check the changes with opening the db file with the SQLite browser tool:
 
-![![SQLite Browser](/assets/images/coding/csharp/sqlite-ef-demo/migration-SQLiteBrowser.png)](/assets/images/coding/csharp/sqlite-ef-demo/migration-SQLiteBrowser.png)
+![![SQLite Browser](/assets/images/articles/sqlite-ef-demo/migration-SQLiteBrowser.png)](/assets/images/articles/sqlite-ef-demo/migration-SQLiteBrowser.png)
 
 
 #### Accessing the DB
@@ -208,4 +208,4 @@ private static async Task LogAllPersons(IPersonProcessor personProcessor)
 }
 ```
 
-![![example output](/assets/images/coding/csharp/sqlite-ef-demo/example-output.png)](/assets/images/coding/csharp/sqlite-ef-demo/example-output.png)
+![![example output](/assets/images/articles/sqlite-ef-demo/example-output.png)](/assets/images/articles/sqlite-ef-demo/example-output.png)

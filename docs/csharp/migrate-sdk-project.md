@@ -38,7 +38,7 @@ You could now even further delete old entries and reduce unneeded lines to a bar
 
 **Exampel:**
 
-[![Example](/assets/images/coding/csharp/migrate-sdk-project/example.png)](/assets/images/coding/csharp/migrate-sdk-project/example.png)
+[![Example](/assets/images/articles/migrate-sdk-project/example.png)](/assets/images/articles/migrate-sdk-project/example.png)
 
 **Old project file:**
 

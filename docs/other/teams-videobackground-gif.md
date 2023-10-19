@@ -19,4 +19,4 @@ Copy both these files to `%AppData%\Microsoft\Teams\Backgrounds\Uploads`.
 
 Then open the video effects settings in MS Teams. There should benew entries for all you new gifs enlisted.
 
-[![Teams gif background](/assets/images/other/teams/teams_gif.png)](/assets/images/other/teams/teams_gif.png)
+[![Teams gif background](/assets/images/articles/teams/teams_gif.png)](/assets/images/articles/teams/teams_gif.png)

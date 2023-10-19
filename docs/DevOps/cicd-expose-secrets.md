@@ -14,7 +14,7 @@ Write-Host "This will not be displayed: $($Env:MappedSecred)"
 Write-Host "This will be displayed: $($Env:MappedSecred.ToCharArray())"
 ```
 
-[![pipeline variables](/assets/images/other/DevOps/DevOps_expose_secrets.png)](/assets/images/other/DevOps/DevOps_expose_secrets.png)
+[![pipeline variables](/assets/images/articles/DevOps/DevOps_expose_secrets.png)](/assets/images/articles/DevOps/DevOps_expose_secrets.png)
 
 
-[![pipeline variables](/assets/images/other/DevOps/DevOps_expose_secrets_output.png)](/assets/images/other/DevOps/DevOps_expose_secrets_output.png)
+[![pipeline variables](/assets/images/articles/DevOps/DevOps_expose_secrets_output.png)](/assets/images/articles/DevOps/DevOps_expose_secrets_output.png)

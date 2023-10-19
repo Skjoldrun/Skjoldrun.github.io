@@ -10,14 +10,14 @@ WPF has no built in Systemtray or Notify Icon like WinForm does. If you want to 
 
 I use this from my [Winsomnia](https://github.com/Skjoldrun/Winsomnia) and [StandUpMate](https://github.com/Skjoldrun/StandUpMate) projects, too.
 
-[![StandUpMate Systemtray Icon](/assets/images/coding/wpf/startup-exit/system-tray-menu.png)](/assets/images/coding/wpf/startup-exit/system-tray-menu.png)
+[![StandUpMate Systemtray Icon](/assets/images/articles/startup-exit/system-tray-menu.png)](/assets/images/articles/startup-exit/system-tray-menu.png)
 
 
 ## Setup
 
 Create a ressource dictionary in the App.xaml file:
 
-[![StandUpMate Systemtray Icon](/assets/images/coding/wpf/systemtray-icon/ressourcedic-app.xaml.png)](/assets/images/coding/wpf/systemtray-icon/ressourcedic-app.xaml.png)
+[![StandUpMate Systemtray Icon](/assets/images/articles/systemtray-icon/ressourcedic-app.xaml.png)](/assets/images/articles/systemtray-icon/ressourcedic-app.xaml.png)
 
 ```xml
 <Application x:Class="StandUpMate.App"
@@ -141,6 +141,6 @@ The ressource for it is a bit smaller than the example on the top of the article
 
 The switch of the system mode should also switch the icon, either with a call from the LeftClickCommand or context menu, or else. This can be achieved with accessing the NotifyIcon in the ViewModel and replace the defined icon with another one:
 
-[![StandUpMate Systemtray Icon](/assets/images/coding/wpf/systemtray-icon/change-icon.png)](/assets/images/coding/wpf/systemtray-icon/change-icon.png)
+[![StandUpMate Systemtray Icon](/assets/images/articles/systemtray-icon/change-icon.png)](/assets/images/articles/systemtray-icon/change-icon.png)
 
 

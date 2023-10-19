@@ -12,7 +12,7 @@ You either reinstall VS Code again with set parameters, or you execute the follo
 
 ## Reinstall
 
-[![install parameters](/assets/images/other/vs-code-context-menu/vs-code-install.png)](/assets/images/other/vs-code-context-menu/vs-code-install.png)
+[![install parameters](/assets/images/articles/vs-code-context-menu/vs-code-install.png)](/assets/images/articles/vs-code-context-menu/vs-code-install.png)
 
 
 ## Registry Editor File

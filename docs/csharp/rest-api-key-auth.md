@@ -97,13 +97,13 @@ app.UseAuthorization();
 #### Demonstration
 
 Call without any header:
-[![Call without any header](/assets/images/coding/csharp/rest-api-key-auth/missing-header.png)](/assets/images/coding/csharp/rest-api-key-auth/missing-header.png)
+[![Call without any header](/assets/images/articles/rest-api-key-auth/missing-header.png)](/assets/images/articles/rest-api-key-auth/missing-header.png)
 
 Call with wrong header:
-[![Call with wrong header](/assets/images/coding/csharp/rest-api-key-auth/wrong-key.png)](/assets/images/coding/csharp/rest-api-key-auth/wrong-key.png)
+[![Call with wrong header](/assets/images/articles/rest-api-key-auth/wrong-key.png)](/assets/images/articles/rest-api-key-auth/wrong-key.png)
 
 Call with correct header:
-[![Call with correct header](/assets/images/coding/csharp/rest-api-key-auth/correct-key.png)](/assets/images/coding/csharp/rest-api-key-auth/correct-key.png)
+[![Call with correct header](/assets/images/articles/rest-api-key-auth/correct-key.png)](/assets/images/articles/rest-api-key-auth/correct-key.png)
 
 
 ## API key and filter
@@ -309,7 +309,7 @@ If the return is of type `string`it will be returned, but any other object will 
 
 #### Demonstration
 
-[![minimal API missing key](/assets/images/coding/csharp/rest-api-key-auth/minimalapi-missing-key.png)](/assets/images/coding/csharp/rest-api-key-auth/minimalapi-missing-key.png)
+[![minimal API missing key](/assets/images/articles/rest-api-key-auth/minimalapi-missing-key.png)](/assets/images/articles/rest-api-key-auth/minimalapi-missing-key.png)
 
 
 
@@ -353,11 +353,11 @@ The code defines a scheme to be required in the requirement object and applies t
 
 The Swagger UI then changes and displays a new Button:
 
-[![Swagger Auth Button](/assets/images/coding/csharp/rest-api-key-auth/swagger-auth-button.png)](/assets/images/coding/csharp/rest-api-key-auth/swagger-auth-button.png)
+[![Swagger Auth Button](/assets/images/articles/rest-api-key-auth/swagger-auth-button.png)](/assets/images/articles/rest-api-key-auth/swagger-auth-button.png)
 
 With clicking it, the API Key can be save and we then can use the authenticated Swagger UI to call the endpoints:
 
-[![Swagger Auth Dialog](/assets/images/coding/csharp/rest-api-key-auth/swagger-auth-dialog.png)](/assets/images/coding/csharp/rest-api-key-auth/swagger-auth-dialog.png)
+[![Swagger Auth Dialog](/assets/images/articles/rest-api-key-auth/swagger-auth-dialog.png)](/assets/images/articles/rest-api-key-auth/swagger-auth-dialog.png)
 
 
 ## Sources

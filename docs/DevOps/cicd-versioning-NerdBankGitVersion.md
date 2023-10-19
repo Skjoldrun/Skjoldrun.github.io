@@ -133,7 +133,7 @@ Console.WriteLine($"Finished program. {Environment.NewLine}" +
   $"Product Version: {FileVersionInfoProcessor.GetFileVersionInfo().ProductVersion}, {Environment.NewLine}Bye bye all!!");
 ```
 
-[![NBGV Console](/assets/images/other/DevOps/DevOps_Nbgv_Console.png)](/assets/images/other/DevOps/DevOps_Nbgv_Console.png)
+[![NBGV Console](/assets/images/articles/DevOps/DevOps_Nbgv_Console.png)](/assets/images/articles/DevOps/DevOps_Nbgv_Console.png)
 
 
 # Pipeline Example using library vars

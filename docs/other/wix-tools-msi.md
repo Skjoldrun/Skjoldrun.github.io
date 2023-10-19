@@ -16,7 +16,7 @@ Download the Toolkit on [GitHub Releases](https://github.com/wixtoolset/wix3/rel
 ***optional* VS extensions**
 You can also install the VS extensions [WiX v3 VS Studio Extension](https://wixtoolset.org/docs/wix3/) and the [Wax Extension](https://github.com/tom-englert/Wax). 
 
-[![VS Extensions](/assets/images/coding/csharp/wix-tools-msi/VS-Extensions.png)](/assets/images/coding/csharp/wix-tools-msi/VS-Extensions.png)
+[![VS Extensions](/assets/images/articles/wix-tools-msi/VS-Extensions.png)](/assets/images/articles/wix-tools-msi/VS-Extensions.png)
 
 Create a project template besides your C# project for the MSI setup. This will create a project with a `wsx` file. This file describes the setup process, the components and all the rest to create a good MSI package.
 
@@ -75,7 +75,7 @@ If you have an icon file for you application, you can add it to be displayed in 
 <Property Id="ARPURLUPDATEINFO" Value="$(var.ProductHelpLink)" />
 ```
 
-[![OS App dialog](/assets/images/coding/csharp/wix-tools-msi/OS-App-Dialog.png)](/assets/images/coding/csharp/wix-tools-msi/OS-App-Dialog.png)
+[![OS App dialog](/assets/images/articles/wix-tools-msi/OS-App-Dialog.png)](/assets/images/articles/wix-tools-msi/OS-App-Dialog.png)
 
 
 #### Directories
@@ -131,9 +131,9 @@ The registry entires ensure to have the `KeyPath="yes"` attribute, which is used
 
 The components are the payloads of your installation. These contain the files to deploy. It is a good practice to have a component for each file and each component needs a unique GUID to be identified. Here you can use the WAX VS extension to help you generate most of the needed files entires:
 
-[![open wax](/assets/images/coding/csharp/wix-tools-msi/VS-tools-Wax.png)](/assets/images/coding/csharp/wix-tools-msi/VS-tools-Wax.png)
+[![open wax](/assets/images/articles/wix-tools-msi/VS-tools-Wax.png)](/assets/images/articles/wix-tools-msi/VS-tools-Wax.png)
 
-[![Wax Editor](/assets/images/coding/csharp/wix-tools-msi/Wax-editor.png)](/assets/images/coding/csharp/wix-tools-msi/Wax-editor.png)
+[![Wax Editor](/assets/images/articles/wix-tools-msi/Wax-editor.png)](/assets/images/articles/wix-tools-msi/Wax-editor.png)
 
 You can reference the needed project and files with clicking through the editor and then add the needed files with the `+` on the right side. The tool then generates the entires and a new GUID for each generated component.
 
@@ -195,7 +195,7 @@ msiexec /i WixInstallerEDU.Setup.msi ADDLOCAL=ProductFeatures,OptionalFeatures
 
 #### GUI
 
-[![optional Features](/assets/images/coding/csharp/wix-tools-msi/optionalFeatures.png)](/assets/images/coding/csharp/wix-tools-msi/optionalFeatures.png)
+[![optional Features](/assets/images/articles/wix-tools-msi/optionalFeatures.png)](/assets/images/articles/wix-tools-msi/optionalFeatures.png)
 
 For a minimalistic GUI you can enable some prebuilt dialogs in the Product.wxs file:
 
@@ -230,7 +230,7 @@ To sync the version we have to read the version number from a payloaded file, e.
 
 The CI build pipe now also builds the MSI package. This can be copied to the staging folder seperatly and could be deployed to an admin share.
 
-[![DevOps Drop](/assets/images/coding/csharp/wix-tools-msi/drop.png)](/assets/images/coding/csharp/wix-tools-msi/drop.png)
+[![DevOps Drop](/assets/images/articles/wix-tools-msi/drop.png)](/assets/images/articles/wix-tools-msi/drop.png)
 
 
 # Further Information

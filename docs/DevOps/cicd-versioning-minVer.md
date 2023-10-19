@@ -13,7 +13,7 @@ MinVer lets you insert a [SemVer](https://semver.org/spec/v2.0.0.html) compatibl
 
 Check the output from console when running the code to see how the version strings get produced as file version and product version of the application:
 
-![console output](/assets/images/other/DevOps/DevOps_minVer_Console.png)
+![console output](/assets/images/articles/DevOps/DevOps_minVer_Console.png)
 
 
 ## DevOps
@@ -22,7 +22,7 @@ Using this tool does not let you automate the versioning in a simple way without
 
 A way could be to set some kind of CI pipe variable by hand and let the pipe write the tag back to the repo and use it for versioning. This needs some privileges for the build agent to write / contribute to the repo:
 
-![allow Contribute](/assets/images/other/DevOps/DevOps_minVer_contribute.png)
+![allow Contribute](/assets/images/articles/DevOps/DevOps_minVer_contribute.png)
 
 With these permissions you could predefine variables for the pipeline and let them be set as git tags from within the pipe before building the solution:
 
@@ -38,7 +38,7 @@ With these permissions you could predefine variables for the pipeline and let th
 
  This would result to update the version after building:
 
-![exe properties](/assets/images/other/DevOps/DevOps_minVer_exeProps.png)
+![exe properties](/assets/images/articles/DevOps/DevOps_minVer_exeProps.png)
 
 A disadvantage of this is that the developer has to manually set the numbers in the pipeline variables for the build or release pipe to use incremented version numbers. 
 This is cumbersome and will be forgotten regularly.

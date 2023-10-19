@@ -10,7 +10,7 @@ DevOps can have library or group variables, which are available to multiple pipe
 
 ## DevOps
 
-[![DevOps Library Vars](/assets/images/other/DevOps/DevOps_library_vars.png)](/assets/images/other/DevOps/DevOps_library_vars.png)
+[![DevOps Library Vars](/assets/images/articles/DevOps/DevOps_library_vars.png)](/assets/images/articles/DevOps/DevOps_library_vars.png)
 
 Add a group with a name and description, then configure the Pipeline permissions. You can create multiple variables with names and values, even secret ones.
 
@@ -42,7 +42,7 @@ There are multiple ways to write values back to the variables. One would be with
 
 A better way of writing values is by calling the azure tools via Powershell. This can be done with the installation of the azure extensions: `az extension add --name azure-devops`. You need to know your variable group id as reference to write a value, so you have to find it. One way is to list all groups with ids: `az pipelines variable-group list --top 3 --query-order Asc --output table`. Another way is to open the group in your browser and analyze the url:
 
-[![DevOps Library Vars Gruop Id](/assets/images/other/DevOps/DevOps_library_vars_groupId.png)](/assets/images/other/DevOps/DevOps_library_vars_groupId.png)
+[![DevOps Library Vars Gruop Id](/assets/images/articles/DevOps/DevOps_library_vars_groupId.png)](/assets/images/articles/DevOps/DevOps_library_vars_groupId.png)
 
 To check, if this was the right one, you can now list these variables with `az pipelines variable-group variable list --group-id 1`.
 
@@ -69,6 +69,6 @@ See the full pipeline task here:
 
 Writing needs the Build Service user of the project to be set as Administrator of the Library / group variables:
 
-[![DevOps Library Vars Security](/assets/images/other/DevOps/DevOps_library_vars_security.png)](/assets/images/other/DevOps/DevOps_library_vars_security.png)
+[![DevOps Library Vars Security](/assets/images/articles/DevOps/DevOps_library_vars_security.png)](/assets/images/articles/DevOps/DevOps_library_vars_security.png)
 
 Now the `AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)` part of the Task can authenticate the pipeline user and write the value.
