@@ -290,7 +290,7 @@ To sync the version we have to read the version number from a payload file, e.g.
 
 ```xml
 <!-- manually added exe file to get the version number -->
-<!-- all other components will be harvestet by post build event and heat.exe on each build -> ProductComponents.wxs -->
+<!-- all other components will be harvested by post build event and heat.exe on each build -> ProductComponents.wxs -->
 <Fragment>
 	<ComponentGroup Id="MainExeComponentGroup" Directory="INSTALLFOLDER">
 		<Component Id="MainExeComponent" Guid="{F63DFDB3-6C46-46E0-97FA-729C035A5B6F}">
