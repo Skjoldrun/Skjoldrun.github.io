@@ -312,14 +312,14 @@ It only uses the XSLT V1.0 and is very ugly to change, so read the surrounding c
 
 The CI build pipe now also builds the MSI package. This can be copied to the staging folder separately and could be deployed to an admin share.
 
-![DevOps Drop](/img/drop.png)
+[![DevOps drop](/assets/images/articles/wix-tools-msi/drop.png)](/assets/images/articles/wix-tools-msi/drop.png)
 
 
 # Further Information
 
 If you need more MSI functionality or want to look deeper, then check these links:
 
-* [Youtube: Creating Professional Installations with WiX | Tips](https://www.youtube.com/watch?v=usOh3NQO9Ms)
+* [Youtube Creating Professional Installations with WiX Tips](https://www.youtube.com/watch?v=usOh3NQO9Ms)
 * [Example GitHub for the Youtube Tutorial](https://github.com/SteveIves/SynergyWixExample)
 
 
