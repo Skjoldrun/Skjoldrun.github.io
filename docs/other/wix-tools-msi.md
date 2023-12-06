@@ -315,6 +315,52 @@ The CI build pipe now also builds the MSI package. This can be copied to the sta
 [![DevOps drop](/assets/images/articles/wix-tools-msi/drop.png)](/assets/images/articles/wix-tools-msi/drop.png)
 
 
+### DevOps Pipeline Example
+
+In MS Devops and a local build server, the CI pipe can be really simple and just call the VSBUILD Task to build the solution of the containing setup project without any further parameters.
+
+Set the variables:
+
+```yaml
+variables:
+  - name: solution
+    value: '**/*.sln'
+  - name: buildPlatform
+    value: 'Any CPU'
+  - name: buildConfiguration
+    value: 'Release'
+  - name: SETUP_ENVIRONMENT
+    value: 'DEVELOPMENT'
+```
+
+Then checkout, install needed tools, restore NuGet and start the build:
+
+```yaml
+- task: VSBuild@1
+  displayName: 'Build Solution'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+```
+
+But DevOps can also run the CI pipe in Cloud containers and I encountered a bug, that lets the WiX linker (light.exe) run into a deadlock. The solution was to configure the build to run with a special parameter `msbuildArgs: '/p:RunWixToolsOutOfProc=true'`:
+
+```yaml
+- task: VSBuild@1
+  displayName: 'Build Solution'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    msbuildArgs: '/p:RunWixToolsOutOfProc=true'
+```
+
+This decouples the light process and prevents the deadlock. This bug got fixed for later versions of WiX, like 3.14 and 4.0, but these are currently in unstable mode and not finished yet.
+
+If you then encounter an error that your resources use a 32 bit folder, but would be 64 bit components, add the flag `<InstallerPlatform>x64</InstallerPlatform>` in the `wixproj` file, to set the installer platform to 64 bit. This was only necessary for the cloud build somehow.
+
+
 # Further Information
 
 If you need more MSI functionality or want to look deeper, then check these links:
