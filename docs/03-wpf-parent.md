@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Other
-nav_order: 6
+title: WPF
+nav_order: 3
 has_children: true
 ---
 
-# Other
+# WPF

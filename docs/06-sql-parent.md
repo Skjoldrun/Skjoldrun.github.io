@@ -1,8 +1,8 @@
 ---
 layout: page
-title: C#
-nav_order: 1
+title: SQL
+nav_order: 6
 has_children: true
 ---
 
-# C#
+# SQL
