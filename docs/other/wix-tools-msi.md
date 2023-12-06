@@ -344,7 +344,7 @@ Then checkout, install needed tools, restore NuGet and start the build:
     configuration: '$(buildConfiguration)'
 ```
 
-But DevOps can also run the CI pipe in Cloud containers and I encountered a bug, that lets the WiX linker (light.exe) run into a deadlock. The solution was to configure the build to run with a special parameter `msbuildArgs: '/p:RunWixToolsOutOfProc=true'`:
+But DevOps can also run the CI pipe in Cloud containers and I encountered a bug ([GitHub Issue](https://github.com/wixtoolset/issues/issues/5486), [StackOverflow Solution](https://stackoverflow.com/questions/60102985/build-hangs-while-building-wix-installer)), that lets the WiX linker (light.exe) run into a deadlock. The solution was to configure the build to run with a special parameter `msbuildArgs: '/p:RunWixToolsOutOfProc=true'`:
 
 ```yaml
 - task: VSBuild@1
@@ -358,7 +358,7 @@ But DevOps can also run the CI pipe in Cloud containers and I encountered a bug,
 
 This decouples the light process and prevents the deadlock. This bug got fixed for later versions of WiX, like 3.14 and 4.0, but these are currently in unstable mode and not finished yet.
 
-If you then encounter an error that your resources use a 32 bit folder, but would be 64 bit components, add the flag `<InstallerPlatform>x64</InstallerPlatform>` in the `wixproj` file, to set the installer platform to 64 bit. This was only necessary for the cloud build somehow.
+If you then encounter an error that your resources use a 32 bit folder, but would be 64 bit components, add the flag `<InstallerPlatform>x64</InstallerPlatform>` in the `wixproj` file, to set the installer platform to 64 bit. This was only necessary for the cloud build somehow [StackOverflow article](https://stackoverflow.com/questions/22932942/wix-heat-exe-win64-components-win64-yes/24396430#24396430).
 
 
 # Further Information
