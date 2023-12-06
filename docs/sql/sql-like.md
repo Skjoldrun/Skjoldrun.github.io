@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SQL - LIKE
-parent: Other
+parent: SQL
 ---
 
 # LIKE Command

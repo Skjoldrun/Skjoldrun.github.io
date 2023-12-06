@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SQL - Delete aged data
-parent: Other
+parent: SQL
 ---
 
 # Delete aged data

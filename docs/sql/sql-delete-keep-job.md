@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SQL - Delete data, keep certain num
-parent: Other
+parent: SQL
 ---
 
 # Delete data, keep certain num

@@ -1,8 +1,8 @@
 ---
 layout: page
-title: DevOps
-nav_order: 4
+title: WPF
+nav_order: 2
 has_children: true
 ---
 
-# DevOps
+# WPF
