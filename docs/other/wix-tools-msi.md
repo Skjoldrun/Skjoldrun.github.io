@@ -321,6 +321,11 @@ If you need more MSI functionality or want to look deeper, then check these link
 
 * [Youtube Creating Professional Installations with WiX Tips](https://www.youtube.com/watch?v=usOh3NQO9Ms)
 * [Example GitHub for the Youtube Tutorial](https://github.com/SteveIves/SynergyWixExample)
+* [WiX Upgrades and Modularization](https://www.firegiant.com/docs/wix/v3/tutorial/upgrades-and-modularization/)
+* [WiX Major Upgrade](https://wixtoolset.org/docs/v3/howtos/updates/major_upgrade/)
+* [WiX Harvest Tool (Heat)](https://wixtoolset.org/docs/v3/overview/heat/)
+* [Rob Mensching Installer Components](https://robmensching.com/blog/posts/2003/10/4/windows-installer-components-introduction)
+* [Rob Mensching Component Rules 101](https://robmensching.com/blog/posts/2003/10/18/component-rules-101/)
 
 
 # Full file contents
