@@ -22,4 +22,4 @@ After installing it, browse to the target directory. THere you'll find the msi i
 
 After installing it you have the option to open MSI packages with Orca and inspect their values:
 
-[![Orca inspect](/assets/images/articles/msi-tool-orca/installer-msi-tools-select.png)](/assets/images/articles/msi-tool-orca/orca-inspect.png)
+[![Orca inspect](/assets/images/articles/msi-tool-orca/orca-inspect.png)](/assets/images/articles/msi-tool-orca/orca-inspect.png)
