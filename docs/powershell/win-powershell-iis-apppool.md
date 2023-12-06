@@ -1,7 +1,7 @@
 ---
 layout: page
 title: PowerShell - Windows IIS appPools
-parent: Other
+parent: PowerShell
 ---
 
 # PowerShell - Windows IIS appPools

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: PowerShell - Windows set Environment Var
-parent: Other
+parent: PowerShell
 ---
 
 # PowerShell - Windows set Environment Var

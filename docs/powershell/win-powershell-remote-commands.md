@@ -1,7 +1,7 @@
 ---
 layout: page
 title: PowerShell - Remote Commands
-parent: Other
+parent: PowerShell
 ---
 
 # PowerShell - Remote Commands

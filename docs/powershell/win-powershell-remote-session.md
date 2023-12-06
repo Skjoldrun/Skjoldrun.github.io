@@ -1,7 +1,7 @@
 ---
 layout: page
 title: PowerShell - Remote Session
-parent: Other
+parent: PowerShell
 ---
 
 # PowerShell - Remote Session
