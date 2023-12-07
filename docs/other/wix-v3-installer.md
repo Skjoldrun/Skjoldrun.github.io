@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Wix - Wix 3 Installer
+title: WiX - WiX V3 Installer
 parent: Other
 ---
 
