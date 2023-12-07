@@ -38,7 +38,7 @@ The Options/AddIns Dialog also shows that the AddIn is active and where it loade
 [![Options Dialog](/assets/images/articles/outlook-vsto-addin/options-addins.png)](/assets/images/articles/outlook-vsto-addin/options-addins.png)
 
 
-## SOme more Details
+## Some more Details
 
 VSTO AddIns are getting outdated and are not supported by the .NET Core, .NET5+ any more. The project has to be a .NET Framework 4.8 project. Another Problem is that Microsoft changes its Outlook Client to run as web based software, which doesn't support VSTO AddIns any more. The new AddIns have to be web based Outlook AddIns and have a completely new way to be developed.
 
