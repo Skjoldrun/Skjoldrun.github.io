@@ -15,9 +15,9 @@ There are some methods to fasten up your pipe and optimize the single steps.
 The build process of the pipe could be run in the cloud in a container, or you can host the build process on a locally hosted system. I've made a comparison of both methods for a big solution with multiple projects at a company at work. We had to build multiple gRPC servers with multiple DLLs in each build output folder and prepare the artifacts to deploy all these servers each. We had 4 GB and about 5000 files as output. Steps like copying, publishing or zipping can get really slow on a size like this. The task to design the build to output each server deployment ready with all its DLLs slowed the pipeline from 2-5 min to about 22 min runtime. This was not acceptable, so we had to reduce the runtime and researched the following steps:
 
 
-### Cloud Container vs on Premise Build Server
+### Cloud Container vs On Premise Build Server
 
-At first we have built the seperated servers on our on Premise build server. The server had multiple virtual CPUs and 16 GB RAM. Building and restoring NuGet packages was fast. But downloading the source code to the local server, uploading the artifacts to the cloud again and then downloading them again to publish them on the on Premise target server seemed to be unneeded copy steps with limited internet bandwidth. 
+At first we have built the separated servers on our on Premise build server. The server had multiple virtual CPUs and 16 GB RAM. Building and restoring NuGet packages was fast. But downloading the source code to the local server, uploading the artifacts to the cloud again and then downloading them again to publish them on the on Premise target server seemed to be unneeded copy steps with limited internet bandwidth. 
 
 So we decided to build in the cloud and use the suspected internal Azure bandwidth for the publishing to only have the limited bandwidth at releases. But we were disappointed to see that the limited container was very slow on restoring NuGet packages, on building, and even on publishing the artifacts back to the DevOps cloud storage. We had no speed gains like this so we needed to change the basic design of the pipeline.
 
@@ -32,79 +32,75 @@ All in all we have reduced the pipeline runtime from the devastating 22 minutes 
 Here's the finished pipeline as YAML:
 
 ```yaml
-
 trigger:
-- Development
+  branches:
+    include:
+      - '*'
+    exclude:
+      - 'main'
+      - 'Beta'
+      - 'Alpha'
+      - 'Alpha*'
 
-# choose the on Premise build server with Agent
+## DevOps Azure Container:
+# pool:
+#   vmImage: 'windows-latest'
+
+## OnPremise Build machine:
 pool:
-  name: OnPromise Pipelines
+  name: OnPremise Pipelines
   demands: 
-  - Agent.Name -equals v-build-01
+    - Agent.Name -equals v-build-01
 
 variables:
-  client-solution: '**/Client-ERP.sln'
-  server-solution: '**/Server-ERP.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  - name: SolutionName
+    value: AppsettingsEDU
+  - name: solution
+    value: '**/*.sln'
+  - name: buildPlatform
+    value: 'Any CPU'
+  - name: buildConfiguration
+    value: 'Release'
 
 steps:
+- checkout: self
+  submodules: true
+  persistCredentials: true
+  fetchDepth: 0
+
 - task: NuGetToolInstaller@1
-  displayName: 'NuGet Tools Installer'
+  displayName: 'Install NuGet Tools'
   inputs:
     checkLatest: true
 
 - task: NuGetCommand@2
-  displayName: 'Restore Server Packages'
+  displayName: 'Restore NuGet Packages'
   inputs:
-    command: 'restore'
-    restoreSolution: '$(server-solution)'
-    feedsToUse: config
-    nugetConfigPath: NuGet.config
-
-- task: FolderCleanup@1
-  inputs:
-    folderPath: '$(Agent.WorkFolder)\Deployment\'
-    retentionDays: '0'
-    minimumToKeep: '0'
+    restoreSolution: '$(solution)'
 
 - task: VSBuild@1
-  displayName: 'Build Server Solution'
+  displayName: 'Build Solution'
   inputs:
-    solution: '$(server-solution)'
+    solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    vsVersion: 'latest'
-    msbuildArchitecture: x86
 
-- task: NuGetCommand@2
-  displayName: 'Restore Client Packages'
+- task: CopyFiles@2
+  displayName: 'Copy build artifacts to staging folder'
   inputs:
-    command: 'restore'
-    restoreSolution: '$(client-solution)'
-    feedsToUse: config
-    nugetConfigPath: NuGet.config
-    externalFeedCredentials: DevExpressServiceConnection
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '$(SolutionName)*/bin/$(buildConfiguration)/**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: VSBuild@1
-  displayName: 'Build Client Solution'
-  inputs:
-    solution: '$(client-solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    vsVersion: 'latest'
-    msbuildArchitecture: x86
-
-# This is much faster than the older PublishBuildArtifacts@1 task
 - task: PublishPipelineArtifact@1
+  displayName: 'Publish Pipeline Artifacts'
   inputs:
-    targetPath: '$(Agent.WorkFolder)\Deployment\Server'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'pipeline'
-
 ```
 
-# Conclusion
+## Conclusion
 
 If you have a on Premise build server with some power and a good ISP it might be faster to use this compared to the free DevOps build container. NuGet Restore, publishing the artifacts and building could be way faster like this. 
 
