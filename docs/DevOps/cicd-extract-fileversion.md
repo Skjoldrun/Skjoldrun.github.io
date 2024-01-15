@@ -28,3 +28,8 @@ Write-Host "##vso[task.setvariable variable=BuildVersionNumber]$BuildVersionNumb
 The script writes the extracted `$BuildVersionNumber` into the pipeline variable of the same name:
 
 [![ci-variable](/assets/images/articles/cicd-extract-fileversion/ci-variable.png)](/assets/images/articles/cicd-extract-fileversion/ci-variable.png)
+
+
+## Note
+
+This pipeline variable named `$BuildVersionNumber` is only visible in the same pipeline Job. Other jobs can't read the variable value set in another prior executed job within the same release pipe.
