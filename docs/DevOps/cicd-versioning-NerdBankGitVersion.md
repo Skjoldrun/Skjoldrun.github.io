@@ -1,10 +1,10 @@
 ---
 layout: page
-title: DevOps - CI/CD Versioning NerdBank.GitVersion
+title: DevOps - Versioning with NerdBank.GitVersion
 parent: DevOps
 ---
 
-# Versioning NerdBank.GitVersion
+# Versioning with NerdBank.GitVersion
 
 I formerly tested the Versioning tool [MinVer](https://github.com/adamralph/minver) but was not satisfied for all my CI/CD needs. Therefore I tried the tool [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) and succeded with implementing a minimalistic, configurable versioning with DevOps integration and access to the version numbers in the Buildpipe and the Releasepipe as well.
 

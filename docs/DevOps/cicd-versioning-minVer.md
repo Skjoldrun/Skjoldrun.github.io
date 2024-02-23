@@ -1,10 +1,10 @@
 ---
 layout: page
-title: DevOps - CI/CD Versioning MinVer
+title: DevOps - Versioning with MinVer
 parent: DevOps
 ---
 
-# Versioning MinVerEDU 
+# Versioning with MinVer
 
 ## Intro
 

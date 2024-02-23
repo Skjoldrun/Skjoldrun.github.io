@@ -1,10 +1,10 @@
 ---
 layout: page
-title: DevOps - CI/CD Pipeline Tweaks
+title: DevOps - Pipeline Tweaks
 parent: DevOps
 ---
 
-# CI/CD Pipeline Tweaks
+# Pipeline Tweaks
 
 Depending on the size and number of projects, build output files and place to run the build you can get a acceptable fast pipeline or be slow and have to wait on each build.
 There are some methods to fasten up your pipe and optimize the single steps.
@@ -50,11 +50,11 @@ trigger:
 pool:
   name: OnPremise Pipelines
   demands: 
-    - Agent.Name -equals v-build-01
+    - Agent.Name -equals YOUR_BUILD_SERVER
 
 variables:
   - name: SolutionName
-    value: AppsettingsEDU
+    value: YOUR_SOLUTION_NAME
   - name: solution
     value: '**/*.sln'
   - name: buildPlatform

@@ -37,44 +37,58 @@ Microsoft DevOps is a cloud hosted platform to save and manage the repositories 
 Edit the YAML pipeline configuration and add or change the commands to be run:
 
 ```yaml
-# .NET Desktop
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+# Configures the triggers, like branch names
+trigger:
+  branches:
+    include:
+      - '*'
+    exclude:
+      - 'Beta'
+      - 'Alpha'
+      - 'Alpha*'
 
-# Commenting this results in CI builds of all branches
-#trigger:
-#- main
-
-# set the OS for the container image
+# DevOps Azure Container:
 pool:
   vmImage: 'windows-latest'
 
-# define and set some variables
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+# # OnPremise Build machine:
+# pool:
+#   name: OnPremise Pipelines
+#   demands: 
+#     - Agent.Name -equals YOUR_BUILD_SERVER
 
-# setup the steps with units of work
+# Variables for the following tasks
+variables:
+  - name: SolutionName
+    value: YOUR_SOLUTION_NAME
+  - name: solution
+    value: '**/*.sln'
+  - name: buildPlatform
+    value: 'Any CPU'
+  - name: buildConfiguration
+    value: 'Release'
+
+# List of tasks as steps
 steps:
-# This step gets the main repo with its git submodules 
+# git checkout the repository 
+# fetchDepth: 0 makes is a complete copy with all commits
 - checkout: self
   submodules: true
   persistCredentials: true
+  fetchDepth: 0
 
-# NuGet set to use specific version
 - task: NuGetToolInstaller@1
+  displayName: 'Install NuGet Tools'
   inputs:
     checkLatest: true
 
-# NuGet Restore command for all packages
 - task: NuGetCommand@2
+  displayName: 'Restore NuGet Packages'
   inputs:
     restoreSolution: '$(solution)'
 
-# Build the project
 - task: VSBuild@1
+  displayName: 'Build Solution'
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
@@ -95,26 +109,47 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-# The Tasks CopyFiles@2 and PublishBuildArtifacts@1 prepare the build artifacts for further processing, like a CD pipeline
-#- task: CopyFiles@2
-#  inputs:
-#    SourceFolder: '$(System.DefaultWorkingDirectory)'
-#    Contents: '**\bin\$(buildConfiguration)\**'
-#    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+# Copy files to a staging dir, see article [DevOps - Build Agent Directories] for more details
+- task: CopyFiles@2
+  displayName: 'Copy build artifacts to staging folder'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '$(SolutionName)*/bin/$(buildConfiguration)/**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-#- task: PublishPipelineArtifact@1
-#  inputs:
-#    targetPath: '$(Build.ArtifactStagingDirectory)'
-#    ArtifactName: 'drop'
-#    publishLocation: 'pipeline'
+# Upload the artifacts to the DevOps Cloud storage
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Pipeline Artifacts'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'pipeline'
 
-# This is the 'old' and painful slow method to publish
-#- task: PublishBuildArtifacts@1
-#  inputs:
-#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#    ArtifactName: 'drop'
-#    publishLocation: 'Container'
+# Version.marker for extracting a semantic file version number and upload a text file with it
+- powershell: |
+    $searchPath = "$(Build.ArtifactStagingDirectory)"
+    $searchExeName = "$(SolutionName).exe"
 
+    Get-ChildItem -Path $searchPath -Filter $searchExeName -Recurse |
+        ForEach-Object {
+            try {
+                $_ | Add-Member NoteProperty FileVersion ($_.VersionInfo.FileVersion)
+            } catch {}
+            $_
+        } |
+        Select-Object -ExpandProperty FileVersion -OutVariable BuildVersionNumber
+
+    Write-Host "Extracted FileVersion Number: $($BuildVersionNumber)"
+    $BuildVersionNumber | out-file -filepath "$(Build.ArtifactStagingDirectory)/version.marker"
+    Write-Host "Stored the versionNumber in: $(Build.ArtifactStagingDirectory)/version.marker"
+  displayName: Extract and store version number in version.marker
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Pipeline Artifacts - version marker'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/version.marker'
+    ArtifactName: 'version.marker'
+    publishLocation: 'pipeline'
 ```
 
 The yaml example pipeline has some comments for the single steps to be run.
@@ -129,6 +164,7 @@ The yaml example pipeline has some comments for the single steps to be run.
 * *[run the unit tests for the code project]*
 * *[copy artifact files for publishing them]*
 * *[publish the artifact files for further processing, like CD pipeline]*
+* *[extract a file version number and write it to a text file to upload it]*
 
 *Steps in `[]` are rather optional and dependent on the situation.*
 

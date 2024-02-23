@@ -1,10 +1,10 @@
 ---
 layout: page
-title: DevOps - CI/CD Agent Directories
+title: DevOps - Build Agent Directories
 parent: DevOps
 ---
 
-# CI/CD Agent Directories 
+# Build Agent Directories 
 
 The Microsoft DevOps Agent uses some directories to work and build in. The on premise build agent uses them as well as the cloud container agent.
 

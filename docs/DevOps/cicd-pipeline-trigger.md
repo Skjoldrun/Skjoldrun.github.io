@@ -1,10 +1,10 @@
 ---
 layout: page
-title: DevOps - CI/CD Pipeline Trigger
+title: DevOps - Pipeline Trigger
 parent: DevOps
 ---
 
-# CI/CD Pipeline Trigger
+# Pipeline Trigger
 
 The MS DevOps CI pipeline can have several triggers defined on top of the yaml file. It is possible to have different scenarios covered and this article describes some of them.
 

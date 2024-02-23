@@ -6,9 +6,9 @@ parent: DevOps
 
 # Versioning Powershell check
 
-I used the [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) tool for a large solution with multiple projects and wanted to check if every assembly has the propper versioning stamp. After right-clicking some of the output files and checking the explorer details, I came to the conclusion to write a script for listing all the wanted infos.
+I used the [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) tool for a large solution with multiple projects and wanted to check if every assembly has the proper versioning stamp. After right-clicking some of the output files and checking the explorer details, I came to the conclusion to write a script for listing all the wanted infos.
 
-Powershell lets you do this and with some reseach I came up with the following script:
+Powershell lets you do this and with some research I came up with the following script:
 
 ```shell
 Get-ChildItem -Filter *.dll -Recurse |
