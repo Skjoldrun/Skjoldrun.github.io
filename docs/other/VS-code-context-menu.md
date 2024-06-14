@@ -6,7 +6,7 @@ parent: Other
 
 # VS Code - Open with Context Menu
 
-If yoiu have forgotten to set this at install time, or your copmany admins didn't do this for you at deployment, you can activate the context menu entries for opening a workspace and file with VS Code even after installation.
+If you have forgotten to set this at install time, or your company admins didn't do this for you at deployment, you can activate the context menu entries for opening a workspace and file with VS Code even after installation.
 
 You either reinstall VS Code again with set parameters, or you execute the following Registry Editor file.
 
@@ -50,4 +50,4 @@ Windows Registry Editor Version 5.00
 @="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%V\""
 ```
 
-This file uses path for the default installation of VS Code, adjust these if you have installed this elswhere.
+This file uses path for the default installation of VS Code, adjust these if you have installed this elsewhere.
