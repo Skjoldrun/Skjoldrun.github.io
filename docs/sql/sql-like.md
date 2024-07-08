@@ -29,7 +29,7 @@ The pattern can contain following arguments:
 
 If your result string already contain the `[..]` as content you have to escape them. You maybe have some log statements in a DB and your logger writes strings like `"[SomeCategory][SomeId]": Logger is starting.`. If you want to filter these results you have to escape the brackets with a SQL like the following:
 
-```SQL
+```sql
 SELECT *
 FROM MyDB_Table
 WHERE [Message] LIKE '"\[SomeCategory\]%' ESCAPE '\'
