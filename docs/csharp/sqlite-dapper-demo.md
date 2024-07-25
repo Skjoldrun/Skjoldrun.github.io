@@ -51,7 +51,10 @@ public class SqliteDataAccess
     {
         using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
         {
-            cnn.Execute("DELETE FROM Person WHERE ID = @ID", person);
+            string sql = "DELETE FROM Persons WHERE ID = @ID";
+            // Use this new object with a ID parameter for Dapper to know wich data to refer to for deleting
+            // Otherwise you could get an exception like 'Insufficient parameters supplied to the command'
+            cnn.Execute(sql: sql, param: new { ID = person.Id });
         }
     }
 
