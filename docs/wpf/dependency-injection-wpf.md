@@ -61,7 +61,7 @@ This code lets you start with the MainWindow View and exits the application on c
 
 # Abstract Factory for opening further Views
 
-If we want to open Chield Views as seperate Windows, we could use a abstract factory to achieve that. Whithout this we would only be able to open one window from any Chield View.
+If we want to open Child Views as separate Windows, we could use a abstract factory to achieve that. Without this we would only be able to open one window from any Child View.
 
 We add the folder "StartupHelpers" with a class called AbstractFactory in it:
 
@@ -110,7 +110,7 @@ Through the extensions we can get any Form or Window class and generate the fact
 
 The first registration is the implementation of the type to register. Its the View in this case, but it could also be the typical interface and implementation combination, like `services.AddTransient<TInterface, TImplementation>();` (*This would need another method signature*).
 The second registration with the code `Func<TForm>>(x => () => x.GetService<TForm>()!)` is a delegate to be called and executed by the factory to get the registered instance of the generic type. 
-The third registration is the abstract factory itself, to be passed in a class which needs to instanciate the dependency, the view in this case.
+The third registration is the abstract factory itself, to be passed in a class which needs to instantiate the dependency, the view in this case.
 
 Man, this is somehow complex ... 🤯 
 

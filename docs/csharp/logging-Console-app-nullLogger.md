@@ -84,7 +84,7 @@ To use the Serilog logger as default logger, we must configure it for the host. 
 ```csharp
 /// <summary>
 /// Configures the host with registering the interfaces and class types.
-/// Sets the Serilog logger as logging provider for typed ILogger innjections.
+/// Sets the Serilog logger as logging provider for typed ILogger injections.
 /// </summary>
 /// <returns>configured host to access its services</returns>
 private static IHost ConfigureHost()
@@ -93,7 +93,7 @@ private static IHost ConfigureHost()
         .ConfigureServices((context, services) =>
         {
             // define DI here ...
-            // AddTransient gives a new instance everytime it's called
+            // AddTransient gives a new instance every time it's called
             services.AddTransient<ISomeClass, SomeClass>();
             services.AddTransient<ISomeOtherClass, SomeOtherClass>();
         })
@@ -104,7 +104,7 @@ private static IHost ConfigureHost()
 ```
 
 The upper code also shows the registration of interfaces and their class types for dependency injection, where the `ISomeClass` is registered as `SomeClass` to be resolved.
-You can use `.AddTransient<>()` to allways create a new instance, or `.AddSingleton<>()` for a singleton instance to be used all over the application.
+You can use `.AddTransient<>()` to always create a new instance, or `.AddSingleton<>()` for a singleton instance to be used all over the application.
 
 
 ## Dependency Injection by constructor

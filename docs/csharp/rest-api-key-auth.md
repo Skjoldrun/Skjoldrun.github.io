@@ -7,11 +7,11 @@ parent: C#
 # RestApiKeyAuthEDU
 
 This article demonstrates how you can implement authentication on a restful API with keys. Consumer will need to provide accepted keys to call API endpoints.
-The implementations work without any new pakages and implements a request pipeline middleware. 
+The implementations work without any new packages and implements a request pipeline middleware. 
 
 ## API key and middleware
 
-This approach uses the authentication with a fixed API key from a secrets store or the configuration. It hides the complete API behind the Authentication and all endpoint allways need a mathcing key.
+This approach uses the authentication with a fixed API key from a secrets store or the configuration. It hides the complete API behind the Authentication and all endpoint always need a matching key.
 
 
 **Key storage**
@@ -108,7 +108,7 @@ Call with correct header:
 
 ## API key and filter
 
-As an alternative to the midleware you can use a filter. The filter could also check every request, just like the middleware, or just check the endpoint its applied to.
+As an alternative to the middleware you can use a filter. The filter could also check every request, just like the middleware, or just check the endpoint its applied to.
 
 ***Note:** This applies to full API controllers, not to minimal APIs. These are described further below ...*
 

@@ -18,7 +18,7 @@ The `$cred = get-credential` asks the user for some credentials via log-in Windo
 
 Configure and store the session with `$sess = New-PSSession -Credential $cred -ComputerName REMOTE_COMPUTER` and replace the COmputerName with your remote computer.
 
-Then entewr the session with `Enter-PSSession $sess`.
+Then enter the session with `Enter-PSSession $sess`.
 
 The prompt of your shell gets updated and you can see the connected host. All the commands will be executed with the given credentials on the remote computer, as if you would type on its shell directly.
 
@@ -27,20 +27,20 @@ Use `Exit-PSSession`to exit the session and return to the origin computer.
 
 # Double Hop remote execution
 
-I had a case where I needed to enter a remote session from our Build server to a production server and execute a conosle application, which fetches files on further remote hosts in a seperate VLAN. That means i had to double hop from my build server to the production server to several hosts. 
-This hopping shuald later be executed as DevOps Release Pipe Tasks.
+I had a case where I needed to enter a remote session from our Build server to a production server and execute a console application, which fetches files on further remote hosts in a separate VLAN. That means i had to double hop from my build server to the production server to several hosts. 
+This hopping should later be executed as DevOps Release Pipe Tasks.
 
-The upper session was not able to execute the tool on the production server with the correct needed credantials and therefore failed with access denied exceptions. I thought the credentials and then used usercontext with the remote PowerShell session would do the trick but you need a further configuration step on the remote session target machine to use specific credentials. 
+The upper session was not able to execute the tool on the production server with the correct needed credentials and therefore failed with access denied exceptions. I thought the credentials and then used usercontext with the remote PowerShell session would do the trick but you need a further configuration step on the remote session target machine to use specific credentials. 
 
 Create a PowerShell Session Configuration on the Remote Computer:
 
 `Register-PSSessionConfiguration -Name AdminCredConfig -RunAsCredential 'YOUR_USERNAME' -Force` 
 
-This command registers the configuration with the wanted credentials for remotly executed commands in the PS session.
+This command registers the configuration with the wanted credentials for remotely executed commands in the PS session.
 You can now use this config for opening the session:
 
 ```shell
 Enter-PSSession -ComputerName YOUR_REMOTE_COMPUTER -Credential $Cred -ConfigurationName AdminCredConfig
 ```
 
-This solves the second hob missing priviledges f the first approach and lets you access the further remote machines, as long as the used credentials have the proper priviledges of course.
+This solves the second hob missing privileges f the first approach and lets you access the further remote machines, as long as the used credentials have the proper privileges of course.

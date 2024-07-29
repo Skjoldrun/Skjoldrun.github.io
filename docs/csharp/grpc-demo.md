@@ -77,7 +77,7 @@ Then we need to adjust its settings to be 'client only' in the file properties:
 
 [![service-base-comparison](/assets/images/articles/grpc-demo/proto-file-client-settings.png)](/assets/images/articles/grpc-demo/proto-file-client-settings.png)
 
-After adding the proro buffer file, we have to rebuild the project to create the base class files in the obj folder again.
+After adding the proto buffer file, we have to rebuild the project to create the base class files in the obj folder again.
 
 Now we can start to implement the client:
 

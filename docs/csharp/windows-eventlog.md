@@ -39,7 +39,7 @@ public static class EventLogWriter
 }
 ```
 
-**Call the Mehtod with:**
+**Call the Method with:**
 
 ```csharp
 EventLogWriter.WriteApplicationEventEntry("some Message", System.Diagnostics.EventLogEntryType.Error);

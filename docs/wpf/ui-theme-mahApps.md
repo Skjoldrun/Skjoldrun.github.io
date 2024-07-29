@@ -112,7 +112,7 @@ Change the `Window` to the `mah:MetroWindow`and add the `xmlns:mah="http://metro
 </mah:MetroWindow>
 ```
 
-Add the inheritance of the `MetroWindow` class in the Code-behind (optional, not allways necessary):
+Add the inheritance of the `MetroWindow` class in the Code-behind (optional, not always necessary):
 
 [![MahApps Preview](/assets/images/articles/theme-mahApps/Code-behind.png)](/assets/images/articles/theme-mahApps/Code-behind.png)
 
@@ -322,7 +322,7 @@ namespace HelloWorldWPF.Model
 
         #region Constructor
         /// <summary>
-        /// Contructor for the model simulates a repository data access ...
+        /// Constructor for the model simulates a repository data access ...
         /// </summary>
         public HelloWorldModel()
         {
@@ -360,7 +360,7 @@ namespace HelloWorldWPF.Model
 
 **ClientCommand class**
 
-The ClientCommand class enables binding methods from the VieModel into the View. This reperesents a reusable base class to setup the needed functionality and adds the possibility to deactivate the command in configured situations. You can disable the bound UI element with this aswell.
+The ClientCommand class enables binding methods from the VieModel into the View. This represents a reusable base class to setup the needed functionality and adds the possibility to deactivate the command in configured situations. You can disable the bound UI element with this as well.
 
 ```csharp
 using System;

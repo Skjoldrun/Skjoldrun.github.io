@@ -25,7 +25,7 @@ If you have to invoke a command and use certain credentials for a further hop, y
 
 `Register-PSSessionConfiguration -Name AdminCredConfig -RunAsCredential 'YOUR_USERNAME' -Force`
 
-This command registers the configuration with the wanted credentials for remotly executed commands in the PS session.
+This command registers the configuration with the wanted credentials for remotely executed commands in the PS session.
 You can now use this config for preparing the session:
 
 ```shell
@@ -41,7 +41,7 @@ Invoke-Command -ComputerName $Server -Credential $Credential -ConfigurationName 
 } 
 ```
 
-This solves the second hob missing priviledges f the first approach and lets you access the further remote machines, as long as the used credentials have the proper priviledges of course.
+This solves the second hob missing privileges f the first approach and lets you access the further remote machines, as long as the used credentials have the proper privileges of course.
 
 ### Using arguments in the ScriptBlock
 

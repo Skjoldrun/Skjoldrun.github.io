@@ -547,7 +547,7 @@ If you need more MSI functionality or want to look deeper, then check these link
 	</Fragment>
 
 	<!-- manually added exe file to get the version number -->
-	<!-- all other components will be harvestet by post build event and heat.exe on each build -> ProductComponents.wxs -->
+	<!-- all other components will be harvested by post build event and heat.exe on each build -> ProductComponents.wxs -->
 	<Fragment>
 		<ComponentGroup Id="MainExeComponentGroup" Directory="INSTALLFOLDER">
 			<Component Id="MainExeComponent" Guid="{F63DFDB3-6C46-46E0-97FA-729C035A5B6F}">
@@ -557,7 +557,7 @@ If you need more MSI functionality or want to look deeper, then check these link
 	</Fragment>
 
 	<!-- manually added optional feature components -->
-	<!-- all other components will be harvestet by post build event and heat.exe on each build -> ProductComponents.wxs -->
+	<!-- all other components will be harvested by post build event and heat.exe on each build -> ProductComponents.wxs -->
 	<Fragment>
 		<ComponentGroup Id="OptionalFeaturesComponents" Directory="INSTALLFOLDER">
 			<Component Id="Feature01Comp" Guid="{C3A936A9-EF50-491D-9A91-BFF37345BE7B}">

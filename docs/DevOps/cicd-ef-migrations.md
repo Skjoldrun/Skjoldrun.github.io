@@ -136,6 +136,6 @@ See here for more details: [command-line-tools](https://learn.microsoft.com/en-u
 
 ## Apply migrations at runtime or via separate project
 
-Migrations can be triggered on Application startup or via a separeate CLI project. This approach is also not recommended for production environments. 
+Migrations can be triggered on Application startup or via a separate CLI project. This approach is also not recommended for production environments. 
 
 See here for more details: [apply-migrations-at-runtime](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime)

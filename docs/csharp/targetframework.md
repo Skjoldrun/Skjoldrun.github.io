@@ -51,7 +51,7 @@ In the .NET Core and newer project files exists the `TargetFramework[s]` tags to
 </Project>
 ```
 
-As you can see, I have already tested the integration of different Libraries. One is with both framework targets as well. Another one is a .NET Framework 4.8 ClassLibrabry project. A third one is a .NET 6.0 ClassLibrary project. Having the main project reference all of these, shows what is possible to build and the compatibilities between them:
+As you can see, I have already tested the integration of different Libraries. One is with both framework targets as well. Another one is a .NET Framework 4.8 ClassLibrary project. A third one is a .NET 6.0 ClassLibrary project. Having the main project reference all of these, shows what is possible to build and the compatibilities between them:
 
 | Main Project | Referenced Project | Compatibility |
 | --- | --- | --- |

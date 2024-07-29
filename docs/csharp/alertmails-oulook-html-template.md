@@ -17,7 +17,7 @@ The alertMail informs the receiver about the machine it got sent from, the Assem
 
 The mail has prepared links on the bottom, too. These could be set to the company website and DevOps site in the template.
 
-Outlook can handle certain HTML with CSS and this template can also be shown in the light design, or in the dark design for Outllok, as you can see above.
+Outlook can handle certain HTML with CSS and this template can also be shown in the light design, or in the dark design for Outlook, as you can see above.
 
 
 ## Call example
@@ -197,7 +197,7 @@ private static MailerConfig GetMailerConfig()
 }
 ```
 
-As you can see, the Tokens get replaced at building the `mailMessage.Body`. Calling this method will enrich the subject and body with muliple informations which come in handy for analysing a certain alert or mailed exception.
+As you can see, the Tokens get replaced at building the `mailMessage.Body`. Calling this method will enrich the subject and body with multiple informations which come in handy for analyzing a certain alert or mailed exception.
 I wanted to have the parameters to be optional to let the user not have to worry about them, as long as he/she doesn't needs them.
 
 The other Methods then differ in not using the HTML template and only send plain text messages to keep the mail as light as possible.

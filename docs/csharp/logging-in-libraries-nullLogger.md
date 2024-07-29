@@ -75,7 +75,7 @@ namespace NullLogger
             // Call the method
             someClass.SomeMethod();
 
-            // Class from lib wihtout the logger injected
+            // Class from lib without the logger injected
             var someClassWithoutLogger = new SomeClass();
 
             // Call the method again

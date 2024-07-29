@@ -13,7 +13,7 @@ JSON files are great for configurations, datastorage, mappings, etc. Reading and
 
 ## JSON Structure and C# Mapping class
 
-The JSON structure can be given by the C# class, wich defines how the JSON will be written. But if you have a JSON file and structure already defined, you need to build the mathcing C# class to be able to deserialize the data from JSON to an C# object.
+The JSON structure can be given by the C# class, wich defines how the JSON will be written. But if you have a JSON file and structure already defined, you need to build the matching C# class to be able to deserialize the data from JSON to an C# object.
 
 
 ### Deserialization Example
@@ -51,7 +51,7 @@ Deserialize a given JSON file with fictional machines and their properties:
 }
 ```
 
-You need a matching C# class to be able to get an C# object out of this JSON text file. The nesting and hirarchy, Naming and value types are important to be able to read and deserialize the file. Matching classes and enum would be the following:
+You need a matching C# class to be able to get an C# object out of this JSON text file. The nesting and hierarchy, Naming and value types are important to be able to read and deserialize the file. Matching classes and enum would be the following:
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -83,7 +83,7 @@ namespace DeSerializeJson.Objects
 }
 ```
 
-With the `[JsonPropertyName("Machines")]` you can use different names as well and give the JSON serializer a hint, what to match to this property. With this you get more flexability in naming the Properties or the JSON names.
+With the `[JsonPropertyName("Machines")]` you can use different names as well and give the JSON serializer a hint, what to match to this property. With this you get more flexibility in naming the Properties or the JSON names.
 
 And now take a look on how to use all the above:
 
@@ -127,7 +127,7 @@ var options = new JsonSerializerOptions
 
 ### Serialization Example
 
-Serializing is a little bit easier, bacause you can code first and the JSON file gets written on how you design your classes.
+Serializing is a little bit easier, because you can code first and the JSON file gets written on how you design your classes.
 
 The classes and enum to generate objects and later the json file:
 

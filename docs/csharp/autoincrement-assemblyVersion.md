@@ -9,7 +9,7 @@ parent: C#
 **Note:**
 *This article describes a easy way for automatically incrementing the Assembly Versions without any further tooling. But I have tested some tools that are really worth to be looked at, like the [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) in this [article](/docs/DevOps/cicd-versioning-NerdBankGitVersion.md).*
 
-It can be usefull to have a kind of versioning logic for your assemblies. Analysing logs, comparing software assemblies in the wild or even having a history of versions will be easier with some kind of versioning.
+It can be useful to have a kind of versioning logic for your assemblies. Analyzing logs, comparing software assemblies in the wild or even having a history of versions will be easier with some kind of versioning.
 
 A good approach is versioning with `Major.Minor.Patch` or with `Major.Minor.Build.Revision`.
 
@@ -18,7 +18,7 @@ You can automate the incrementing of parts of the version numbers in VS and dotN
 
 ## .NET Framework
 
-In .NET Framework you had the possibility to automate this nativly with having some little configuration:
+In .NET Framework you had the possibility to automate this natively with having some little configuration:
 
 * Change the csproj-file with `<Deterministic>false</Deterministic>`
 * Change the AssemblyInfo.cs file to have `*` for versioning in `[assembly: AssemblyVersion("1.0.*")]`
@@ -42,7 +42,7 @@ With .NET there are multiple ways to get autoincremented Version numbers:
 
 In .NET there is no AssemblyInfo.cs visible in the project by default. The file gets autocreated and it resides in the obj folder for the targeted environment of the project. But you can still use the above .NET Framework solution with some preparation. With deactivating the autogeneration of the AssemblyInfo.cs file in the csporj-file, you can create the file for yourself and write the same entries as in the .NET Framework file.
 
-Dactivating GenerateAssemblyInfo in csproj:
+Deactivating GenerateAssemblyInfo in csproj:
 ```xml
 <PropertyGroup>
    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -58,7 +58,7 @@ Create and fill the File with a properties folder in the project:
 
 With the csproj-file in [sdk style](https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview) you can specify the same values as in the former assemblyInfo.cs, but these values are also used for NuGet packages. This makes versioning for your assemblies much easier because you don't have to do it multiple times any more. On top of that, you now have the possibilities to enhance your versioning with own logic for generating version numbers.
 
-The following example shows versioning with `Major.Minor.Build.Revision`, but the build number is the mont and day as `MMdd` and the revision number is the hour and minute as `HHmm` of the build time:
+The following example shows versioning with `Major.Minor.Build.Revision`, but the build number is the month and day as `MMdd` and the revision number is the hour and minute as `HHmm` of the build time:
 
 ```xml
 <PropertyGroup>

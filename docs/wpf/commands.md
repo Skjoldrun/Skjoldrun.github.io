@@ -8,7 +8,7 @@ parent: WPF
 
 ***Youtube Tutorials:** [Commands Part I](https://www.youtube.com/watch?v=HDSRG7GvPbo) and [Commands Part II](https://www.youtube.com/watch?v=8WfD2cFRymM)*
 
-Commands enable a bound method from the ViewModel to be executet from a View element, like a button. You can add an execution validation if the UI element should be shown as diasabled for preventing the execution (e.g. you have to enter data first to execute a save command). 
+Commands enable a bound method from the ViewModel to be executed from a View element, like a button. You can add an execution validation if the UI element should be shown as disabled for preventing the execution (e.g. you have to enter data first to execute a save command). 
 
 A possible implementation of a application wide Command base class could be the following:
 
@@ -41,7 +41,7 @@ namespace StandUpMate.Command
 }
 ```
 
-This can be then used linke in the following example, where I want to open a settings window, but only if it is not allready opend yet:
+This can be then used linke in the following example, where I want to open a settings window, but only if it is not already opened yet:
 
 ```csharp
 /// <summary>
@@ -71,7 +71,7 @@ This code is from my [StandUpMate](https://github.com/Skjoldrun/StandUpMate) pro
 
 ## Commands with multiple parameters
 
-Besides simple binding metheods to View elements, you can also process multiple parameters through the command call. To acheive this you have to build a MultiValueConverter to pack the parameters:
+Besides simple binding methods to View elements, you can also process multiple parameters through the command call. To achieve this you have to build a MultiValueConverter to pack the parameters:
 
 ```csharp
 /// <summary>
@@ -98,12 +98,12 @@ This has to be referenced in your XAML code (App.xaml):
 </Application.Resources>
 ```
 
-[![ArrayMultiValueConverter refference in XAML](/assets/images/articles/commands/ArrayMultiValueConverter-reference.png)](/assets/images/articles/commands/ArrayMultiValueConverter-reference.png)
+[![ArrayMultiValueConverter reference in XAML](/assets/images/articles/commands/ArrayMultiValueConverter-reference.png)](/assets/images/articles/commands/ArrayMultiValueConverter-reference.png)
 
 Now you can send multiple parameters from UI elements with the click of a button:
 
-[![ArrayMultiValueConverter refference in XAML](/assets/images/articles/commands/example-view.png)](/assets/images/articles/commands/example-view.png)
+[![ArrayMultiValueConverter reference in XAML](/assets/images/articles/commands/example-view.png)](/assets/images/articles/commands/example-view.png)
 
 This is how you access the parameters in the ViewModel:
 
-[![ArrayMultiValueConverter refference in XAML](/assets/images/articles/commands/access-param-ViewModel.png)](/assets/images/articles/commands/access-param-ViewModel.png)
+[![ArrayMultiValueConverter reference in XAML](/assets/images/articles/commands/access-param-ViewModel.png)](/assets/images/articles/commands/access-param-ViewModel.png)

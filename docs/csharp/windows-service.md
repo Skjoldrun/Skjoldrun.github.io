@@ -53,7 +53,7 @@ internal static class Program
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "An error occured while running the service in interactive mode: {Message}", ex.Message);
+                Log.Error(ex, "An error occurred while running the service in interactive mode: {Message}", ex.Message);
                 throw;
             }
         }
@@ -65,7 +65,7 @@ internal static class Program
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "An error occured while running the service: {Message}", ex.Message);
+                Log.Error(ex, "An error occurred while running the service: {Message}", ex.Message);
                 throw;
             }
         }
@@ -92,7 +92,7 @@ internal static class Program
     }
 
     /// <summary>
-    /// Runs the application in interactive mode as console application instead of a win serivce.
+    /// Runs the application in interactive mode as console application instead of a win service.
     /// </summary>
     private static void RunInteractive(ServiceBase[] servicesToRun)
     {
@@ -166,7 +166,7 @@ Then add the needed Package References and further reduce the csproj entries.
 
 An easy way to install and uninstall the service is to have some batch scripts in the project folder.
 
-***Note:*** Call these from a console with Admin priviledges. Installation and Uninstalltion can only be done by administrators of the machine.
+***Note:*** Call these from a console with Admin privileges. Installation and Uninstalltion can only be done by administrators of the machine.
 
 
 **Install.bat:**
@@ -241,7 +241,7 @@ This is the csproj File without the Windows specific Service NuGet Package.
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" /> <!-- Packate for installable Windows Service -->
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" /> <!-- Package for installable Windows Service -->
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
@@ -261,7 +261,7 @@ Activate `.UseWindowsService()` for the `Host.CreateDefaultBuilder(args)` Method
 
 ## Interactive Mode
 
-This project template is by default interactivly startable and opens a console while debugging. It has all the features, like launchsettings, appsettings and more.
+This project template is by default interactively startable and opens a console while debugging. It has all the features, like launchsettings, appsettings and more.
 This example comes with [dependency injection](https://skjoldrun.github.io/docs/csharp/dependency-injection.html), [NerdBank Git Versioning](https://skjoldrun.github.io/docs/DevOps/cicd-versioning-NerdBankGitVersion.html), [Serilog logging](https://skjoldrun.github.io/docs/csharp/logging-Console-app-nullLogger.html) and stopping the console app with `[Ctrl]+[C]`.
 
 ```csharp
@@ -290,7 +290,7 @@ public class Program
 
 ## The Worker Class
 
-The worker class has a endless loop with a cnacelation token and a wait timer for repetition. The cancelation token will come from the OS controlling the service. 
+The worker class has a endless loop with a cancellation token and a wait timer for repetition. The cancellation token will come from the OS controlling the service. 
 
 ```csharp
 public class Worker : BackgroundService
@@ -311,7 +311,7 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             // do something here ...
-            _logger.LogInformation("Worker running every {interval} sec in {Env} envronment at: {time}",
+            _logger.LogInformation("Worker running every {interval} sec in {Env} environment at: {time}",
                 _workerIntervalInSec, DateTimeOffset.Now, AppSettingsHelper.GetEnvVarName());
 
             await Task.Delay(_workerIntervalInSec * 1000, stoppingToken);
@@ -419,7 +419,7 @@ Installing and uninstalling the service can be executed via script, for example 
 
 ```powershell
 # Installs a service with given configurations for user, path, restart etc.
-# open a PowerShell Terminal with Administrator priviledges
+# open a PowerShell Terminal with Administrator privileges
 # sc.exe is needed in Powershell to not call teh sc commandlet for set content
 
 $ServiceName = "WindowsServiceEDU"  
@@ -440,7 +440,7 @@ sc.exe failure $ServiceName reset= 30 actions= restart/5000  # Set restart optio
 
 ```powershell
 # Deletes the service if not running any more, else mark for deletion after stop
-# open a PowerShell Terminal with Administrator priviledges
+# open a PowerShell Terminal with Administrator privileges
 # sc.exe is needed in Powershell to not call teh sc commandlet for set content
 
 $ServiceName = "WindowsServiceEDU"

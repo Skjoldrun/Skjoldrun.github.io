@@ -11,13 +11,13 @@ With the Try-Catch block you can catch multiple exception types, such as SqlExce
 ```csharp
 catch (SqlException ex)
 {
-    // SqlException ex.Number == -2 for catching timout exceptions
+    // SqlException ex.Number == -2 for catching timeout exceptions
     // see https://stackoverflow.com/questions/29664/how-to-catch-sqlserver-timeout-exceptions
     if (ex.Number == -2)
     {
         // Do something in case of timeouts ...
     }
-    // SqlException ex.Number == 2601 || ex.Number == 2627 for catching duplicate key exceptions on isert and on Primary Key contraint
+    // SqlException ex.Number == 2601 || ex.Number == 2627 for catching duplicate key exceptions on insert and on Primary Key constraint
     // See https://stackoverflow.com/questions/6120422/catching-specific-exception
     // Find SQLException Number with "SELECT * FROM sys.messages WHERE text like '%duplicate key%'"
     else if (ex.Number == 2601 || ex.Number == 2627)

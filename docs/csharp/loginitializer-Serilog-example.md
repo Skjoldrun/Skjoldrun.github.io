@@ -6,7 +6,7 @@ parent: C#
 
 # LogInitializer Serilog example
 
-This article describes a Serilog LogInitializer class  which can be used to init a logger from appsettings, from inline code and even create alogger for DI injection on the fly. Thas for cases when you have to deal with older project that don't use DI yet.
+This article describes a Serilog LogInitializer class  which can be used to init a logger from appsettings, from inline code and even create a logger for DI injection on the fly. That's for cases when you have to deal with older project that don't use DI yet.
 
 **Example:**
 
@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 
-namespace LogginExample.Utilities;
+namespace LoggingExample.Utilities;
 
 public static class LogInitializer
 {
@@ -125,7 +125,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace LogginExample.Utilities;
+namespace LoggingExample.Utilities;
 
 public static class AppDataCommonPathProcessor
 {

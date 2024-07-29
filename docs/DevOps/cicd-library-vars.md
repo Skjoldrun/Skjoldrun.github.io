@@ -17,7 +17,7 @@ Add a group with a name and description, then configure the Pipeline permissions
 
 ## YAML Pipeline Access
 
-To access the variables in the YAML Pipeline you have to reference the group name of the variables in th evariables section:
+To access the variables in the YAML Pipeline you have to reference the group name of the variables in the variables section:
 
 ```yaml
 variables:
@@ -42,7 +42,7 @@ There are multiple ways to write values back to the variables. One would be with
 
 A better way of writing values is by calling the azure tools via Powershell. This can be done with the installation of the azure extensions: `az extension add --name azure-devops`. You need to know your variable group id as reference to write a value, so you have to find it. One way is to list all groups with ids: `az pipelines variable-group list --top 3 --query-order Asc --output table`. Another way is to open the group in your browser and analyze the url:
 
-[![DevOps Library Vars Gruop Id](/assets/images/articles/DevOps/DevOps_library_vars_groupId.png)](/assets/images/articles/DevOps/DevOps_library_vars_groupId.png)
+[![DevOps Library Vars Group Id](/assets/images/articles/DevOps/DevOps_library_vars_groupId.png)](/assets/images/articles/DevOps/DevOps_library_vars_groupId.png)
 
 To check, if this was the right one, you can now list these variables with `az pipelines variable-group variable list --group-id 1`.
 

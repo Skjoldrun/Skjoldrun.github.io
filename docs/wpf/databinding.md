@@ -6,7 +6,7 @@ parent: WPF
 
 # Databinding in Views
 
-Databinding connects datavalues in Views (e.g. TextBox entries) to Properties of the coresponding ViewModel behind the View. If the get connected andc configured properly, you can bind their data to be updated if the ViewModel value changes through a method, or update the ViewModel Property if the user changes the data via UI.
+Databinding connects datavalues in Views (e.g. TextBox entries) to Properties of the corresponding ViewModel behind the View. If the get connected and configured properly, you can bind their data to be updated if the ViewModel value changes through a method, or update the ViewModel Property if the user changes the data via UI.
 
 
 ## Connect View and ViewModel

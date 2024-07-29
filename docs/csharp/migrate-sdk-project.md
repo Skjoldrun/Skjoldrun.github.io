@@ -6,7 +6,7 @@ parent: C#
 
 # Migrate to SDK style project
 
-If you wnat to migrate an old .net Framework project to the newer SDK style project, then you could do this manually step by step with creating an new empty project and move the file to this new SDK styled project. Or yoou just use some help from a tool: [Try-Convert](https://github.com/dotnet/try-convert)
+If you want to migrate an old .net Framework project to the newer SDK style project, then you could do this manually step by step with creating an new empty project and move the file to this new SDK styled project. Or you just use some help from a tool: [Try-Convert](https://github.com/dotnet/try-convert)
 
 
 ## Installation

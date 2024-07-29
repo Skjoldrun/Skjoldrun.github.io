@@ -6,7 +6,7 @@ parent: C#
 
 # Use complex parameters with XUnit Tests and MemberData
 
-Sometimes you need more complex parameter data to test in XUnit tests Theories and InlineData. For this scenario you can use MemberData with objects conatining the more complex parameters as shown below.
+Sometimes you need more complex parameter data to test in XUnit tests Theories and InlineData. For this scenario you can use MemberData with objects containing the more complex parameters as shown below.
 
 
 ## Method to test

@@ -10,7 +10,7 @@ Dependency Injection is an implementation of the Dependency Inversion Principle,
 
 With Dependency Inversion classes "wish" for their dependencies and the using caller has to deliver these dependencies on instantiation.
 
-A class built with this principle can use Dependency Injection (DI) with its constructor (or even with its Properties). The class then expects interfaced parameters of its dependencies and maps them to its fields. These hold the later given implementations of the dependencies. This enables a loose coupling of the components and has the advantage of being less dependent on explicit implementations. For using Dependency Injection in your application code, you need a system to know which implementation belongs to which interface to be implemented when instanciating a class. Such a registratration system then also instantiates the classes for you and injects the propper dependencies into it. Such systems are often refered to as IoC (Inversion of Control) container, like [Autofac](https://autofac.org/) or [Ninject](https://www.ninject.org/). But you can use Microsofts Extensions.DependencyInjection system as well!
+A class built with this principle can use Dependency Injection (DI) with its constructor (or even with its Properties). The class then expects interfaced parameters of its dependencies and maps them to its fields. These hold the later given implementations of the dependencies. This enables a loose coupling of the components and has the advantage of being less dependent on explicit implementations. For using Dependency Injection in your application code, you need a system to know which implementation belongs to which interface to be implemented when instantiating a class. Such a registration system then also instantiates the classes for you and injects the proper dependencies into it. Such systems are often referred to as IoC (Inversion of Control) container, like [Autofac](https://autofac.org/) or [Ninject](https://www.ninject.org/). But you can use Microsofts Extensions.DependencyInjection system as well!
 
 Let's see an example for that:
 
@@ -45,7 +45,7 @@ namespace DependencyInjectionExample
 
             // Create a parameter object, this could be an object array
             var parameter = true;
-            // Create an instance of a registered service with onjected logger and inject the parameters (order must match the ctor order)
+            // Create an instance of a registered service with injected logger and inject the parameters (order must match the ctor order)
             var libServiceParam = ActivatorUtilities.CreateInstance<LibExampleWithParam>(AppHost.Services, parameter);
             libServiceParam.GetSomeStringAnswer();
 
@@ -67,7 +67,7 @@ namespace DependencyInjectionExample
                 .ConfigureServices((context, services) =>
                 {
                     // Define DI here ...
-                    // AddTransient gives a new instance everytime it's called
+                    // AddTransient gives a new instance every time it's called
                     services.AddTransient<IProjectExampleClass, ProjectExampleClass>();
 
                     // Add library DI registration extension methods here ...
@@ -84,7 +84,7 @@ namespace DependencyInjectionExample
 The example is about an console application with Serilog Logging, `Microsoft.Extensions.Logging`, `Microsoft.Extensions.Hosting` and `Microsoft.Extensions.DependencyInjection`. The first step is to configure the Serilog logger, the second step is to configure the application host to use the Serilog logger and to register all needed services with their interfaces. This is the place where the mapping and the lifetime scope for instances of classes is made. With `services.AddTransient<IProjectExampleClass, ProjectExampleClass>();` a new instance of type `ProjectExampleClass` is spined up every time the system is asked for something of type `IProjectExampleClass`. You can register for singletons with `services.AddSingleton`, too. That's the place where wishes of dependencies come true! 😉
 As third step, we then call the `AppHost.Services.GetService<IProjectExampleClass>()` method to get a new instance of the demanded type and start calling one of its methods.
 
-If you use DI in your application you stop instantiating classes with the new keyword but let the DI system instantiate them with propper resolved dependencies for you. 
+If you use DI in your application you stop instantiating classes with the new keyword but let the DI system instantiate them with proper resolved dependencies for you. 
 
 One of the called example methods is from the app internally and one is from a class library:
 
@@ -104,7 +104,7 @@ namespace DependencyInjectionExample.ExampleClasses
 
         public void ExampleMethod()
         {
-            _logger.LogInformation("this method does something interessting ...");
+            _logger.LogInformation("this method does something interesting ...");
         }
     }
 }
@@ -127,7 +127,7 @@ namespace DIExampleLib
 
         public void LibExampleMethod()
         {
-            _logger.LogInformation("Lib does something very interessting!");
+            _logger.LogInformation("Lib does something very interesting!");
         }
     }
 }

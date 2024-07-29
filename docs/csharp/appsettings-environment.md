@@ -12,9 +12,9 @@ In .NET core and newer the old app.config as XML file gets replaced by the appse
 
 ### Files
 
-You can add this file via VS context menu and choose the JavaScript-JSON-Configuration file. Change the properties of the file to "allways copy" or to "copy if newer" to place it in the build directory. You can also change this in the project file:
+You can add this file via VS context menu and choose the JavaScript-JSON-Configuration file. Change the properties of the file to "always copy" or to "copy if newer" to place it in the build directory. You can also change this in the project file:
 
-[![appsettings allway copy](/assets/images/articles/appsettings-environment/project-settings.png)](/assets/images/articles/appsettings-environment/project-settings.png)
+[![appsettings always copy](/assets/images/articles/appsettings-environment/project-settings.png)](/assets/images/articles/appsettings-environment/project-settings.png)
 
 If you have a different appsettings file for debug purposes you can control if it will be copied to the output directory with the project settings, too. 
 

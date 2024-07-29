@@ -20,7 +20,7 @@ This also applies to the exit of the app, which can be extended with a custom me
 [![App.xaml](/assets/images/articles/startup-exit/startup-exit-methods.png)](/assets/images/articles/startup-exit/startup-exit-methods.png)
 
 This is a way to init a logger on startup and flush it on exiting the app.
-But you can also use the `OnStartup` and `OnExit` mehtods to prepare you application or do same final work on exiting it. Heres an example which shows the order of execution if all four methods are on the application:
+But you can also use the `OnStartup` and `OnExit` methods to prepare you application or do same final work on exiting it. Heres an example which shows the order of execution if all four methods are on the application:
 
 [![method-order](/assets/images/articles/startup-exit/method-order.png)](/assets/images/articles/startup-exit/method-order.png)
 

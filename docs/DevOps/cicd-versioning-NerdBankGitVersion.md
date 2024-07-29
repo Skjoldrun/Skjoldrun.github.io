@@ -6,7 +6,7 @@ parent: DevOps
 
 # Versioning with NerdBank.GitVersion
 
-I formerly tested the Versioning tool [MinVer](https://github.com/adamralph/minver) but was not satisfied for all my CI/CD needs. Therefore I tried the tool [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) and succeded with implementing a minimalistic, configurable versioning with DevOps integration and access to the version numbers in the Buildpipe and the Releasepipe as well.
+I formerly tested the Versioning tool [MinVer](https://github.com/adamralph/minver) but was not satisfied for all my CI/CD needs. Therefore I tried the tool [NerdBank.GitVersion](https://github.com/dotnet/Nerdbank.GitVersioning) and succeeded with implementing a minimalistic, configurable versioning with DevOps integration and access to the version numbers in the Buildpipe and the Releasepipe as well.
 
 
 ## Installation
@@ -26,7 +26,7 @@ nbgv install
 
 ## .NET Assemblies
 
-The package integrates in the build process and stamps the versionnumber into the assemblies. It works with [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and uses the Major and Minor numbers for the assemblyVersion, a git height calculated Patch number and can use a git hash or a calculated ineger from the git hash as Revision number. The tool would work with prerelease version suffixes, too.
+The package integrates in the build process and stamps the version number into the assemblies. It works with [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and uses the Major and Minor numbers for the assemblyVersion, a git height calculated Patch number and can use a git hash or a calculated integer from the git hash as Revision number. The tool would work with prerelease version suffixes, too.
 
 ```csharp
 [assembly: System.Reflection.AssemblyVersion("1.0")]
@@ -43,7 +43,7 @@ For example, if the version specified at HEAD is 1.1 and the longest path in git
 
 ## Additional Information
 
-A very nice addition is that the tool injects a calss called `ThisAssembly` which then holds the following infos to be accessed as internal const strings:
+A very nice addition is that the tool injects a class called `ThisAssembly` which then holds the following infos to be accessed as internal const strings:
 
 ```csharp
 internal sealed partial class ThisAssembly {
@@ -61,7 +61,7 @@ internal sealed partial class ThisAssembly {
 
 ## version.json
 
-The package needs a single `version.json` in the root directory, or multiple project based `version.json` files with the configuration of the NBGV. This could be set in root besides the `Directory.Build.props` file with further project dtails like company info, authors and more ([read more about props files here](project-props-targets.md)).
+The package needs a single `version.json` in the root directory, or multiple project based `version.json` files with the configuration of the NBGV. This could be set in root besides the `Directory.Build.props` file with further project details like company info, authors and more ([read more about props files here](project-props-targets.md)).
 
 A simple example could look like this:
 
@@ -76,7 +76,7 @@ A simple example could look like this:
 }
 ```
 
-This is the place where you manually set the Major and Minor version numbers. The schema fild is optional and should help some editors to use autocompletion for editing the file.
+This is the place where you manually set the Major and Minor version numbers. The schema field is optional and should help some editors to use autocompletion for editing the file.
 
 See here to read about all configurable settings: [version.json](https://github.com/dotnet/Nerdbank.GitVersioning/blob/main/doc/versionJson.md)
 

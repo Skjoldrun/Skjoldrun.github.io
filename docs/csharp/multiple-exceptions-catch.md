@@ -13,7 +13,7 @@ If you want to catch SqlExceptions from `System.Data.SqlClient` and handle these
 ```csharp
 catch (SqlException ex)
 {
-    // SqlException ex.Number == -2 for catching timout exceptions
+    // SqlException ex.Number == -2 for catching timeout exceptions
     // see https://stackoverflow.com/questions/29664/how-to-catch-sqlserver-timeout-exceptions
     if (ex.Number == -2)
     {

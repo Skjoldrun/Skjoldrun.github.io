@@ -114,12 +114,12 @@ This task is a simple CopyFiles task with the option to clear the target folder 
 
 ## Install Service
 
-This script has multiple variables set from the pipeline variables. These contain the common strings and values for insallting a service with a given service user, its credentials, naming and description as well as a start mode and recovery handling on failure. The task uses the sc.exe to install the service remotely. This tool has a special way to get its parameters. You have to write them `<paramName>= <value>` and the passwort of the service user has to be set directly. 
+This script has multiple variables set from the pipeline variables. These contain the common strings and values for installing a service with a given service user, its credentials, naming and description as well as a start mode and recovery handling on failure. The task uses the sc.exe to install the service remotely. This tool has a special way to get its parameters. You have to write them `<paramName>= <value>` and the passwort of the service user has to be set directly. 
 The pipeline passwort variable is a secret and has to be mapped to a local decrypted string here. This can be done with defining a mapping variable for this task:
 
 [![deploy files](/assets/images/articles/DevOps/DevOps_win_service_pwmap.png)](/assets/images/articles/DevOps/DevOps_win_service_pwmap.png)
 
-The sc.exe creates or installs teh service, then sets its description and finnaly configures the failure recovery to restart the service.
+The sc.exe creates or installs teh service, then sets its description and finally configures the failure recovery to restart the service.
 
 ```shell
 $MachineName = $Env:TargetMachine
