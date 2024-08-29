@@ -335,7 +335,7 @@ public class Worker : BackgroundService
 
 ## Serilog Async file logging
 
-Serilog can be configured to use asynchronous file logging. Check the code below or the `` class for examples of implementation:
+Serilog can be configured to use asynchronous file logging. Check the code below or the `LogInitializer` class for examples of implementation:
 
 **LogInitializer**
 ```csharp
@@ -361,7 +361,7 @@ public static class LogInitializer
     }
 
     /// <summary>
-    /// Creates the logger with settings from appconfig and enrichments from code.
+    /// Creates the logger with settings from appConfig and enrichments from code.
     /// </summary>
     /// <param name="appConfig">appConfig built from appsettings.json</param>
     /// <returns>Logger with inline and app.config settings</returns>
@@ -411,7 +411,7 @@ public static class LogInitializer
 ```
 
 
-## Installing and deinstalling the Service
+## Installing and uninstalling the Service
 
 Installing and uninstalling the service can be executed via script, for example with PowerShell:
 
