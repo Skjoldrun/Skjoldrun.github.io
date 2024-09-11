@@ -10,7 +10,7 @@ Welcome to my knowledgebase site!
 
 My Name is David.
 
-[![David Bow](/assets/images/David_Halletz.png)](/assets/images/David_Halletz.png)
+![David](/assets/images/David_Halletz.png)
 
 I live in Bavaria, Germany.
 
@@ -24,4 +24,4 @@ You can contact me with [david.halletz@posteo.de](mail-to:david.halletz@posteo.d
 ### Built with
 
 * [just-the-docs jekyll theme](https://github.com/just-the-docs/just-the-docs) - customized the theme with some extra functionality (darkmode switch and styles)
-* [Brain icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/brain) - took the icon as inspiration for my logo
+* [Brain icons created by Freepik - Flaticon](https://www.flaticon.com/free-icon/brain_3483127?related_id=3483128) - took the icon as inspiration for my logo
