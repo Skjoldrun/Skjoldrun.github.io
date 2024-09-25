@@ -105,7 +105,7 @@ if($Service -eq $null)
 ```
 
 
-## Delpoy Files
+## Deploy Files
 
 This task is a simple CopyFiles task with the option to clear the target folder set to true and the target folder is combined from pipeline variable values:
 
@@ -124,7 +124,7 @@ The sc.exe creates or installs teh service, then sets its description and finall
 ```shell
 $MachineName = $Env:TargetMachine
 $ServiceName = $Env:ServiceName
-$DisplayName = $Env:ServiceDsiplayName
+$DisplayName = $Env:ServiceDisplayName
 $Description = $Env:ServiceDescription
 $ServiceStartMode = $Env:ServiceStartMode
 $ServiceUser = $Env:ServiceUser

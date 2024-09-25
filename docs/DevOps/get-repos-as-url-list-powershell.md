@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps - Get Repos as URL list
+title: DevOps - PS Get Repos as URL list
 parent: DevOps
 ---
 

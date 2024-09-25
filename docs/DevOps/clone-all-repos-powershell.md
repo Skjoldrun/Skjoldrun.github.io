@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps - clone all repos powershell
+title: DevOps - PS Clone all repos
 parent: DevOps
 ---
 

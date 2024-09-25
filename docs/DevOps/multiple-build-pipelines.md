@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps - multiple build pipelines
+title: DevOps - Multiple build pipelines
 parent: DevOps
 ---
 
