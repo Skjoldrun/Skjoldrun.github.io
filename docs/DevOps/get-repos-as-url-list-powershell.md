@@ -27,7 +27,7 @@ Place the token in the `pat.txt` file and create a `.gitignore` file with an ent
 
 ## Script
 
-```powerShell
+```PowerShell
 $jsonSettings = Get-Content -Path settings.json | ConvertFrom-Json
 $organization = $jsonSettings.Organization
 $project = $jsonSettings.Project
