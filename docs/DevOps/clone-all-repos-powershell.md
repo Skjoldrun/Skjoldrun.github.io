@@ -27,7 +27,7 @@ Place the token in the settings.json and set the other settings if needed.
 
 ## Script
 
-```PowerShell
+```shell
 
 $jsonSettings = Get-Content -Path settings.json | ConvertFrom-Json
 $organization = $jsonSettings.Organization
