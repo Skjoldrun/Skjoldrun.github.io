@@ -10,10 +10,10 @@ The Microsoft DevOps Agent uses some directories to work and build in. The on pr
 
 There are:
 
-| directory | variable | description |
-| --- | --- | --- |
-| s | Build.Repository.LocalPath | "sources" - checked out sources and build folder, like your local project folder |
-| b | Build.BinariesDirectory | "binaries" - built binaries |
-| a | Build.ArtifactStagingDirectory | "artifacts" - staging folder to collect artifacts to be published |
+| directory | variable                       | description                                                                      |
+|-----------|--------------------------------|----------------------------------------------------------------------------------|
+| s         | Build.Repository.LocalPath     | "sources" - checked out sources and build folder, like your local project folder |
+| b         | Build.BinariesDirectory        | "binaries" - built binaries                                                      |
+| a         | Build.ArtifactStagingDirectory | "artifacts" - staging folder to collect artifacts to be published                |
 
 Check the [predefined variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml) for referencing directories and variables in your pipelines.
