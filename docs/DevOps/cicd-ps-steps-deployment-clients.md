@@ -52,6 +52,7 @@ The last three variables `BackupServer`, `BackupExePath` and `MachineId` are use
   -----------------    -----------------    -----------------    -----------------    -----------------  
 ```
 
+
 ## Template for using PowerShell Sessions
 
 ```shell
@@ -124,6 +125,7 @@ Write-Host "PowerShell session closed." -ForegroundColor Green
 
 Write-Host "Task done."
 ```
+
 
 ## Step 01 - Check Host Application
 
@@ -222,6 +224,7 @@ Write-Host "PowerShell session closed." -ForegroundColor Green
 Write-Host "Task done."
 ```
 
+
 ## Step 02 - Extract Build Number
 
 This step extracts the build number of the artifacts and stores it for later steps. This is only done by the DevOps Release pipeline, that I have setup to get a file called `version.marker` along with the artifacts to be deployed. The `$BuildVersionNumber` is a DevOps release pipe variable that gets updated for later use.
@@ -239,6 +242,7 @@ Write-Host "##vso[task.setvariable variable=buildVersionNumber]$BuildVersionNumb
 
 Write-Host "Task done."
 ```
+
 
 ## Step 03 - Check Artifacts 
 
@@ -266,6 +270,7 @@ if (Test-Path -Path $(ArtifactTargetFolderPath)) {
 
 Write-Host "Task done."
 ```
+
 
 ## Step 04 - Backup
 
@@ -302,6 +307,7 @@ Invoke-Command -ComputerName $ProdServer -Credential $Credential -ConfigurationN
 
 Write-Host "Task done."
 ```
+
 
 ## Step 05 - Prepare Client Path
 
@@ -385,6 +391,7 @@ Write-Host "PowerShell session closed." -ForegroundColor Green
 Write-Host "Task done."
 ```
 
+
 ## Step 06 - Deploy the artifacts
 
 This is now the final step which deploys the artifacts by copying the files to the remote client machine. It tunnels the copy process through the PowerShell session to prevent a SMB direct access, which makes it easier to maintain and reduces open ports and maybe firewall rules, if you have a segmented network, like the one I have to deal with.
@@ -445,6 +452,7 @@ if ($Session) {
 
 Write-Host "Task done."
 ```
+
 
 # Conclusion
 
