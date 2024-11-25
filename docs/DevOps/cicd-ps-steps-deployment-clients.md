@@ -136,7 +136,7 @@ If the target install folder is not there, then it could be the first deployment
 
 These actions are wrapped with try catch and would elevate possible exception from within the session to its outside and we can handle them with maybe stopping the pipe, if needed. 
 
-```Shell
+```shell
 # Variables from Settings JSON
 $JsonSettings = Get-Content -Path settings.json | ConvertFrom-Json
 $Username = $JsonSettings.Username
