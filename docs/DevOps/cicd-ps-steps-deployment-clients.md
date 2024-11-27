@@ -117,12 +117,14 @@ try {
 }
 
 # close session
+Write-Host 
 Write-Host "Close PowerShell session to target machine $Machine ..."
 if ($Session) {
     Remove-PSSession -Session $Session
 }
 Write-Host "PowerShell session closed." -ForegroundColor Green
 
+Write-Host 
 Write-Host "Task done."
 ```
 
@@ -145,6 +147,7 @@ $Machine = $JsonSettings.Machine
 $MachineClientInstallationPath = $JsonSettings.MachineClientInstallationPath
 
 # Variables from DevOps Pipeline
+# $Machine = "$(machine)"
 # $MachineClientInstallationPath = "$(machineClientInstallationPath)"
 # $Username = '$(serviceUser)'
 # $Password = '$(servicePassword)'
@@ -215,12 +218,14 @@ try {
 }
 
 # close session
+Write-Host
 Write-Host "Close PowerShell session to target machine $Machine ..."
 if ($Session) {
     Remove-PSSession -Session $Session
 }
 Write-Host "PowerShell session closed." -ForegroundColor Green
 
+Write-Host
 Write-Host "Task done."
 ```
 
@@ -234,12 +239,13 @@ This step extracts the build number of the artifacts and stores it for later ste
 Write-Host
 Write-Host "Try to extract build version number ..."
 
-$SearchPath = "$(System.DefaultWorkingDirectory)/_$(SolutionName)_master/version.marker/version.marker"
+$SearchPath = "$(System.DefaultWorkingDirectory)/_$(solutionName)_master/version.marker/version.marker"
 $BuildVersionNumber = Get-Content $SearchPath -Raw
 
 Write-Host "Extracted FileVersion Number: $BuildVersionNumber" -ForegroundColor Green
 Write-Host "##vso[task.setvariable variable=buildVersionNumber]$BuildVersionNumber"
 
+Write-Host
 Write-Host "Task done."
 ```
 
@@ -254,20 +260,21 @@ This step is also a DevOps Only step for me, because I prepare the Client Deploy
 ```shell
 
 Write-Host
-Write-Host "Checking if artifacts folder exists for $(ProjectName) and deployment preparation is ready ..."
+Write-Host "Checking if artifacts folder exists and deployment preparation is ready ..."
 
 if ($BuildVersionNumber -eq "" ) {
     Write-Host "BuildVersionNumber was empty, check if preparation Task was executed before!" -ForegroundColor Red
     exit 1
 }
 
-if (Test-Path -Path $(ArtifactTargetFolderPath)) {
-    Write-Host "Artifact targets exist: $(ArtifactTargetFolderPath)" -ForegroundColor Green
+if (Test-Path -Path $(artifactTargetFolderPath)) {
+    Write-Host "Artifact targets exist: $(artifactTargetFolderPath)" -ForegroundColor Green
 } else {
-    Write-Error "Artifact targets missing: $(ArtifactTargetFolderPath)" -ForegroundColor Red
+    Write-Error "Artifact targets missing: $(artifactTargetFolderPath)" -ForegroundColor Red
     exit 1
 }
 
+Write-Host
 Write-Host "Task done."
 ```
 
@@ -322,8 +329,8 @@ $Password = $JsonSettings.Password
 $MachineClientInstallationPath = $JsonSettings.MachineClientInstallationPath
 
 # Variables from DevOps
+# $Machine = "$(machine)"
 # $MachineClientInstallationPath = "$(machineClientInstallationPath)"
-# $ProdServer = '$(prodServer)'
 # $Username = '$(serviceUser)'
 # $Password = '$(servicePassword)'
 
@@ -382,12 +389,14 @@ try {
 }
 
 # close session
+Write-Host
 Write-Host "Close PowerShell session to target machine $Machine ..."
 if ($Session) {
     Remove-PSSession -Session $Session
 }
 Write-Host "PowerShell session closed." -ForegroundColor Green
 
+Write-Host
 Write-Host "Task done."
 ```
 
@@ -406,16 +415,14 @@ $MachineClientInstallationPath = $JsonSettings.MachineClientInstallationPath
 $SourcePath = $JsonSettings.SourcePath
 
 # Variables from DevOps
+# $Machine = "$(machine)"
 # $SourcePath = "$(artifactTargetFolderPath)" + "\*"
-# $ProdServer = '$(prodServer)'
+# $MachineClientInstallationPath = "$(machineClientInstallationPath)"
 # $Username = '$(serviceUser)'
 # $Password = '$(servicePassword)'
 
 $SecureString = ConvertTo-SecureString -AsPlainText $Password -Force
 $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $Username,$SecureString 
-
-Write-Host
-Write-Host "Deploy Artifacts to remote machine ($MachineClientInstallationPath) ..."
 
 # Create Session
 Write-Host 
@@ -430,9 +437,13 @@ if ($Session) {
 
 # Copy Item through session
 Write-Host 
-Write-Host "Deploy Application files to target machine $Machine ..."
+Write-Host "Deploy Application files to target machine $Machine "
+Write-Host "Deploy from $SourcePath to $MachineClientInstallationPath ..."
 try {
-    Copy-Item -Path $SourcePath -Destination $MachineClientInstallationPath -ToSession $Session -Verbose
+    # Set ErrorActionPreference to Stop
+    $ErrorActionPreference = "Stop"
+
+    Copy-Item -Path $SourcePath -Destination $MachineClientInstallationPath -Recurse -Force -Verbose -ToSession $Session
     Write-Host "Files copied successfully."
 } catch {
     Write-Host "Error while copying files through session to $Machine." -ForegroundColor Red 
@@ -450,6 +461,7 @@ if ($Session) {
     Write-Host "PowerShell session closed." -ForegroundColor Green
 }
 
+Write-Host
 Write-Host "Task done."
 ```
 
