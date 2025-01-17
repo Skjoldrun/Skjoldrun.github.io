@@ -468,4 +468,4 @@ Write-Host "Task done."
 
 # Conclusion
 
-THese steps are nice to maintain and make setting up the pipeline to be a generic collection of PowerShell script steps. These can be organized in a DevOps Task Group and then be reused for each client application that you want to deploy. In my case, this is used to deploy machine control applications for production machines, like mixers and fillers, but also scales and others. All use the same setup und only differ through the variable contents.
+These steps are nice to maintain and make setting up the pipeline to be a generic collection of PowerShell script steps. These can be organized in a DevOps Task Group and then be reused for each client application that you want to deploy. In my case, this is used to deploy machine control applications for production machines, like mixers and fillers, but also scales and others. All use the same setup und only differ through the variable contents.
