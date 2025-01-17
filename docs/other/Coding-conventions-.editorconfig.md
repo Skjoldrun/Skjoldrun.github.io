@@ -32,6 +32,11 @@ root = true
 # Apply these settings to all C# files
 [*.cs]
 
+# SpellChecking config
+spelling_languages = en-us,de-de
+spelling_checkable_types = identifiers,comments,strings
+spelling_error_severity = hint
+
 # Overall severity level for IDE1006 aka Naming rule violations
 #dotnet_diagnostic.IDE1006.severity = warning
 
@@ -125,7 +130,6 @@ dotnet_naming_style.pascal_case.capitalization = pascal_case
 
 # camel_case naming style
 dotnet_naming_style.camel_case.capitalization = camel_case
-
 ```
 
 #### Summary
