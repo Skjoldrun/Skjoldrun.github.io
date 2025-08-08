@@ -225,8 +225,7 @@ One way to do this is to add the PostBuild event in the wixproj file:
 
 ```xml
 <PropertyGroup>
-  <!-- $(TargetFramework) ist hardcoded to net7.0 because Wix is not in SDK style yet -->
-  <PreBuildEvent>"$(WIX)bin\heat.exe" dir "$(SolutionDir)$(SolutionName)\bin\$(ConfigurationName)\net7.0" -cg ProductComponents -gg -scom -sreg -sfrag -srd -dr INSTALLFOLDER -var var.WixInstallerEDU.TargetDir -t "$(ProjectDir)Transform.xslt" -out "$(ProjectDir)ProductComponents.wxs"</PreBuildEvent>
+  <PreBuildEvent>"$(WIX)bin\heat.exe" dir "$(SolutionDir)\$(ProductMainFolderName)\bin\$(ConfigurationName)\$(ProductTargetFramework)" -cg ProductComponents -gg -scom -sreg -sfrag -srd -dr INSTALLFOLDER -var var.Product.TargetDir -t "$(ProjectDir)Transform.xslt" -out "$(ProjectDir)ProductComponents.wxs"</PreBuildEvent>
 </PropertyGroup>
 ```
 
@@ -360,6 +359,54 @@ This decouples the light process and prevents the deadlock. This bug got fixed f
 
 If you then encounter an error that your resources use a 32 bit folder, but would be 64 bit components, add the flag `<InstallerPlatform>x64</InstallerPlatform>` in the `wixproj` file, to set the installer platform to 64 bit. This was only necessary for the cloud build somehow [StackOverflow article](https://stackoverflow.com/questions/22932942/wix-heat-exe-win64-components-win64-yes/24396430#24396430).
 
+---
+
+# Cert Signing preparation
+
+If you want to sign your files and the Setup itself with a certificate in a CI/CD pipeline, then it's recommended to separate the setup into its own solution.
+
+The product solution takes care of the app and builds it into an output folder (can be the default one).
+
+The Setup solution then contains the WIX Project. This doesn't need the references to the main app project and can just harvest everything with heat.
+It needs some further paths and var definitions in the `wixproj` file:
+
+```xml
+<!-- Reference paths to Product project dir and output dir for harvesting and File Version -->
+  <PropertyGroup>
+    <ProductTargetFramework>net7.0</ProductTargetFramework> <!-- Set this to targetFramework of Main Exe project -->
+    <ProductMainFolderName>WixInstallerEDU</ProductMainFolderName>
+    <ProductTargetDir>$(SolutionDir)\$(ProductMainFolderName)\bin\$(Configuration)\$(ProductTargetFramework)\</ProductTargetDir>
+    <ProductProjectDir>$(SolutionDir)\$(ProductMainFolderName)\</ProductProjectDir>
+    <DefineConstants>
+      Product.TargetDir=$(ProductTargetDir);
+      Product.ProjectDir=$(ProductProjectDir)
+    </DefineConstants>
+  </PropertyGroup>
+  <!-- WIX heat auto harvest from output dir -->
+  <PropertyGroup>
+    <PreBuildEvent>"$(WIX)bin\heat.exe" dir "$(SolutionDir)\$(ProductMainFolderName)\bin\$(ConfigurationName)\$(ProductTargetFramework)" -cg ProductComponents -gg -scom -sreg -sfrag -srd -dr INSTALLFOLDER -var var.Product.TargetDir -t "$(ProjectDir)Transform.xslt" -out "$(ProjectDir)ProductComponents.wxs"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- deactivate ICE validation for light.exe. The validation would check the MSI package but needs a lot of components on the build server (especially core servers) to be reinstalled. -->
+    <SuppressValidation>true</SuppressValidation>
+  </PropertyGroup>
+```
+
+This ensures that the setup build process will find the output folder of the product's main project and injects these paths to the `Product.wxs` file to refer to.
+The heat process also needs to know the `-var var.Product.TargetDir` injection for creating the dynamic `ProductComponents.wxs` file.
+With the `SuppressValidation` flag, the ICE Checks in the pipeline can be deactivated, especially important for newer pipeline Agents like on Windows Core Servers, which lack some components.
+This can be set without worries if you test your MSI package yourself after build and then don't constantly change its build process afterwards.
+
+
+The CI/CD Build order would now be:
+* build the main Project with all necessary files for the app
+* sign those files with a cert, e.g. with singTool from Windows SDK
+* now start building the Setup which harvests teh signed files from the first build
+* sign the MSI setup itself 
+
+> **Note:** If the sign process takes forever for a huge project, you can test excluding the dlls and only sign your exe files.
+
+---
 
 # Further Information
 
@@ -376,6 +423,79 @@ If you need more MSI functionality or want to look deeper, then check these link
 
 # Full file contents
 
+## wixproj 
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>fafe8c2d-cc73-4de5-8fc8-64fb3656aa85</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName Condition=" '$(SETUP_ENVIRONMENT)' == '' ">WixInstallerEDU.Setup</OutputName>
+    <OutputName Condition=" '$(SETUP_ENVIRONMENT)' != '' ">WixInstallerEDU.$(SETUP_ENVIRONMENT).Setup</OutputName>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <!-- Insert for x64-->
+  <!-- Add this, change the Platform to x64 and change in VS all Configurations in Porpertie GUIs to x64 -> Rebuild -->
+  <!-- https://stackoverflow.com/questions/28348496/wix-installer-unable-to-change-and-save-the-platform-to-64-bit -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug</DefineConstants>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ProductComponents.wxs" />
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Transform.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
+    <Error Text="The WiX Toolset v3.11 build tools must be installed to build this project. To download the WiX Toolset, see https://wixtoolset.org/releases/v3.11/stable" />
+  </Target>
+  <!-- Reference paths to Product project dir and output dir for harvesting and File Version -->
+  <PropertyGroup>
+    <ProductTargetFramework>net7.0</ProductTargetFramework> <!-- Set this to targetFramework of Main Exe project -->
+    <ProductMainFolderName>WixInstallerEDU</ProductMainFolderName>
+    <ProductTargetDir>$(SolutionDir)\$(ProductMainFolderName)\bin\$(Configuration)\$(ProductTargetFramework)\</ProductTargetDir>
+    <ProductProjectDir>$(SolutionDir)\$(ProductMainFolderName)\</ProductProjectDir>
+    <DefineConstants>
+      Product.TargetDir=$(ProductTargetDir);
+      Product.ProjectDir=$(ProductProjectDir)
+    </DefineConstants>
+  </PropertyGroup>
+  <!-- WIX heat auto harvest from output dir -->
+  <PropertyGroup>
+    <PreBuildEvent>"$(WIX)bin\heat.exe" dir "$(SolutionDir)\$(ProductMainFolderName)\bin\$(ConfigurationName)\$(ProductTargetFramework)" -cg ProductComponents -gg -scom -sreg -sfrag -srd -dr INSTALLFOLDER -var var.Product.TargetDir -t "$(ProjectDir)Transform.xslt" -out "$(ProjectDir)ProductComponents.wxs"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- deactivate ICE validation for light.exe. The validation would check the MSI package but needs a lot of components on the build server (especially core servers) to be reinstalled. -->
+    <SuppressValidation>true</SuppressValidation>
+  </PropertyGroup>
+</Project>
+```
+
 ## Product.wxs
 
 ```xml
@@ -385,10 +505,10 @@ If you need more MSI functionality or want to look deeper, then check these link
 	<!-- define dynamic variables here -->
 	<?define ProductManufacturer="Hermann Otto GmbH" ?>
 	<?define PackageDescription="WiX Installer EDU Project" ?>
+	<?define ProductTargetDir=$(var.Product.TargetDir) ?>
+	<?define ProductProjectIconDir=$(var.Product.ProjectDir) ?>
 	<?define ProductTargetExe="WixInstallerEDU.exe" ?>
 	<?define ProductVersion="!(bind.FileVersion.MainExeFile)" ?>
-	<?define ProductTargetDir=$(var.WixInstallerEDU.TargetDir) ?>
-	<?define ProductProjectIconDir=$(var.WixInstallerEDU.ProjectDir) ?>
 	<?define ProductHelpLink=https://dev.azure.com/OttoChemie/Ausbildung/_git/WixInstallerEDU?>
 
 	<!-- set environment dependent values -->
