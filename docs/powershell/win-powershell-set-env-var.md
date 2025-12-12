@@ -9,13 +9,15 @@ parent: PowerShell
 The following command is to set an environment variable on system or machine level on a windows system via PowerShell:
 
 ```shell
-[System.Environment]::SetEnvironmentVariable('ASPNETCORE_ENVIRONMENT','Test',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('SETUP_ENVIRONMENT','Development',[System.EnvironmentVariableTarget]::Machine)
 ```
 
-This sets the variable named `ASPNETCORE_ENVIRONMENT` to the value `Test`. Change the last part to `User` if you only want to set the variable on user level.
+This sets the variable named `SETUP_ENVIRONMENT` to the value `Development`. Change the last part to `User` if you only want to set the variable on user level.
 
 Check the Variable with:
 
 ```shell
-[System.Environment]::GetEnvironmentVariable('ASPNETCORE_ENVIRONMENT')
+System.Environment]::GetEnvironmentVariable('SETUP_ENVIRONMENT', [System.EnvironmentVariableTarget]::Machine)
 ```
+
+If there is no result then the cache of the terminal will not show it yet. Test closing the terminal and reopen it.
