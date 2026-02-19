@@ -9,10 +9,10 @@ parent: PowerShell
 The following command is to set an environment variable on system or machine level on a windows system via PowerShell:
 
 ```shell
-[System.Environment]::SetEnvironmentVariable('SETUP_ENVIRONMENT','Development',[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('SETUP_ENVIRONMENT','DEVELOPMENT',[System.EnvironmentVariableTarget]::Machine)
 ```
 
-This sets the variable named `SETUP_ENVIRONMENT` to the value `Development`. Change the last part to `User` if you only want to set the variable on user level.
+This sets the variable named `SETUP_ENVIRONMENT` to the value `DEVELOPMENT`. Change the last part to `User` if you only want to set the variable on user level.
 
 Check the Variable with:
 

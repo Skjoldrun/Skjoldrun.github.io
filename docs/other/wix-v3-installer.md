@@ -56,7 +56,8 @@ The needed variables are defined on top of the `Product.wxs` file to improve the
 <?define ProductHelpLink=https://dev.azure.com/OttoChemie/Ausbildung/_git/WixInstallerEDU?>
 ```
 
-The next part is to determine for which environment the setup should be built. This gets controlled via Environment variable `SETUP_ENVIRONMENT`, either a local one on the developer machine, or the one set in the CI build Pipe in DevOps. This part sets the dynamic values to build the single setup project upgradable for each environment and customizes it with icons and shortcuts:
+The next part is to determine for which environment the setup should be built. This gets controlled via Environment variable `SETUP_ENVIRONMENT`, either a local one on the developer machine, or the one set in the CI build Pipe in DevOps. The CI env variable can be set within the CI pipe as shown in my other articles. To set a local env var on you dev machine you can use `[System.Environment]::SetEnvironmentVariable('SETUP_ENVIRONMENT','DEVELOPMENT',[System.EnvironmentVariableTarget]::User)` (***Note:** This is case sensitive*). 
+This part sets the dynamic values to build the single setup project upgradable for each environment and customizes it with icons and shortcuts:
 
 ```xml
 <!-- set environment dependent values -->
@@ -80,7 +81,7 @@ The next part is to determine for which environment the setup should be built. T
 <?else?>
 <!-- PRODUCTION -->
 <?define ProductName="WixInstallerEDU" ?>
-<?define ShortcutName="WixInstallerEDU - NEU" ?>
+<?define ShortcutName="WixInstallerEDU" ?>
 <?define UpgradeCodeGUID="{16F1754E-C22F-4266-81FD-EBB841911566}" ?>
 <?define ApplicationShortcutGUID="{DD9E215A-0BE0-4E63-A02F-48F0D196A474}" ?>
 <?define DesktopShortcutGUID="{101DFDA8-1EAC-4718-B9C4-7B1EE0022323}" ?>
