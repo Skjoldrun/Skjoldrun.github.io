@@ -17,7 +17,7 @@ This sets the variable named `SETUP_ENVIRONMENT` to the value `DEVELOPMENT`. Cha
 Check the Variable with:
 
 ```shell
-System.Environment]::GetEnvironmentVariable('SETUP_ENVIRONMENT', [System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::GetEnvironmentVariable('SETUP_ENVIRONMENT', [System.EnvironmentVariableTarget]::Machine)
 ```
 
 If there is no result then the cache of the terminal will not show it yet. Test closing the terminal and reopen it.
