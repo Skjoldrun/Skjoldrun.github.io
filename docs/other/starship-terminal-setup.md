@@ -257,8 +257,6 @@ A preset that I currently use is based on the [pastel-powerline](https://starshi
 
 **File: `~\.config\starship.toml`**
 
-Download it from 
-
 ```yaml
 "$schema" = 'https://starship.rs/config-schema.json'
 
