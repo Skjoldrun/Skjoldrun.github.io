@@ -38,25 +38,71 @@ The package integrates in the build process and stamps the version number into t
 ### What is the 'git height'?
 Git 'height' is the number of commits in the longest path from HEAD (the code you're building) to some origin point, inclusive. In this case the origin is the commit that set the major.minor version number to the values found in the HEAD.
 
-For example, if the version specified at HEAD is 1.1 and the longest path in git history from HEAD to where the version file was changed to 1.1 includes 15 commits, then the git height is "15" and teh Version would look something like this: `1.1.15`.
+For example, if the version specified at HEAD is 1.1 and the longest path in git history from HEAD to where the version file was changed to 1.1 includes 15 commits, then the git height is "15" and the version would look something like this: `1.1.15`.
 
 
-## Additional Information
+## ThisAssembly Class
 
-A very nice addition is that the tool injects a class called `ThisAssembly` which then holds the following infos to be accessed as internal const strings:
+NBGV injects an `internal sealed partial class ThisAssembly` into your project at build time. This class provides compile-time `const` and `static readonly` access to version and assembly metadata — no need to use reflection at runtime.
+
+### Generated Members
+
+The full set of generated members depends on your project settings and `version.json` configuration:
 
 ```csharp
 internal sealed partial class ThisAssembly {
+    // Version strings
     internal const string AssemblyVersion = "1.0";
     internal const string AssemblyFileVersion = "1.0.24.15136";
     internal const string AssemblyInformationalVersion = "1.0.24-alpha+g9a7eb6c819";
-    internal const string AssemblyName = "Microsoft.VisualStudio.Validation";
-    internal const string PublicKey = @"0024000004800000940000...reallylongkey..2342394234982734928";
-    internal const string PublicKeyToken = "b03f5f7f11d50a3a";
-    internal const string AssemblyTitle = "Microsoft.VisualStudio.Validation";
+
+    // Assembly metadata
+    internal const string AssemblyName = "MyProject";
+    internal const string AssemblyTitle = "MyProject";
+    internal const string AssemblyProduct = "MyProduct";
+    internal const string AssemblyCompany = "MyCompany";
+    internal const string AssemblyCopyright = "Copyright © 2026";
     internal const string AssemblyConfiguration = "Debug";
-    internal const string RootNamespace = "Microsoft";
+    internal const string RootNamespace = "MyProject";
+
+    // Git information
+    internal const string GitCommitId = "9a7eb6c8197c3600a5226038811ab3a869f726e2";
+    internal static readonly System.DateTime GitCommitDate = new System.DateTime(638789145600000000L, System.DateTimeKind.Utc);
+
+    // Release flags
+    internal const bool IsPublicRelease = false;
+    internal const bool IsPrerelease = true;
+
+    // Strong name key info (only if a signing key is configured)
+    internal const string PublicKey = "0024000004800000940000...";
+    internal const string PublicKeyToken = "b03f5f7f11d50a3a";
 }
+```
+
+Since the class is declared as `partial`, you can extend it with your own members in a separate file.
+
+### Accessing ThisAssembly in Other Projects
+
+The `ThisAssembly` class is `internal` by default, so it is only accessible within the project it is generated in. If you need to expose version information to other projects, create a public wrapper or use `[InternalsVisibleTo]`.
+
+### Custom Fields via MSBuild
+
+You can add custom fields to the `ThisAssembly` class using the `AdditionalThisAssemblyFields` item group in your `.csproj` or `Directory.Build.props`:
+
+```xml
+<ItemGroup>
+  <AdditionalThisAssemblyFields Include="CustomString" String="Hello, World!" />
+  <AdditionalThisAssemblyFields Include="CustomBool" Boolean="true" />
+  <AdditionalThisAssemblyFields Include="CustomDateTime" Ticks="637505461230000000" />
+</ItemGroup>
+```
+
+This generates additional members:
+
+```csharp
+internal const string CustomString = "Hello, World!";
+internal const bool CustomBool = true;
+internal static readonly System.DateTime CustomDateTime = new System.DateTime(637505461230000000L, System.DateTimeKind.Utc);
 ```
 
 ## version.json
@@ -134,82 +180,3 @@ Console.WriteLine($"Finished program. {Environment.NewLine}" +
 ```
 
 [![NBGV Console](/assets/images/articles/DevOps/DevOps_Nbgv_Console.png)](/assets/images/articles/DevOps/DevOps_Nbgv_Console.png)
-
-
-# Pipeline Example using library vars
-
-Here's an example of a pipeline that I use in my projects combined with the [library variables](/docs/DevOps/cicd-library-vars.md):
-
-```yaml
-trigger:
- branches:
-   include:
-     - 'master'
-
-pool:
-  vmImage: 'windows-latest'
-
-variables:
-  - group: YOUR_GROUP_NAME
-  - name: SolutionName
-    value: YOUR_SOLUTION_NAME
-  - name: Vars_GroupId
-    value: 'YOUR_GROUP_ID'
-  - name: NBGV_Version
-    value: 'NBGV_$(SolutionName)'
-  - name: solution
-    value: '**/*.sln'
-  - name: buildPlatform
-    value: 'Any CPU'
-  - name: buildConfiguration
-    value: 'Release'
-
-steps:
-- checkout: self
-  submodules: true
-  persistCredentials: true
-  fetchDepth: 0
-
-- task: NuGetToolInstaller@1
-  displayName: 'Install NuGet Tools'
-  inputs:
-    checkLatest: true
-
-- task: NuGetCommand@2
-  displayName: 'Restore NuGet Packages'
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  displayName: 'Build Solution'
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: CopyFiles@2
-  displayName: 'Copy build artifacts to staging folder'
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)'
-    Contents: '$(SolutionName)/bin/$(buildConfiguration)/**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishPipelineArtifact@1
-  displayName: 'Publish Pipeline Artifacts'
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'pipeline'
-
-- powershell: |
-    dotnet tool install --tool-path . nbgv
-  displayName: Install NBGV CLI Tools
-
-# Service-TFSBuild user needs the azure CLI with DevOps extension. Install with 'az extension add --name azure-devops'
-- powershell: |
-    Write-Host "Update library variable '$(NBGV_Version)' with NBGV var GitBuildVersion $(GitBuildVersion) ..."
-    az pipelines variable-group variable update --group-id $(Vars_GroupId) --name $(NBGV_Version) --value "$(GitBuildVersion)"
-  displayName: Update library NBGV Version Variable
-  env:
-    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
-```
