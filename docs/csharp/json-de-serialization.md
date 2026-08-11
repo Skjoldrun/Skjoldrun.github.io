@@ -125,6 +125,60 @@ var options = new JsonSerializerOptions
 [![deserialization example with enum strings](/assets/images/articles/json-de-serializing/deserialize-example-enum-strings.png)](/assets/images/articles/json-de-serializing/deserialize-example-enum-strings.png)
 
 
+### Useful JsonSerializerOptions
+
+The `JsonSerializerOptions` can hold more than just converters. A few options are extremely handy when reading real world JSON files, which are often written or edited by hand and therefore not perfectly formatted:
+
+```csharp
+var options = new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+    ReadCommentHandling = JsonCommentHandling.Skip,
+    AllowTrailingCommas = true
+};
+```
+
+| Option | Effect |
+| ------ | ------ |
+| `PropertyNameCaseInsensitive` | Matches `"name"` to a `Name` property. Without it, casing must match exactly or the value stays `null`. |
+| `ReadCommentHandling` | `Skip` ignores `//` and `/* */` comments instead of throwing. Great for commented config files. |
+| `AllowTrailingCommas` | Accepts a dangling comma after the last element, e.g. `[1, 2, 3,]`, instead of throwing. |
+
+The following JSON would fail to deserialize with the default options, but works fine with the options above:
+
+```json
+{
+  // machines used in the demo factory
+  "machines": [
+    {
+      "id": 1,
+      "name": "Lasercarver 1000",
+    },
+  ]
+}
+```
+
+You can of course combine all options in a single object, for example with the enum converter from before:
+
+```csharp
+var options = new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+    ReadCommentHandling = JsonCommentHandling.Skip,
+    AllowTrailingCommas = true,
+    Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+};
+```
+
+Then pass this `options` object into the call, so both parsing tolerance and enum handling apply:
+
+```csharp
+var machines = JsonSerializer.Deserialize<Machines>(machinesJson, options).MachineList;
+```
+
+***Tip:** For nicely indented output when serializing, add `WriteIndented = true`. Note that `ReadCommentHandling` and `AllowTrailingCommas` only affect reading (deserialization); the serializer never writes comments or trailing commas.*
+
+
 ### Serialization Example
 
 Serializing is a little bit easier, because you can code first and the JSON file gets written on how you design your classes.
