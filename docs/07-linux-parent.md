@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Other
+title: Linux
 nav_order: 7
 has_children: true
 ---
 
-# Other
+# Linux
