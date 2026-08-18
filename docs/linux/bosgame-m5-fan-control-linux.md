@@ -189,7 +189,7 @@ sudo su_axb35_monitor                  # live view from the EC driver (RPM + CPU
 cat /sys/class/ec_su_axb35/fan1/rpm
 cat /sys/class/ec_su_axb35/temp1/temp
 ```
-
+opencode session list 
 KDE Plasma widget (optional):
 
 ```bash
